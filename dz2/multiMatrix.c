@@ -38,6 +38,10 @@ int main() {
     int pipes[SIZE][2];// storage pipe IDs r and w
 
     for (int i = 0; i < SIZE; i++) {
+        pipe(pipes[i]);
+    }
+
+    for (int i = 0; i < SIZE; i++) {
         pids[i] = fork();// create new proc for every row
         if (pids[i] < 0) {
 	    printf("Error! don't criate process");
