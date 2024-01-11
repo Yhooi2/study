@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ !-d "./attachments" ]; then
+if [ ! -d "./attachments" ]; then
  mkdir ./attachments/
  fi
 for (( i=0; i<20; i++ ))
