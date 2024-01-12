@@ -33,7 +33,7 @@ int main() {
     // Create forks
     for (int i = 0; i < SIZE; i++) {
         int pid = fork();
-	if (pid = 0) {
+	if (pid == 0) {
            int startRow = i / 2;
 	   int startCol = i % 2;
 
@@ -61,9 +61,8 @@ int main() {
     for (int i = 0; i < SIZE; i++) {
         waitpid(pids[i], NULL, 0);
     }
-    //print result
-    printf("Result Matrix:\n");
-    
+    //read and print result
+
     for (int i = 0; i < SIZE; i++) {
         close(fd[i][1]);
 
@@ -73,11 +72,16 @@ int main() {
         for (int row = startRow; row < SIZE; row += 2) {
             for (int col = startCol; col < SIZE; col += 2) {
                 read(fd[i][0], &resultMatrix[row][col], sizeof(int));
-		printf("%d ", resultMatrix[row][col]);
 	    }
-	    printf("\n");
 	}
 	close(fd[i][0]);
+    }
+    printf("Result Matrix:\n");
+    for (int i = 0; i < SIZE; i++) {
+       for (int j = 0; j < SIZE; j++) {
+	    printf("%d ", resultMatrix[i][j]);
+       }
+       printf("\n");
     }
     return 0;
 }
