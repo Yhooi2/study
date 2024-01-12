@@ -28,9 +28,9 @@ int main() {
     readMatrix(&matrix1[0][0], size);
     readMatrix(&matrix2[0][0], size);
     // Create pipes
-    int fd[size][2];
+    int pipes[size][2];
     for (int i = 0; i < size; i++) {
-        if (pipe(fd[i]) == -1) {
+        if (pipe(pipes[i]) == -1) {
 	    perror("pipe");
 	    return 1;
 	}
@@ -40,22 +40,18 @@ int main() {
     for (int i = 0; i < size; i++) {
         int pid = fork();
 	if (pid == 0) {
-           int startRow = i / 2;
-	   int startCol = i % 2;
 
-	   close(fd[i][0]);// closse read end pipe
-	   
-	   for (int row = startRow; row < size; row +=2) {
-	       for (int col = startCol; col < size; col +=2) {
-		   int sum = 0;
-		   for ( int k = 0; k < size; k++) {
-			sum += matrix1[row][k] * matrix2[k][col];
-		   }
-		   resultMatrix[row][col] = sum;
-		   write(fd[i][1], &resultMatrix[row][col],sizeof(int));
-	       }
+	    close(pipes[i][0]);// closse read end pipe
+
+	    int sum; 
+	    for (int col = 0; col < size; col++) {
+                sum = 0;
+		for ( int k = 0; k < size; k++) {
+                    sum += matrix1[i][k] * matrix2[k][col];
+		}
+                write(pipes[i][1], &sum, sizeof(int));
 	   }
-	   close(fd[i][1]);// clise wride end pipe
+	   close(pipes[i][1]);// clise wride end pipe
 	   return 0;
 	} else if (pid > 0) {
 	    pids[i] = pid;
@@ -70,17 +66,11 @@ int main() {
     //read and print result
 
     for (int i = 0; i < size; i++) {
-        close(fd[i][1]);
-
-        int startRow = i / 2;
-        int startCol = i % 2;
-	
-        for (int row = startRow; row < size; row += 2) {
-            for (int col = startCol; col < size; col += 2) {
-                read(fd[i][0], &resultMatrix[row][col], sizeof(int));
-	    }
+        close(pipes[i][1]);
+        for (int col = 0; col < size; col++) {
+                read(pipes[i][0], &resultMatrix[i][col], sizeof(int));
 	}
-	close(fd[i][0]);
+	close(pipes[i][0]);
     }
     printf("Result Matrix:\n");
     for (int i = 0; i < size; i++) {
