@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
-
+#include <ctype.h>
 
 void readMatrix(int* matrix, int size) {
     
@@ -19,7 +19,7 @@ int main() {
     int size;
     printf("Enter size of square matrices: ");
     scanf("%d", &size);
-    
+
     int matrix1[size][size];
     int matrix2[size][size]; 
     int resultMatrix[size][size];
