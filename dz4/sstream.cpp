@@ -1,17 +1,25 @@
 #include <string>
+#include <fstream>
 #include <sstream>
 #include <iostream>
 
 int main() {
-    std::string cordinates("(54.847830, 83,094392)");
+    std::ifstream fin("coordinates.txt");
+    if (fin.is_open()) {
+        std::string coordinates;
+        double lat, lon;
 
-    std::stringstream ss(cordinates);
-    double lat, lon;
-    ss.ignore(1);
-    ss >> lat;
-    ss.ignore(2);
-    ss >> lon;
-    std::cout << lat << ", " << lon << std::endl;
-
+        while (std::getline(fin, coordinates)) {
+            std::stringstream ss(coordinates);
+            ss.ignore(1);
+            ss >> lat;
+            ss.ignore(2);
+            ss >> lon;
+            if ( lat > 50 && lat < 80 && lon > 20 && lon < 45) {
+                std::cout << lat << ", " << lon << std::endl;
+            }
+        }
+    }
+    fin.close();
     return 0;
 }
