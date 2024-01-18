@@ -15,10 +15,16 @@ int main() {
             ss >> lat;
             ss.ignore(2);
             ss >> lon;
-            if ( lat > 50 && lat < 80 && lon > 20 && lon < 45) {
+            if ( (int)lat >= 49 && (int)lat <= 80 && (int)lon >= 19 && (int)lon <= 45) {
                 std::cout << lat << ", " << lon << std::endl;
             }
         }
+    } else if (fin.bad()) {
+        std::cout << "Err!";
+	return 1;
+    } else {
+	std::cout << "Err1";
+	return 1;
     }
     fin.close();
     return 0;
