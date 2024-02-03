@@ -16,6 +16,6 @@ else:
 pets[pet_name]['age'] = age
 
 # Print data
- print(f"Это {pets[pet_name]['type']} по кличке \"{pet_name}\".",
+print(f'Это {pets[pet_name]["type"]} по кличке \"{pet_name}\".',
          f"Возраст питомца: {pets[pet_name]['age']}.",
-         f"Имя владельца: {pets[pet_name]['owner name']}")
+         f"Имя владельца: {pets[pet_name]['owner_name']}")
