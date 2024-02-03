@@ -1,9 +1,24 @@
 import collections
 
+pets = {
+    1 :
+        {"Мухтар" : {"Вид питомца" : "Собака",
+            "Возраст питомца" : 9,
+            "Имя владельца" : "Павел"
+            },
+        },
+    2 :
+        {"Каа" : {"Вид питомца" : "желторотый питон",
+            "Возраст питомца" : 19,
+            "Имя владельца" : "Саша"
+            },
+        },
+    }
+
 def create():
     last = collections.deque(pets, maxlen=1) [0]
     name = input("Имя питомца:")
-    pets[last + 1][name]
+    pets[last + 1][name] = {}
     pets[last + 1][name]["Вид питомца"] = input("Вид питомца:")
     pets[last + 1][name]["Возраст питомца"] = input("Возраст питомца:")
     pets[last + 1][name]["Имя владельца"] = input("Имя владельца:")
@@ -24,7 +39,9 @@ def update():
     ID = input('Введите ID питомца:')
     if get_pet(ID):
         name = pets[ID]
-        pets[ID][name][input(f'Введите, что хотите изменить в {name}:')] = input('Введите новое значение')
+        key = input(f'Введите, что хотите изменить в {name}:') 
+        value =  input('Введите новое значение')
+        pets[ID][name][key] = value
     else:
        print('Животное с таким ID не зарегестрировано')
 
@@ -46,23 +63,8 @@ def get_suffix(age):
 def pets_list():
     last = collections.deque (pets, maxlen=1)[0]
     for i in range(1, last + 1):
-        print(i, pets[i])
+        print(i, list(pets[i].keys()))
 
-
-pets = {
-    1 :
-        {"Мухтар" : {"Вид питомца" : "Собака",
-            "Возраст питомца" : 9,
-            "Имя владельца" : "Павел"
-            },
-        },
-    2 :
-        {"Каа" : {"Вид питомца" : "желторотый питон",
-            "Возраст питомца" : 19,
-            "Имя владельца" : "Саша"
-            },
-        },
-    }
 while 1:
     command =  input('Enter command:')
     if command == 'create':
