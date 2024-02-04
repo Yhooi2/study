@@ -1,20 +1,5 @@
 import collections
 
-pets = {
-    1 :
-        {"Мухтар" : {"Вид питомца" : "Собака",
-            "Возраст питомца" : 9,
-            "Имя владельца" : "Павел"
-            },
-        },
-    2 :
-        {"Каа" : {"Вид питомца" : "желторотый питон",
-            "Возраст питомца" : 19,
-            "Имя владельца" : "Саша"
-            },
-        },
-    }
-
 def create():
     last = collections.deque(pets, maxlen=1) [0]
     name = input("Имя питомца:")
@@ -26,10 +11,11 @@ def create():
 def read():
     pets_list()
     ID = input('Enter ID: ')
+    print(get_pet(ID))
     if get_pet(ID):
         key = pets[ID][pets[ID]]
         age = key["Возраст питомца"]
-        print(f'Это {key["Вид питомца"]} по кличке "{pets[id]}".',
+        print(f'Это {key["Вид питомца"]} по кличке "{pets[ID]}".',
         f'Возраст питомца: {age} {get_suffix(age)}.',
         f'Имя владельца: {key["Имя владельца"]}')
     else:
@@ -51,7 +37,8 @@ def delete(ID):
     else:
         print('No found ID')
 def get_pet(ID):
-    return ID in pets.keys()
+    print(pets)
+    return ID in pets
         
 def get_suffix(age):
     if age % 10 == 1 and age != 11:
@@ -64,6 +51,22 @@ def pets_list():
     last = collections.deque (pets, maxlen=1)[0]
     for i in range(1, last + 1):
         print(i, list(pets[i].keys()))
+
+pets = {
+    1 :
+        {"Мухтар" : {"Вид питомца" : "Собака",
+            "Возраст питомца" : 9,
+            "Имя владельца" : "Павел"
+            },
+        },
+    2 :
+        {"Каа" : {"Вид питомца" : "желторотый питон",
+            "Возраст питомца" : 19,
+            "Имя владельца" : "Саша"
+            },
+        },
+    }
+
 
 while 1:
     command =  input('Enter command:')
