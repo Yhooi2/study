@@ -12,12 +12,21 @@ from utils import randcell2
 CELL_TYPES = "🟩🌲🌊🏥🏪🔥"
 
 class Map:
-    def print_map(self):
+
+    def __init__(self, w, h):
+        self.w = w
+        self.h = h
+        self.cells = [[0 for i in range(w)] for j in range(h)]
+
+    def print_map(self, helico):
         print('⬛' * (self.w + 2))
-        for  row in self.cells:
+        for  ri in range(self.h):
             print('⬛', end='')
-            for cell in row:
-                if cell >= 0 and cell < len(CELL_TYPES):
+            for ci in range(self.w):
+                cell = self.cells[ri][ci]
+                if (helico.x == ri and hellico.y == ci):
+                    print('' end='')
+                elif cell >= 0 and cell < len(CELL_TYPES):
                     print(CELL_TYPES[cell], end='')
             print('⬛')
         print('⬛' * (self.w + 2), end='')
@@ -50,6 +59,7 @@ class Map:
         cx, cy = c[0], c[1]
         if self.cells[cx][cy] == 0:
             self.cells[cx][cy] = 1  
+
     def add_fire(self):    
         c = randcell(self.w, self.h)
         cx, cy = c[0], c[1]
@@ -66,7 +76,3 @@ class Map:
 
 
     
-    def __init__(self, w, h):
-        self.w = w
-        self.h = h
-        self.cells = [[0 for i in range(w)] for j in range(h)]
