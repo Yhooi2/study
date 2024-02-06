@@ -45,7 +45,7 @@ class Map:
         self.w = w
         self.h = h
         self.cells = [[0 for i in range(w)] for j in range(h)]
-tmp = Map(10, 10)
+tmp = Map(20, 10)
 tmp.generate_forest(5, 10)
 for i in range(3):
     tmp.generate_river(10)
