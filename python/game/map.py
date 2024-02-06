@@ -32,14 +32,18 @@ class Map:
                 rx, ry = rx2, ry2
                 l -= 1
 
-
-
     def generate_forest(self, r, mxr):
         for ri in range(self.h):
             for ci in range(self.w):
                 if randbool(r, mxr):
                     self.cells[ri][ci] = 1
 
+    def generate_tree(self):
+        c = randcell(self.w, self.h)
+        cx, cy = c[0], c[1]
+        if (self.check_bounds(cx, cy) and self.cells[cx][cy] == 0):
+            self.cells[cx][cy] = 1
+        
 
     def __init__(self, w, h):
         self.w = w
