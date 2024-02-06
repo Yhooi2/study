@@ -18,7 +18,7 @@ for i in range(START_COUNT):
     field.add_fire()
 print()
 
-helico = Helico(MAP_W, MAP_H):
+helico = Helico(MAP_W, MAP_H)
 
 tick = 1
 

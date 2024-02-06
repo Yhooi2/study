@@ -9,7 +9,7 @@ from utils import randcell2
 # 4 - shoop
 # 5 - fire
 
-CELL_TYPES = "🟩🌲🌊🏥🏪🔥"
+CELL_TYPES = "🟩🌲🌊🏥🏪🔥🚁"
 
 class Map:
 
@@ -24,8 +24,8 @@ class Map:
             print('⬛', end='')
             for ci in range(self.w):
                 cell = self.cells[ri][ci]
-                if (helico.x == ri and hellico.y == ci):
-                    print('' end='')
+                if (helico.x == ri and helico.y == ci):
+                    print(CELL_TYPES[6], end='')
                 elif cell >= 0 and cell < len(CELL_TYPES):
                     print(CELL_TYPES[cell], end='')
             print('⬛')
