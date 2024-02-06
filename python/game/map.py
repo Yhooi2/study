@@ -9,7 +9,7 @@ from utils import randcell2
 # 4 - shoop
 # 5 - fire
 
-CELL_TYPES = "🟩🌲🌊🏥🏪"
+CELL_TYPES = "🟩🌲🌊🏥🏪🔥"
 
 class Map:
     def print_map(self):
