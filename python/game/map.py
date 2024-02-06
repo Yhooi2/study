@@ -45,15 +45,15 @@ class Map:
                 if randbool(r, mxr):
                     self.cells[ri][ci] = 1
 
-    def generate_tree_(self):
+    def generate_tree(self):
         c = randcell(self.w, self.h)
         cx, cy = c[0], c[1]
-        if (self.check_bounds(cx, cy) and self.cells[cx][cy] == 0):
+        if self.cells[cx][cy] == 0:
             self.cells[cx][cy] = 1  
     def add_fire(self):    
         c = randcell(self.w, self.h)
         cx, cy = c[0], c[1]
-        if (self.check_bounds(cx, cy) and self.cells[cx][cy] == 1):
+        if self.cells[cx][cy] == 1:
             self.cells[cx][cy] = 5
     
     def update_fire(self):
