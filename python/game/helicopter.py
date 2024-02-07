@@ -33,3 +33,8 @@ class Helicopter:
         print ('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         exit(0)
 
+    def export_data(self):
+        return {'score': self.score,
+                'lives': self.lives,
+                'x': self.x, 'y': self.y,
+                'tank': self.tank, 'mxtank':self.mxtank}

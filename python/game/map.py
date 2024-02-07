@@ -122,3 +122,6 @@ class Map:
             helico.lifes -= 1
             if helico.lifes <= 0:
                helico.game_over()
+
+    def export_data(self):
+        return {'cells': self.cells} 
