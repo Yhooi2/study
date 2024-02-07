@@ -24,12 +24,6 @@ listener = keyboard.Listener(
         on_release=process_key)
 listener.start()
 
-field = Map(MAP_W, MAP_H)
-field.generate_forest(6, 10)
-for i in range(START_COUNT):
-    field.generate_river(LONG_RIVER)
-    field.add_fire()
-print()
 
 helico = Helico(MAP_W, MAP_H)
 
@@ -37,6 +31,8 @@ tick = 1
 
 while True:
     os.system("cls") # clear
+    field.process_helicopter(helico)
+    helico.print_stats()
     field.print_map(helico)
     print()
     tick += 1
