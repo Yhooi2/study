@@ -19,7 +19,6 @@ def process_key(key):
         dx, dy = MOVES[c][0], MOVES[c][1]
         helico.move(dx, dy)
 
-
 listener = keyboard.Listener(
         on_press=None,
         on_release=process_key)
