@@ -18,5 +18,5 @@ class Helicopter:
             self.x, self.y = nx, ny
 
     def print_stats(self):
-        print('', self.tank, '/', self.mxtank sep='', end=' | ')
-        print('', self.score)
+        print('💧', self.tank, '/', self.mxtank, sep='', end=' | ')
+        print('🏆', self.score)

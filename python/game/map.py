@@ -20,10 +20,9 @@ class Map:
         self.w = w
         self.h = h
         self.cells = [[0 for i in range(w)] for j in range(h)]
-        self = Map(MAP_W, MAP_H)
         self.generate_forest(6, 10)
-        for i in range(START_COUNT):
-            self.generate_river(LONG_RIVER)
+        for i in range(2):
+            self.generate_river(10)
             self.add_fire()
         self.generate_shop()
         print()
@@ -92,12 +91,12 @@ class Map:
 
     def process_helicopter(self, helico):
         c = self.cells[helico.x][helico.y]
-        if c == 2
+        if c == 2:
             helico.tank = helico.mxtank
-        elif c == 5 and helico.tank > 0:
-            self.cells[helico.x][helico.y] == 0
+        if c == 5 and helico.tank > 0:
+            self.cells[helico.x][helico.y] = 1 
             helico.tank -= 1
             helico.score += TREE_BONUS
-        elif c == 4 and helico.score >= UPGRADE_COST:
-            hilico.mxtank += 1
+        if c == 4 and helico.score >= UPGRADE_COST:
+            helico.mxtank += 1
             helico.score -= UPGRADE_COST
