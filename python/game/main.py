@@ -36,5 +36,5 @@ while True:
     time.sleep(TICK_SLEEP)
     if (tick % TREE_UPDATE == 0):
         field.generate_tree()
-    if(tick % FIRE_UPDATE == 0):
+    if (tick % FIRE_UPDATE == 0):
         field.update_fire()

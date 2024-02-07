@@ -11,8 +11,8 @@ from utils import randcell2
 
 CELL_TYPES = "🟩🌲🌊🏥🏪🔥🚁"
 TREE_BONUS = 100
-#TODO: change to 5000 
 UPGRADE_COST = 500
+LIFE_COST = 1000
 
 class Map:
 
@@ -25,6 +25,7 @@ class Map:
             self.generate_river(10)
             self.add_fire()
         self.generate_shop()
+        self.generate_hospital()
         print()
 
     def print_map(self, helico):
@@ -73,6 +74,14 @@ class Map:
         c = randcell(self.w, self.h)
         cx, cy = c[0], c[1]
         self.cells[cx][cy] = 4
+    
+    def generate_hospital(self):
+        c = randcell(self.w, self.h)
+        cx, cy = c[0], c[1]
+        if c != 4:
+            self.cells[cx][cy] = 3
+        else:
+            self.generate_hospital()
 
     def add_fire(self):    
         c = randcell(self.w, self.h)
@@ -93,10 +102,13 @@ class Map:
         c = self.cells[helico.x][helico.y]
         if c == 2:
             helico.tank = helico.mxtank
-        if c == 5 and helico.tank > 0:
+        elif c == 5 and helico.tank > 0:
             self.cells[helico.x][helico.y] = 1 
             helico.tank -= 1
             helico.score += TREE_BONUS
-        if c == 4 and helico.score >= UPGRADE_COST:
+        elif c == 4 and helico.score >= UPGRADE_COST:
             helico.mxtank += 1
             helico.score -= UPGRADE_COST
+        elif c == 3 and helico.score >= LIFE_COST:
+            helico.lifes += 1
+            helico.score -= LIFE_COST
