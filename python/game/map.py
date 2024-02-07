@@ -35,11 +35,11 @@ class Map:
             for ci in range(self.w):
                 cell = self.cells[ri][ci]
                 if clouds.cells[ri][ci] == 1:
-                    print('', end='')
+                    print('⬜', end='')
                 elif clouds.cells[ri][ci] == 2:
-                    print('', end='')
+                    print('🟫', end='')
 
-                if helico.x == ri and helico.y == ci:
+                elif helico.x == ri and helico.y == ci:
                     print(CELL_TYPES[6], end='')
                 elif cell >= 0 and cell < len(CELL_TYPES):
                     print(CELL_TYPES[cell], end='')
@@ -119,4 +119,6 @@ class Map:
             helico.lifes += 10
             helico.score -= LIFE_COST
         if d == 2:
-            helico.lives -= 1
+            helico.lifes -= 1
+            if helico.lifes <= 0:
+               helico.game_over()

@@ -1,12 +1,13 @@
 from pynput import keyboard
 from map import Map
 from helicopter import Helicopter as Helico
+from clouds import Clouds
 import time 
 import os
 
 TICK_SLEEP = 0.1
 TREE_UPDATE = 10
-CLOUDS_UPDATE == 30
+CLOUDS_UPDATE = 70
 FIRE_UPDATE = 100 
 MAP_W, MAP_H = 20, 10
 MOVES = {'w': (-1, 0), 'd': (0, 1), 's': (1, 0), 'a':(0, -1)}
@@ -30,7 +31,7 @@ tick = 1
 
 while True:
     os.system("cls") # clear
-    field.process_helicopter(helico)
+    field.process_helicopter(helico, clouds)
     helico.print_stats()
     field.print_map(helico, clouds)
     print()
