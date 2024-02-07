@@ -4,9 +4,9 @@ from helicopter import Helicopter as Helico
 import time 
 import os
 
-TICK_SLEEP = 0.5
+TICK_SLEEP = 0.1
 TREE_UPDATE = 10
-FIRE_UPDATE = 20 
+FIRE_UPDATE = 100 
 MAP_W, MAP_H = 20, 10
 START_COUNT = 3
 LONG_RIVER = 10

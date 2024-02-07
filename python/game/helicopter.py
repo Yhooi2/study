@@ -11,5 +11,5 @@ class Helicopter:
 
     def move(self, dx, dy):
         nx, ny = dx + self.x, dy + self.y
-        if (nx >= and ny >= 0 and nx < self.h and ny < self.w):
+        if (nx >= 0 and ny >= 0 and nx < self.h and ny < self.w):
             self.x, self.y = nx, ny

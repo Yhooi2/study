@@ -71,8 +71,8 @@ class Map:
             for ci in range(self.w):
                 if self.cells[ri][ci] == 5:
                     self.cells[ri][ci] = 0
-        for i in range(3):
+                    for i in range(1):
+                        self.add_fire()
             self.add_fire()
-
 
     
