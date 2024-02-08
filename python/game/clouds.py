@@ -21,4 +21,4 @@ class Clouds:
         return {'cells': self.cells}
     
     def import_data(self, data):
-        self.cells = data['cells'] or [[0 for i in range(self.w) for j in range(self.h)]]
+        self.cells = data['cells'] or [[0 for i in range(self.w)] for j in range(self.h)]

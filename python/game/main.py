@@ -18,9 +18,13 @@ MOVES = {'w': (-1, 0), 'd': (0, 1), 's': (1, 0), 'a':(0, -1)}
 def process_key(key):
     global helico, clouds, field
     c = key.char.lower()
+
+    # moves the helicopter
     if c in MOVES.keys():
         dx, dy = MOVES[c][0], MOVES[c][1]
         helico.move(dx, dy)
+
+    # saving the game
     elif c == 'f':
         data = {'helicopter': helico.export_data(),
                 'clouds': clouds.export_data(),
@@ -28,6 +32,7 @@ def process_key(key):
 
         with open('level.json', 'w') as lvl:
             json.dump(data, lvl)
+    # loading the game
     elif c == 'g':
         with open('level.json', 'r') as lvl:
             data = json.lead(lvl)
