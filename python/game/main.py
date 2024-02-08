@@ -37,7 +37,7 @@ def process_key(key):
     # loading the game
     elif c == 'g':
         with open('level.json', 'r') as lvl:
-            data = json.lead(lvl)
+            data = json.load(lvl)
             tick = data['tick'] or 0
             helico.import_data(data['helicopter'])
             field.import_data(data['field'])
