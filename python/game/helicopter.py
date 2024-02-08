@@ -12,7 +12,7 @@ class Helicopter:
         self.tank = 0
         self.mxtank = 1
         self.score = 0
-        self.lifes = 20
+        self.lives = 20
 
     def move(self, dx, dy):
         nx, ny = dx + self.x, dy + self.y
@@ -20,7 +20,7 @@ class Helicopter:
             self.x, self.y = nx, ny
 
     def print_stats(self):
-        print('❤ ', self.lifes, end=' | ')
+        print('❤ ', self.lives, end=' | ')
         print('💧 ', self.tank, '/', self.mxtank, sep='', end=' | ')
         print('🏆', self.score)
     
@@ -38,3 +38,10 @@ class Helicopter:
                 'lives': self.lives,
                 'x': self.x, 'y': self.y,
                 'tank': self.tank, 'mxtank':self.mxtank}
+    def import_data(self, data):
+        self.x = data['x'] or 0
+        self.y = data['y'] or 0
+        self.tank = data['tank'] or 0
+        self.mxtank = data['mxtank'] or 1
+        self.lives = data['lives'] or 3
+        self.score = data['score'] or 0

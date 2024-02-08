@@ -116,12 +116,15 @@ class Map:
             helico.mxtank += 1
             helico.score -= UPGRADE_COST
         elif c == 3 and helico.score >= LIFE_COST:
-            helico.lifes += 10
+            helico.lives += 10
             helico.score -= LIFE_COST
         if d == 2:
-            helico.lifes -= 1
-            if helico.lifes <= 0:
+            helico.lives -= 1
+            if helico.lives <= 0:
                helico.game_over()
 
     def export_data(self):
         return {'cells': self.cells} 
+    
+    def import_data(self, data):
+        self.cells = data['cells'] or [[0 for i in range(self.w) for j in range(self.h)]]
