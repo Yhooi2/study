@@ -14,22 +14,15 @@ for i in range(n):
 #print(arr)
 #print('------')
 #################################################
-if arr[0] > arr[1]:
-    arr[0], arr[1] = arr[1], arr[0]
 
-for i in range(2, n):
-    if arr[i-1] > arr[i]:
-        fl = True
-        tmp = arr[i]
-        arr[i] = arr[i-1]
-        for j in range(i-2, -1, -1):
-            if arr[j] > tmp:
-                arr[j+1] = arr[j]
-            else:
-                arr[j+1] = tmp
-                fl = False
-        if fl:
-            arr[0] = tmp
+for i in range(n):
+    tmp = arr[i]
+    j = i - 1
+    while arr[j] > tmp and j >= 0:
+        arr[j+1] = arr[j]
+        j -= 1
+    arr[j+1] = tmp
+
 
 #################################################
 #print('sorted:')
