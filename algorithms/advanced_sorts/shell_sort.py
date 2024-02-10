@@ -1,0 +1,38 @@
+#shell select
+import timeit
+
+code_to_test = """
+import random
+
+n = 5000
+arr = list()
+for i in range(n):
+    number = random.randint(1, 100)
+    arr.append(number)
+
+#print('Not sorted:')
+#print(arr)
+#print('------')
+#################################################
+
+long = n
+while n != 1:
+    n  = n // 2
+    for i in range(n, long):
+        step = i - n
+        if arr[step] > arr[i]:
+            arr[step], arr[i] = arr[i], arr[step]
+            for j in range(step - n, -1, -n):
+                if arr[j] > arr[step]:
+                    arr[j], arr[step] = arr[step], arr[j]
+                    step = j
+                else: 
+                    break
+                
+
+#################################################
+#    print('sorted:')
+#print(arr)
+"""
+elapsed_time = timeit.timeit(code_to_test, number=5)/5
+print(elapsed_time)
