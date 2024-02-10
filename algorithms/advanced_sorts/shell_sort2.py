@@ -16,20 +16,19 @@ for i in range(n):
 
 #################################################
 
-long = n
-while n != 1:
-    n  = n // 2
-    for i in range(n, long):
-        step = i - n
-        if arr[step] > arr[i]:
-            arr[step], arr[i] = arr[i], arr[step]
-            for j in range(step - n, -1, -n):
-                if arr[j] > arr[step]:
-                    arr[j], arr[step] = arr[step], arr[j]
-                    step = j
-                else: 
-                    break
-                
+step = n // 2
+while step > 0:
+    for i in range(step, n, 1):
+        curr_idx = i
+        idx_check = curr_idx - step
+        while curr_idx > 0 and arr[idx_check] > arr[i]:
+            arr[curr_idx] = arr[idx_check]
+            curr_idx -= step
+            idx_check -= step
+        arr[curr_idx] = arr[i]
+    step = step // 2
+
+
 
 #################################################
 #    print('sorted:')

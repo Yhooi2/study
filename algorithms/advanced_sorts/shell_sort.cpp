@@ -7,13 +7,14 @@ int SIZE = 500000;
 
 int main() {
     
+    time_t start = clock();
+
     int arr[SIZE] = {};
 
     for (int i = 0; i < SIZE; i++) {
         arr[i] = rand() % 10;
     }
 
-    time_t start = clock();
     int step;
     int n = SIZE;
     while (n != 1) {
