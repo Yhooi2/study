@@ -1,15 +1,16 @@
 #include<ctime>
 #include<iostream>
-#include <cstdlib>
+#include<cstdlib>
+#include<cmath>
 
-int SIZE = 5000000;
+int SIZE = 500000;
 
 int main() {
     
     int arr[SIZE] = {};
 
     for (int i = 0; i < SIZE; i++) {
-        arr[i] = rand();
+        arr[i] = rand() % 10;
     }
 
     time_t start = clock();
@@ -35,5 +36,5 @@ int main() {
     time_t finish = clock();
 
     double duration = (double)(finish - start)/ CLOCKS_PER_SEC;
-    std::cout << duration; 
+    std::cout << std::endl << round(duration*10000)/10000<< std::endl; 
 }
