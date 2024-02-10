@@ -4,7 +4,7 @@ import timeit
 code_to_test = """
 import random
 
-n = 5000 
+n = 5000
 arr = list()
 for i in range(n):
     number = random.randint(1, 100)
@@ -15,7 +15,15 @@ for i in range(n):
 #print('------')
 #################################################
 
-for
+right = n - 1
+while 0 < right:
+    for i in range (right):
+        if arr[i] > arr[right]:
+            arr[i], arr[right] = arr[right], arr[i]
+    right -= 1
+    
+
+
 
 #################################################
 #print('sorted:')
