@@ -4,8 +4,10 @@ import timeit
 code_to_test = """
 import random
 import array
+import sys
+sys.setrecursionlimit(100000)
 
-n = 500000
+n = 10 
 arr = array.array('i',[0]) * n
 for i in range(n):
     number = random.randint(1, 100)
@@ -44,7 +46,7 @@ def mergeSort( arr ):
 
     arrRight = array.array( 'i', [ 0 ] ) * ( size - sizeHalf )
     for i in range( sizeHalf, size ):
-        arrRight[ i ] = arr[ i ]
+        arrRight[ i - sizeHalf ] = arr[ i ]
         
     arrLeftSort = mergeSort( arrLeft )
     arrRightSort = mergeSort( arrRight )
