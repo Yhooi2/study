@@ -21,14 +21,11 @@ while step > 1:
     step = step // 2
     for i in range(step, n):
         nextStep = i - step 
-        if arr[nextStep] > arr[i]:
-            current = i
-            tmp = arr[i]
-            while current > 0 and arr[nextStep] > tmp:
-                arr[current] = arr[nextStep]
-                nextStep -= step
-                current -= step 
-            arr[current] = tmp
+        current = i
+        while current > 0 and arr[nextStep] > arr[current]:
+            arr[current], arr[nextStep] = arr[nextStep], arr[current]
+            nextStep -= step
+            current -= step 
 
 
 #################################################
