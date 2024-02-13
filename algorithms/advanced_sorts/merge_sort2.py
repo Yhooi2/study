@@ -10,24 +10,20 @@ sys.setrecursionlimit(100000)
 
 #################################################
 
-def merge(arr, leftHealf, rightHealf ):
+def merge( leftHealf, rightHealf ):
     lenLeft = len( leftHealf )
     lenRight = len( rightHealf )
+    arrFull = list()
     j = 0
-    indexArr = 0
-
     for i in range( lenRight ):
         while j <  lenLeft and leftHealf[ j ] <= rightHealf[ i ]:
-            arr[ indexArr ] = leftHealf[ j ] 
-            indexArr += 1
+            arrFull.append( leftHealf[ j ] )
             j += 1
-        arr[ indexArr ] = rightHealf[ i ]  
-        indexArr += 1
-        
+
+        arrFull.append( rightHealf[ i ] ) 
     for i in range( j, lenLeft ):
-        arr[ indexArr ] = leftHealf[ i ] 
-        indexArr += 1
-    return arr 
+        arrFull.append( leftHealf[ i ] )
+    return arrFull 
 
 def mergeSort( arr, mid ):
     if mid == 0:
@@ -41,9 +37,9 @@ def mergeSort( arr, mid ):
     leftHealfSort = mergeSort( leftHealf, midLeftHealf )
     rightHealfSort = mergeSort( rightHealf, midRightHealf )
     
-    return merge(arr, leftHealfSort, rightHealfSort )
+    return merge( leftHealfSort, rightHealfSort )
 
-n = 100000 
+n = 100000
 arr = list()
 for i in range(n):
     number = random.randint(1, 100)
