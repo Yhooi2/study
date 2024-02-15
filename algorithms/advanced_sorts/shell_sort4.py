@@ -4,7 +4,7 @@ import timeit
 code_to_test = """
 import random
 
-n = 10000
+n = 100000
 arr = list()
 for i in range(n):
     number = random.randint(1, 100)

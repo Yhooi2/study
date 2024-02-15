@@ -4,7 +4,7 @@ import timeit
 code_to_test = """
 import random
 
-n = 500000
+n = 100000
 arr = list()
 for i in range(n):
     number = random.randint(1, 100)
@@ -35,5 +35,5 @@ while n != 1:
 #    print('sorted:')
 #print(arr)
 """
-elapsed_time = timeit.timeit(code_to_test, number=5)/5
+elapsed_time = timeit.timeit(code_to_test, number=20)/20
 print(elapsed_time)
