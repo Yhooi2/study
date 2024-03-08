@@ -20,7 +20,16 @@ def choice_sort(A):
 
 def bubble_sort(A):
     """ sort lists A by bubble """
-    pass
+    N = len(A)
+    for bypass in range(1, N):
+        fl = True
+        for i in range(N-bypass):
+            if A[i] > A[i+1]:
+                A[i], A[i+1] = A[i+1], A[i]
+                fl = False
+        if fl:
+            break
+
 
 #########################################
 # test
