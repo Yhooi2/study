@@ -11,17 +11,14 @@ sys.setrecursionlimit(100000)
 def quickSort( unorderedList ):
     if len( unorderedList ) < 2:
         return unorderedList
-    
-    print( unorderedList )
     pivot = unorderedList[ 0 ]
 
     leftHealf = [ i for i in unorderedList[ 1: ] if i <= pivot ]
     rightHealf = [ i for i in unorderedList[ 1: ] if i > pivot ]
 
-    print( leftHealf, [pivot], rightHealf )
     return( quickSort( leftHealf ) + [pivot] + quickSort( rightHealf ) )
 
-n = 3
+n = 10000 
 arr = list()
 for i in range(n):
     number = random.randint(1, 100)
@@ -29,12 +26,11 @@ for i in range(n):
 #print('Not sorted:')
 #print(arr)
 #print('------')
-arr = [ 2, 1, 3 ]
 arrSort = quickSort( arr )
 
-print( arrSort )
+#print( arrSort )
 #################################################
 #print('sorted:')
 """
-elapsed_time = timeit.timeit(code_to_test, number=2)/2
+elapsed_time = timeit.timeit(code_to_test, number=20)/20
 print(elapsed_time)

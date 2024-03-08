@@ -9,31 +9,24 @@ sys.setrecursionlimit(100000)
 #################################################
 
 def quickSort( unorderedList ):
-    lenUnorderedList = len( unorderedList )
-    if lenUnorderedList < 2:
+    if len( unorderedList ) < 2:
         return unorderedList
-    print( unorderedList )
     firstElement = unorderedList[ 0 ]
     rightHealf =list() 
     leftHealf = list()
     mid = list()
-    mid.append( firstElement )
 
-    for i in range( 1, lenUnorderedList ):
-        if firstElement > unorderedList[ i ]:
-            rightHealf.append( unorderedList[ i ] )
-        elif firstElement < unorderedList[ i ]:
-            leftHealf.append( unorderedList[ i ] )
+    for it in unorderedList:
+        if firstElement < it:
+            rightHealf.append( it )
+        elif firstElement > it:
+            leftHealf.append( it )
         else:
-            mid.append( unorderedList[ i ] )
+            mid.append( it )
             
-        rightHealfSort = quickSort( rightHealf )
-        leftHealfSort = quickSort( leftHealf )
+        return ( quickSort( rightHealf ) + mid + quickSort( leftHealf ) )
 
-        print( rightHealfSort, mid, leftHealfSort )
-        return( rightHealfSort + mid + leftHealfSort )
-
-n = 3
+n = 5
 arr = list()
 for i in range(n):
     number = random.randint(1, 100)

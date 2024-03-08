@@ -39,7 +39,7 @@ def mergeSort( arr, mid ):
     
     return merge( leftHealfSort, rightHealfSort )
 
-n = 100000
+n = 10000
 arr = list()
 for i in range(n):
     number = random.randint(1, 100)
