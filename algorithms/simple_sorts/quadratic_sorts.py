@@ -23,7 +23,7 @@ def bubble_sort(A):
     N = len(A)
     for bypass in range(1, N):
         fl = True
-        for i in range(N-bypass):
+        for i in range(N - bypass):
             if A[i] > A[i+1]:
                 A[i], A[i+1] = A[i+1], A[i]
                 fl = False
