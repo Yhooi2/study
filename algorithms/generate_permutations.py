@@ -1,5 +1,6 @@
 
 def generation_permutations(N:int, M:int=-1, prefix=[]):
+    """generation of all permutations for N numbers M - positions"""
     M = N if M == -1 else M # by default m = n 
     if M == 0:
         print(*prefix, sep="", end=", ")
