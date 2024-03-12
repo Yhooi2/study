@@ -1,4 +1,4 @@
-def cheak_sorted(arr, ascending=True):
+def check_sorted(arr, ascending=True):
     sign = 2 * int(ascending) - 1
     for i in range(len(arr) - 1):
         if sign * arr[i] > sign * arr[i+1]:
@@ -7,7 +7,7 @@ def cheak_sorted(arr, ascending=True):
 
 def interpolation_search(arr, key):
     """ interpolation search """
-    if cheak_sorted(arr) == False:
+    if check_sorted(arr) == False:
         arr.sort()
     left = 0
     right = len(arr) - 1
@@ -18,15 +18,16 @@ def interpolation_search(arr, key):
         if arr[mid] == key:
             return mid
         elif arr[mid] < key:
-            left = mid
+            left = mid + 1
         else:
-            right = mid
+            right = mid - 1
     if arr[left] == key:
         return left
     elif arr[right] == key:
         return right
     else:
         return -1
+    
 ############################# test ##############
 def test_search(search_algorithm):
    #print("test: ", search_algorithm.__doc__)
@@ -46,7 +47,7 @@ def test_search(search_algorithm):
     arr = [0, 3, -2, 9, 11, 5, 15]
     key = 7
     index = search_algorithm(arr, key)
-    print( 'Ok' if arr[index] == - 1 else 'Fail')
+    print( 'Ok' if index == -1 else 'Fail')
 
 
 
