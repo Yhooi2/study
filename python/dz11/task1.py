@@ -8,4 +8,4 @@ def rec(n):
 
 size = len(my_list) - 1
 rec(size)
-print()
+print("Конец списка")
