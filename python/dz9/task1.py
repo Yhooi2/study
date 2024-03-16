@@ -4,7 +4,8 @@ def factorial(n):
     return factorial(n-1) * n
 
 l = []
-x = int(input())
-for i in range(x, 0 , -1):
+x = factorial(int(input()))
+
+for i in range(x, 0, -1):
     l.append(factorial(i))
 print(l)
