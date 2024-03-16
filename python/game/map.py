@@ -94,7 +94,7 @@ class Map:
         if self.cells[cx][cy] == 1:
             self.cells[cx][cy] = 5
     
-    def update_fire(self):
+    def update_fire(self, helico):
         for ri in range(self.h):
             for ci in range(self.w):
                 if self.cells[ri][ci] == 5:
