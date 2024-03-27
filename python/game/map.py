@@ -98,10 +98,9 @@ class Map:
         for ri in range(self.h):
             for ci in range(self.w):
                 if self.cells[ri][ci] == 5:
+                    helico.score -= TREE_BONUS
                     self.cells[ri][ci] = 0
-                    helico.score += TREE_BONUS
-                    for i in range(1):
-                        self.add_fire()
+        for i in range(3):
             self.add_fire()
 
     def process_helicopter(self, helico, clouds):
