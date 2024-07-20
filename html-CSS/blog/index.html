@@ -35,9 +35,78 @@
             <main>
             <div class="main-container">
                 <article>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, earum laborum illum molestias dolores a, natus velit culpa rem ea tenetur omnis tempora alias saepe similique non enim quia veniam maxime sequi error? Consectetur numquam quis hic ex fugit in impedit cumque dolor vero voluptatum nisi odit quasi alias, animi doloremque et blanditiis quibusdam quas necessitatibus nesciunt quia sequi saepe. Ipsa molestias, suscipit nulla odit eius autem delectus ex ratione perferendis! Consectetur magnam accusamus libero illum saepe cum ex, laboriosam, maxime quos et praesentium natus culpa harum provident tempora delectus vero incidunt officiis similique totam quae? Ducimus fuga quae incidunt, dolores ab voluptatum et quaerat quam earum quasi, perferendis vitae nihil quisquam fugit voluptas ut commodi nemo minus accusantium. Et reprehenderit quod quaerat, assumenda dolorum, mollitia, illo dicta explicabo ipsum illum ex necessitatibus. Laudantium, omnis aliquid assumenda at ut distinctio explicabo aspernatur. Quaerat, ad porro voluptatum, earum impedit ut debitis pariatur consequuntur quidem ratione cum minus unde laudantium quia, aut illo nulla? Aliquam dolor, ex eius fuga debitis aspernatur nemo, voluptas ea eum nam libero laudantium vero iusto tempora corporis ipsa et cumque? Iusto praesentium doloribus, nihil aspernatur veritatis similique possimus saepe sit sequi inventore error et perferendis odit tempora in molestias iste tenetur qui eaque! Commodi aliquam fugit tempora consectetur non veniam nostrum necessitatibus hic minima tenetur aperiam sequi labore consequatur sit nihil neque aliquid rem, et excepturi libero quos. Expedita laudantium, eveniet, sed, doloremque soluta error ea inventore odit pariatur consectetur nihil aliquid ut! Minus repellat incidunt commodi obcaecati reiciendis totam doloribus numquam! Quasi quibusdam reprehenderit, veritatis eum et aut autem, quia consequatur ducimus illum deleniti ipsa, libero nulla. Blanditiis reiciendis obcaecati suscipit veniam! Quas aliquid soluta aut, vel minima quia velit vero neque ullam totam perferendis quae sapiente. Dolore, veniam amet blanditiis ratione eligendi obcaecati natus delectus?
-                    </p>
+                    <h1>Семантическая верстка</h1>
+                    <section>
+                        <h2> Для чего нужна семантика и что это такое?</h2>
+                        <p>
+                            Давным-давно (лет пятнадцать назад) почти все делали сайты и не переживали o том, что под капотом. Верстали таблицами, использовали всё, что попадётся под руку (a попадались в основном div и span) и не особо заморачивались о доступности. А потом случился HTML5 и понеслось.
+                        </p>
+                        <img src="https://htmlbook.ru/files/images/blog/htmlacademy/semantic.jpg" alt="Семантическая разметка">
+                        <p>
+                            Семантическая вёрстка — подход к разметке, который опирается не на содержание сайта, а на смысловое предназначение каждого блока и логическую структуру документа. Даже в этой статье есть заголовки разных уровней — это помогает читателю выстроить в голове структуру документа. Так и на странице сайта — только читатели будут немного другими.
+                        </p>
+                        <figure>
+                            <img src="https://cs1.htmlacademy.ru/blog/html/semantics/04dc3548520b5e1640b16b6571cc6182.png" alt="Пример">
+                            <figcaption> Источник: 
+                                <a href="https://cs1.htmlacademy.ru/blog/html/semantics/04dc3548520b5e1640b16b6571cc6182.png">https://cs1.htmlacademy.ru/blog/html/semantics/04dc3548520b5e1640b16b6571cc6182.png</a>
+                            </figcaption>
+                        </figure>
+                        <p>
+                            Разработчики tutu.ru сверстали таблицу тегом вместо, и их сниппет оказался в выдаче Google по важному коммерческому запросу.
+                        </p>
+                        <img src="https://cs1.htmlacademy.ru/blog/html/semantics/d493ede3ff59f0079f867593c866e2b4.png" alt="Не семантично">
+                        <section>
+                            <spen>Процесс разметки можно разделить на несколько шагов с разной степенью детализации.</spen>
+                            <ol>
+                                <li>Крупные смысловые блоки на каждой странице сайта. </li>
+                                <li>Крупные смысловые разделы в блоках.</li>
+                                <li>Заголовок всего документа и заголовки смысловых разделов.</li>
+                                <li><a href="#section-element">Мелкие элементы в смысловых разделах. Списки, таблицы, демо-материалы, параграфы и переносы, формы, цитаты, контактная информация и прогресс.</a></li>
+                                <li>Фразовые элементы. Изображения, ссылки, кнопки, видео, время и мелкие текстовые элементы.</li>
+                            </ol>
+                        </section>
+                        <section id="section-element">
+                            <h2>Пример кода</h2>
+                            <p>
+                                Или вот такой код. Смотрите, и сразу понятно, что тут и зачем:
+                            </p>
+                            <pre>
+                                <code>
+                                    &lt;!DOCTYPE html&gt;
+                                    &lt;html lang="ru"&gt;
+                                    &lt;head&gt;
+                                        &lt;meta charset="utf-8"&gt;
+                                        &lt;title&gt;Заголовок страницы&lt;/title&gt;
+                                    &lt;/head&gt;
+                                    &lt;body&gt;
+                                        &lt;header class="main-header"&gt;
+                                        &lt;!— Шапка сайта —&gt;
+                                        &lt;/header&gt;
+                                        &lt;main&gt;
+                                        &lt;!— Основное содержимое страницы —&gt;
+                                        &lt;/main&gt;
+                                        &lt;footer class="main-footer"&gt;
+                                        &lt;!— Подвал сайта —&gt;
+                                        &lt;/footer&gt;
+                                    &lt;/body&gt;
+                                    &lt;/html&gt;
+                                </code>
+                            </pre>
+                        </section>
+                        <div class="">
+                            <hr>
+                            <p>
+                                Так же семантическими тегами можно назвать header,footer, nav, которые мы изучали на прошлом уроке.
+                            </p>
+                        </div>
+                        <section>
+                            <h2>Вывод.</h2>
+                            <p>
+                                Таким образом семантическая разметка помогает б_о_льшему количеству пользователей работать с вашим сайтом.
+                            </p>
+                        </section>
+
+                    </section>
                 </article>
         </div>
     </main>
