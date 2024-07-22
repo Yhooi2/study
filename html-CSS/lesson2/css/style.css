@@ -1,0 +1,11 @@
+h2 + p  {
+    background: #cedd94;
+}
+/*псевдоклассы*/
+
+h2:hover {
+    color: #610536
+}
+a:visited {
+    color: #fd52f5
+}
