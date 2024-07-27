@@ -1,8 +1,18 @@
-.container {
-    margin: 0 auto; /*внешние отступы по центру*/
-    width: 70vw;
+* {
+  font-family: "Montserrat", sans-serif;
+  color: #cedfe4;
 }
 
+.container {
+    margin: 0 auto; /*внешние отступы по центру*/
+    width: 80vw;
+}
+body {
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
 html {
     font-size: 20px;
 }
@@ -11,6 +21,7 @@ html {
 h1 {
     width: 90%;
     font-size: 3rem;
+    line-height: 100%;
 }
 p {
     line-height: 140%;
@@ -18,32 +29,28 @@ p {
 
 h2 {
     font-size: 2.2rem;
+    color: rgb(229, 14, 53);
+    
 
 }
 
-h2 + p  {
-    background: #cedd94;
+h2 + p a:visited{
+    color:#0a151a;
 }
 /*псевдоклассы*/
 
 h2:hover {
-    color: #610536
+    color: #dd117e;
 }
 
+}
 a:visited {
-    color: #fd52f5
+    color: #07bb1f;
 }
-
-.circle {
-    width:200px;
-    padding: 100px;
-    color: aliceblue;
-    font-size: 40px;
-    height: 200px;
-    border-radius: 200px;
-    background: rgb(17, 47, 198)
+figure figcaption, figure a, figure a:visited {
+    color:#2C5364;
+    font-size:0.5rem;
 }
-
 .zayavka label, fieldset label, select, input, textarea {
     display: block;
 }
@@ -62,12 +69,61 @@ fieldset input {
 
 .zayavka input, textarea, select {
     font-size: 1.1rem;
+    color:#0a151a;
 }
 .zayavka textarea {
     width: 100%;
     padding: 10px 25px;
 }
 
-#vac ul li {
+.zayavka input {
+    border-radius: 10px 10px 10px 10px;
+}
+.zayavka fieldset {
+    border: 0;
+}
+
+#vac ul li, button {
     font-size: 1.5rem;
+    background: rgb(18, 169, 189);
+    display: inline-block;
+    padding: 20px 30px;
+    margin: 0px 10px 10px 0px;
+    border-radius: 40px;
+    color:#14252c;
+    background: #ececec;
+}
+button {
+    
+    background: rgb(229, 14, 53);
+    border: 6px 6px 6px 6px solid black; 
+    color:#cedfe4
+}
+.main-title strong {
+    font-weight: 400;
+    color: rgb(229, 14, 114);
+}
+.big-table {
+    font-weight: 600;
+    padding:15px;
+}
+.big-table td {
+    text-align: center;
+    padding: 15px;   
+}
+
+.big-table tr:nth-child(2n) {
+    background: rgb(18, 169, 189);
+}
+
+.big-table tr:nth-child(2n) td:last-child {
+    border-radius: 0 30px 30px 0;
+}
+
+.big-table tr:nth-child(2n) th {
+    border-radius: 30px 0 0 30px;
+    color:#14252c;
+}
+.big-table tr:nth-child(2n) td {
+    color:#14252c;
 }
