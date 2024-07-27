@@ -1,3 +1,26 @@
+.container {
+    margin: 0 auto; /*внешние отступы по центру*/
+    width: 70vw;
+}
+
+html {
+    font-size: 20px;
+}
+
+
+h1 {
+    width: 90%;
+    font-size: 3rem;
+}
+p {
+    line-height: 140%;
+}
+
+h2 {
+    font-size: 2.2rem;
+
+}
+
 h2 + p  {
     background: #cedd94;
 }
@@ -6,6 +29,45 @@ h2 + p  {
 h2:hover {
     color: #610536
 }
+
 a:visited {
     color: #fd52f5
+}
+
+.circle {
+    width:200px;
+    padding: 100px;
+    color: aliceblue;
+    font-size: 40px;
+    height: 200px;
+    border-radius: 200px;
+    background: rgb(17, 47, 198)
+}
+
+.zayavka label, fieldset label, select, input, textarea {
+    display: block;
+}
+
+.zayavka input, textarea, select, fieldset {
+    margin-bottom: 15px;
+}
+
+fieldset input {
+    display: inline;
+}
+
+.logic-block {
+    padding: 100px 0;
+}
+
+.zayavka input, textarea, select {
+    font-size: 1.1rem;
+}
+.zayavka textarea {
+    width: 100%;
+    padding: 10px 25px;
+}
+
+#vac ul li {
+    font-size: 1.5rem;
 }
