@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
+
     <title>Document</title>
     <style>
+        /*
         * {
             color: rgb(2, 2, 64)
         }
@@ -15,7 +20,8 @@
         td {
             background: #e1bfbf
         }
-    /*    h2 {
+    
+        h2 {
             margin: 0;
         }
         p {
@@ -63,7 +69,13 @@
     <main>
         <div class="container">
             <section class="logic-block">
-                <h1>Стажировки <br> в одной из лучших <br> IT-компаний в России</h1>
+                <h1 class="main-title">Стажировки <br> в одной из лучших <br> <strong>IT-компаний </strong> в России</h1>
+                <figure>
+                    <img src="https://threedio-cdn.icons8.com/6XRxtD4I_pduiXCxlaw7rG_w7aFdPFxC0WZBjP3f0a4/rs:fit:1024:1024/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzg1Ny82YWRm/N2M2OC0xYjQyLTQ4/YmUtOTJhMy03MTQw/M2ViZTE2Y2QucG5n.png" alt="Стажировка в ИТ">
+                    <figcaption>
+                        Illustration by <a href="https://icons8.com.illustrations/autor/zD2oqC8lLBBA">Icons 8</a> from <a href="https://icons8.com/">Ouch!</a>
+                    </figcaption>
+                </figure>
             </section>
             <section class="logic-block" id="vac">
                 <h2>Вакансии</h2>
@@ -78,13 +90,13 @@
             </section>
             <section  class="logic-block" id="usl">
                 <h2>Условия</h2>
-                <table>
+                <table class="big-table">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Стажировка в течении года</th>
-                            <th>Стажировка летняя</th>
-                            <th>Погружение: интенсивная стажировка</th>
+                            <th> Стажировка в течении года </th>
+                            <th> Стажировка летняя </th>
+                            <th> Погружение: интенсивная стажировка </th>
                         </tr>
                     </thead>
                     <tboody>
@@ -93,6 +105,33 @@
                             <td colspan="2">Очно или Дистанционно</td>
                             <td>Очно</td>
                         </tr>
+                        <tr>
+                            <th>Дата начала</th>
+                            <td>Каждый месяц</td>
+                            <td>Май</td>
+                            <td>Февраль, Август</td>
+                        </tr>
+                        <tr>
+                            <th>Оплата проезда</th>
+                            <td colspan="3">Да</td>
+                        </tr>
+                        <tr>
+                            <th>Оплата проживания</th>
+                        <td>Нет</td>
+                        <td colspan="2">Да</td>
+                    </tr>
+                    <tr>
+                        <th>Занятость</th>
+                        <td colspan="2">Гибкий график от 20 до 40 часов в неделю </td>
+                        <td>Полная 5/2</td>
+
+                    </tr>
+                    <tr>
+                        <th>Продолжительность</th>
+                        <td>от 3 до 6 месяцев </td>
+                        <td>3 месяца</td>
+                        <td>1 месяц</td>
+                    </tr>
                     </tboody>
                     <tfoot>
                         <tr>
@@ -106,7 +145,7 @@
             </section>
             <section  class="logic-block" id="trb">
                 <h2>Требования</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <strong>Explicabo iste nemo, voluptates dignissimos cupiditate facilis ut asperiores quis</strong> Doloremque quisquam rerum ducimus at nihil quibusdam, asperiores, nesciunt perferendis minus fuga quod accusamus ab dolorum voluptates<em>. Cupiditate temporibus provident blanditiis? </em>Dicta omnis iure quaerat magni quasi maiores eos sit reprehenderit inventore id porro officiis iste nesciunt doloremque quam laborum, laboriosam nihil accusamus. Provident sit repellendus neque odit sint laudantium aliquid eveniet dolorem voluptatem. Reprehenderit, deserunt quasi beatae praesentium aliquam est iure voluptate in ea magni explicabo repellat vel fugiat corporis voluptatum esse dolor magnam exercitationem eveniet eligendi quae accusantium dolores. Atque.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <strong>Explicabo iste nemo, voluptates dignissimos cupiditate facilis ut asperiores quis</strong> Doloremque quisquam rerum ducimus at nihil quibusdam, <a href="">adfg </a> asperiores, nesciunt perferendis minus fuga quod accusamus ab dolorum voluptates<em>. Cupiditate temporibus provident blanditiis? </em>Dicta omnis iure quaerat magni quasi maiores eos sit reprehenderit inventore id porro officiis iste nesciunt doloremque quam laborum, laboriosam nihil accusamus. Provident sit repellendus neque odit sint laudantium aliquid eveniet dolorem voluptatem. Reprehenderit, deserunt quasi beatae praesentium aliquam est iure voluptate in ea magni explicabo repellat vel fugiat corporis voluptatum esse dolor magnam exercitationem eveniet eligendi quae accusantium dolores. Atque.</p>
             </section>
             <section  class="logic-block zayavka" id="zay">
                 <h2>Подать заявку</h2>
@@ -142,7 +181,7 @@
                             <label for="tel">Телефон</label>
                             <input name="tel" id="tel" required>
 
-                        <label for="education">Урвень вашего образования</label>
+                        <label for="education"> Урвень вашего образования</label>
                         <fieldset>
                             <label>
                                 <input type="checkbox" value="Среднее общее">
@@ -175,7 +214,6 @@
                 </section>
         
             </section>
-            <div class="circle">Текст внутри круга</div>
             <section>
                 <div class="map">
                     <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ab7977cb6fbe5db3076e12f12c950d84e1c1f662fe8da722c5aeff048143dc41b&amp;source=constructor" width="100%" height="240" frameborder="0"></iframe>
