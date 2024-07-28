@@ -70,20 +70,20 @@
         <div class="container">
             <section class="logic-block">
                 <h1 class="main-title">Стажировки <br> в одной из лучших <br> <strong>IT-компаний </strong> в России</h1>
-                <figure>
-                    <img src="https://threedio-cdn.icons8.com/6XRxtD4I_pduiXCxlaw7rG_w7aFdPFxC0WZBjP3f0a4/rs:fit:1024:1024/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzg1Ny82YWRm/N2M2OC0xYjQyLTQ4/YmUtOTJhMy03MTQw/M2ViZTE2Y2QucG5n.png" alt="Стажировка в ИТ">
+                <figure id="it-figure">
+                    <img src="/images/3d-business-man-standing-with-laptop-and-coffee.png" alt="Стажировка в ИТ">
                     <figcaption>
-                        Illustration by <a href="https://icons8.com.illustrations/autor/zD2oqC8lLBBA">Icons 8</a> from <a href="https://icons8.com/">Ouch!</a>
+                       Illustration by <a href="https://icons8.com.illustrations/autor/zD2oqC8lLBBA">Icons 8</a> from <a href="https://icons8.com/">Ouch!</a>
                     </figcaption>
                 </figure>
             </section>
             <section class="logic-block" id="vac">
                 <h2>Вакансии</h2>
                 <ul>
-                    <li>Frontend</li>
-                    <li>Backend</li>
-                    <li>Мобильная разработка</li>
-                    <li>DevOps</li>
+                    <li class="active">Frontend</li>
+                    <li class="active">Backend</li>
+                    <li class="active">Мобильная разработка</li>
+                    <li class="active">DevOps</li>
                     <li>Анализ данных</li>
                     <li>Машинное обучение</li>
                 </ul>
@@ -179,7 +179,7 @@
                             <input name="email" id="mail" required>
 
                             <label for="tel">Телефон</label>
-                            <input name="tel" id="tel" required>
+                            <input name="tel" id="tel">
 
                         <label for="education"> Урвень вашего образования</label>
                         <fieldset>
@@ -198,7 +198,7 @@
                         </fieldset>
 
                         <label for="social"> Ссылка на соц. сети</label>
-                        <input type="url" id="social" required>
+                        <input type="url" id="social">
                         
                         <label for="desc">Ваш опыт</label>
                         <textarea name="desc" autocomplete="off" id="desc" cols="30" rows="10" placeholder="Расскажите о себе"></textarea>
