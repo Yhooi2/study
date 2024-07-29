@@ -16,6 +16,7 @@ header {
     top:0;
 }
 body {
+
     background: #0F2027;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -38,7 +39,7 @@ p {
 
 h2 {
     font-size: 2.2rem;
-    color: rgb(229, 14, 53);
+    color: rgb(161, 69, 189);
     position: sticky;
     top:10px;
     background:#0000004d
@@ -50,6 +51,7 @@ h2 + p a:visited{
     color:#0a151a;
 }
 /*псевдоклассы*/
+
 
 h2:hover {
     color: #dd117e;
@@ -117,13 +119,16 @@ input:required {
     background: rgb(18, 169, 189);
 }
 button {
-    
-    background: rgb(229, 14, 53);
-    border: solid black; 
-    color:#cedfe4
+    background: linear-gradient(265.71deg, rgba(161, 69, 189, 0.8) 1.44%, rgba(55, 0, 89, 0.8) 77.83%), rgb(55, 0, 89, 0);
+
+;
+    color:#fff;
+    transition: color .4s, background-color 1s, box-shadow 1s;
 }
 button:hover {
-    border: solid white;
+    color: rgb(161, 69, 189);
+    background: #fff;
+    box-shadow: 0px 4px 33px #FFFFFF;
 }
 
 button:active {
