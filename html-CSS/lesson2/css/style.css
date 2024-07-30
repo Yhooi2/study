@@ -18,8 +18,8 @@ header {
 body {
 
     background: #0F2027;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-gradient(linear, left bottom, left top, from(#2C5364), color-stop(#203A43), to(#0F2027));
     background: -o-linear-gradient(bottom, #2C5364, #203A43, #0F2027);
+    background: -webkit-gradient(linear, left bottom, left top, from(#2C5364), color-stop(#203A43), to(#0F2027));
     background: linear-gradient(to top, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }

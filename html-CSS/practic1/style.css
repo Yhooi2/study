@@ -1,5 +1,10 @@
-* {
-    background: #F0F8FF;
+body {
+    background-color: #F0F8FF;
+    background-color: -o-linear-gradient(bottom, #2C5364, #203A43, #0F2027);
+    background-color: -moz-linear-gradient(bottom, #2C5364, #203A43, #0F2027);
+    background-color: -ms-linear-gradient(bottom, #2C5364, #203A43, #0F2027);
+    background-color: -webkit-gradient(linear, left bottom, left top, from(#2C5364), color-stop(#203A43), to(#0F2027));
+    background-color: linear-gradient(to top, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #00008B;
     font-family: Arial, sans-serif;
     font-size: 16px;

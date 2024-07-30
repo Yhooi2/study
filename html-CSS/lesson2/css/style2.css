@@ -1,3 +1,4 @@
 button {
+  background: -o-linear-gradient(184.29deg, rgba(161, 69, 189, 0.8) 1.44%, rgba(55, 0, 89, 0.8) 77.83%), rgba(55, 0, 89, 0);
   background: linear-gradient(265.71deg, rgba(161, 69, 189, 0.8) 1.44%, rgba(55, 0, 89, 0.8) 77.83%), rgba(55, 0, 89, 0);
-}/*# sourceMappingURL=style.css.map */
+}
