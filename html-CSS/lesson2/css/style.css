@@ -5,10 +5,10 @@
 
 .container {
     margin: 0 auto; /*внешние отступы по центру*/
-    width: 80vw;
+    width: 70vw;
 }
 header {
-    height:60px;
+    height: 60px;
     background: #bb07071c;
     position:fixed;
     z-index: 2;
@@ -39,7 +39,7 @@ p {
 
 h2 {
     font-size: 2.2rem;
-    color: rgb(161, 69, 189);
+    color: #dd117e;
     position: sticky;
     top:10px;
     background:#0000004d
@@ -54,12 +54,13 @@ h2 + p a:visited{
 
 
 h2:hover {
-    color: #dd117e;
+    color: rgb(229, 14, 114);
 }
 
 a:visited {
     color: #07bb1f;
 }
+
 figure figcaption, figure a, figure a:visited {
     color:#23414e;
     font-size:0.5rem;
@@ -85,7 +86,7 @@ fieldset input {
     color:#0a151a;
 }
 .zayavka textarea {
-    width: 100%;
+    width: 90%;
     padding: 10px 25px;
 }
 input:required {
@@ -102,6 +103,12 @@ input:required {
     border: 0;
 }
 
+#vac ul {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 #vac ul li, button {
     font-size: 1.5rem;
     background: rgb(18, 169, 189);
@@ -119,14 +126,14 @@ input:required {
     background: rgb(18, 169, 189);
 }
 button {
-    background: linear-gradient(265.71deg, rgba(161, 69, 189, 0.8) 1.44%, rgba(55, 0, 89, 0.8) 77.83%), rgb(55, 0, 89, 0);
+    background: linear-gradient(265.71deg,  rgba(229, 14, 114, 0.743) 1.44%,  rgba(81, 5, 40, 0.737) 77.83%), rgb(55, 0, 89, 0);
 
 ;
     color:#fff;
     transition: color .4s, background-color 1s, box-shadow 1s;
 }
 button:hover {
-    color: rgb(161, 69, 189);
+    color:  rgb(229, 14, 114);
     background: #fff;
     box-shadow: 0px 4px 33px #FFFFFF;
 }
@@ -168,5 +175,62 @@ button:active {
 #it-figure {
     position:absolute;
     right:0;
-    top:0;
+    top: 5%;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-list {
+    display: flex;
+}
+.nav-list li {
+    list-style-type: none;
+    margin: 10px;
+}
+footer {
+    background: #bb07071c;
+}
+
+footer .row {
+    display: flex;
+}
+.footer-text {
+    flex-basis: 40vw;
+    font-size: 0.7rem;
+
+}
+@media screen and (max-width: 1280px) {
+    #vac ul {
+        width: 100%;
+    }  
+    h1 {
+        padding: 150px 0 50px;
+    }
+    #it-figure {
+        position: static;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+    .container {
+        width: 90vw;
+    }
+}
+@media screen and (min-width: 375px) and (max-width: 768px) {
+    .container {
+        width: 99vw;
+    }
+
+    h2 {
+        padding: 10px 0 10px 0px;
+        whidth: 99vw;
+    }
+    .big-table {
+        overflow: auto;
+    }
+
 }
