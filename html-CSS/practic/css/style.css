@@ -28,13 +28,20 @@ header {
     z-index: 2;
     width: 100%;
     background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+            backdrop-filter: blur(13px);
 }
 
 .header-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     height: 80px;
 }
 
@@ -42,6 +49,8 @@ header {
     font-weight: 900;
     font-size: 36px;
     line-height: 80%;   
+    background: -webkit-gradient(linear, left top, left bottom, from(#9e05c0), to(#580158) );   
+    background: -o-linear-gradient(top, #9e05c0, #580158 );   
     background: linear-gradient(180deg, #9e05c0, #580158 ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -62,9 +71,15 @@ header {
     font-size: 14px;
 }
 .header-nav ul{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     list-style-type: none;
     margin: 0;
     width: 575px;
@@ -74,6 +89,7 @@ header {
     display:inline-block;
     padding: 15px 50px 18px;
     color: #FFFFFF;
+    background: -o-linear-gradient(184.29deg,  #9e05c0, #580158);
     background: linear-gradient(265.71deg,  #9e05c0, #580158); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .bg {
@@ -227,9 +243,16 @@ header {
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 3;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     letter-spacing: -0.01em;
     text-align: center;
     margin-top: 259px;
@@ -396,7 +419,8 @@ fieldset label:nth-child(even) {
 }
 .footer {
     z-index: 2;
-    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+            backdrop-filter: blur(13px);
     width: 1440px;
     height: 200px;
 }
@@ -408,9 +432,15 @@ fieldset label:nth-child(even) {
     color: #fff;
 }
 .footer-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
     padding-bottom: 51px;
 }
 
@@ -447,8 +477,13 @@ fieldset label:nth-child(even) {
         padding: 0px 0px 0px 0px;
     }
     .cond-block {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
     }
     .cond img {
         width: 60vw;
@@ -479,8 +514,11 @@ fieldset label:nth-child(even) {
     }
     
     .complect-block {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
         padding-top: 68px;
         grid-row-gap: 20px;
     }
@@ -497,8 +535,13 @@ fieldset label:nth-child(even) {
         width: 95%;
     }
     fieldset {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
         width: 85%;
     }
     
@@ -587,8 +630,13 @@ fieldset label:nth-child(even) {
         width: 95%;
     }
     fieldset {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
         width: 95%;
     }
     .zakaz h2 {
