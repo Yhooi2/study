@@ -10,31 +10,29 @@
 {% endblock %}
 
 {% block content %}
-    {% for item in news %}
         <div class="card mb-3">
             {{ forloop.counter }}
             <div class="card-header">
-                Категория: <a href="{{ item.category.get_absolute_url }}"> {{ item.category.title }} <a>
+                Категория: <a href="{{ item.category.get_absolute_url }}"> {{ news_item.category.title }} <a>
             </div>
             <div class="media" style="display:flex">
                 <div class="media-photo">
-                    {% if item.photo %}
-                    <img src="{{ item.photo.url }}" class="mr-3" width="358" alt="photo">
+                    {% if news_item.photo %}
+                    <img src="{{ news_item.photo.url }}" class="mr-3" width="358" alt="photo">
                     {% else %}
                     <img src="https://via.placeholder.com/358x200" class="mr-3" alt="photo">
                     {% endif %}
                 </div>
                 <div class="media-body">
-                    <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}">{{ item.title }}</h5>
+                    <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}">{{ news_item.title }}</h5>
                     {% autoescape off %}
-                    <p class="card-text">{{ item.content|truncatewords:60|linebreaks }} </p>
+                    <p class="card-text">{{ news_item.content|truncatewords:60|linebreaks }} </p>
                     {% endautoescape %}
-                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more...</a>
+                    <a href="{{ news_item.get_absolute_url }}" class="btn btn-primary">Read more...</a>
                 </div>
             </div>
             <div class="card-footer text-body-secondary">
-                {{item.created_at|date:'Y-m-d H:i'}}
+                {{news_item.created_at|date:'Y-m-d H:i'}}
             </div>
-    {% endfor %}
 </div>
 {% endblock %}
