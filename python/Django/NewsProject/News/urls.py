@@ -1,13 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls.static import static
-from django.conf import settings 
-
-from News.views import index
+from News.views import index, get_category
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('', index, name='Home'),
+    path('category/<int:category_id>', get_category, name='Category'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
