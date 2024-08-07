@@ -10,14 +10,14 @@
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="{% url 'Home'%}">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Главная</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'Home' }">Главная</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="#">Добавить новость</a>
@@ -33,7 +33,7 @@
             <div class="col-md-4">
                 <div class="list-group">
                     {% for cat in categories %}
-                        <a href="/category//{{ cat_id }}" class="list-group-item list-group-item-action">{{ cat.title }} </a>
+                        <a href="{% url 'Category' cat.pk %}" class="list-group-item list-group-item-action">{{ cat.title }} </a>
                     {% endfor %}
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     <div class="card mb-3">
                         {{ forloop.counter }}
                         <div class="card-header">
-                            Категория: {{ item.category }}
+                            Категория: <a href="{% url 'Category' item.category.pk %}"> {{ item.category.title }} <a>
                         </div>
                         <div class="media" style="display:flex">
                             <div class="media-photo">

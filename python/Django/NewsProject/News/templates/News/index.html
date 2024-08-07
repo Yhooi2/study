@@ -43,7 +43,7 @@
                     <div class="card mb-3">
                         {{ forloop.counter }}
                         <div class="card-header">
-                            Категория: {{ item.category }}
+                            Категория: <a href="{% url 'Category' item.category.pk %}"> {{ item.category.title }} <a>
                         </div>
                         <div class="media" style="display:flex">
                             <div class="media-photo">
