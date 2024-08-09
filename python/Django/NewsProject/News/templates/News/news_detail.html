@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ news_item.title }} :: {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "inc/_sidebar.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-header">
+            Категория: <a href="{{ news_item.category.get_absolute_url }}">{{ news_item.category.title }}</a>
+        </div>
+        <div class="card-body">
+            {% if news_item.photo %}
+                <img src="{{ news_item.photo.url }}" class="mr-3" width="358" alt="photo">
+            {% else %}
+                <img src="https://via.placeholder.com/358x200" class="mr-3" alt="photo">
+            {% endif %}
+            <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}">{{ news_item.title }}</h5>
+            {% autoescape off %}
+                <p class="card-text">{{ news_item.content|linebreaks }}</p>
+            {% endautoescape %}
+        </div>
+        <div class="card-footer text-body-secondary">
+            {{ news_item.created_at|date:'Y-m-d H:i' }}
+        </div>
+    </div>
+{% endblock %}
