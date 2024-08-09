@@ -1,10 +1,12 @@
-{% load news_tags %}
+ {% load news_tags %}
+{% get_list_categories as categories %}
+{% show_categories %}
 
+{% comment %}
 <div class="list-group">
     {{ arg1 }} {{ arg2 }}
     {% get_list_categories as categories %}
-    {% comment %} {% show_categories %}  {% endcomment %}
     {% for cat in categories %}
-        <a href="{% url 'Category' cat.pk %}" class="list-group-item list-group-item-action">{{ cat.title }} <span class="badge bg-primary rounded-pill"> 14 </span> </a>
+        <a href="{% url 'Category' cat.pk %}" class="list-group-item list-group-item-action">{{ cat.title }} <span class="badge bg-primary rounded-pill" style="width: 30px; color: white;"> 14 </span> </a>
     {% endfor %}
-</div>
+</div> {% endcomment %}

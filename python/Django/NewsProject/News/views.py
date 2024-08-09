@@ -25,7 +25,7 @@ class HomeNews(ListView):
         return context
     
     def get_queryset(self):
-        return News.objects.filter(is_published=True)
+        return News.objects.filter(is_published=True).select_related('category')
 
 # def get_category(request, category_id):
 #     news = News.objects.filter(category_id=category_id)
@@ -51,7 +51,7 @@ class NewsByCategory(ListView):
         return context
     
     def get_queryset(self):
-        return News.objects.filter(category_id=self.kwargs['pk'], is_published=True)
+        return News.objects.filter(category_id=self.kwargs['pk'], is_published=True).select_related('category')
     
 # def view_news(request, news_id):
 #     #news_item = News.objects.get(pk=news_id)
@@ -74,7 +74,9 @@ class ViewNews(DetailView):
         
 #     else:
 #         form = NewsForm()
-#     return render(request, 'News/add_news.html', {'form': form})      
+#     return render(request, 'News/add_news.html', {'form': form}) 
+
+     
 class AddNews(CreateView): 
     form_class = NewsForm
     template_name = 'News/add_news.html'

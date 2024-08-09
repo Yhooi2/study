@@ -11,7 +11,7 @@
 
 {% block content %}
 <h1> Добавление новости </h1>
-<form action="{% url "Add_news" %}" method='post'>
+<form action="{% url "Add_news" %}" method='post' style="width:70vw">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary bt-block">Добавить</button> 
