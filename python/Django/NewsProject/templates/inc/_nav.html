@@ -9,10 +9,11 @@
             <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'Home' %}">Главная</a>
             </li>
+            {% if request.user.is_authenticated %}
             <li class="nav-item">
             <a class="nav-link" href="{% url 'Add_news' %}">Добавить новость</a>
-
             </li>
+            {% endif %}
         </ul>
         </div>
     </div>

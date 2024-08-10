@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block content %}
+{{ mixin_group }}
     {% for item in news %}
         <div class="card mb-3" style='width: 70vw;'>
             {{ forloop.counter }}

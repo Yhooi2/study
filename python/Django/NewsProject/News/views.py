@@ -2,6 +2,9 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
+from .utils import MyMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import News, Category
 from .forms import NewsForm
 
@@ -13,7 +16,7 @@ from .forms import NewsForm
     #     'title': 'News List',
     # }
     # return render(request, 'News/index.html', context = context)
-class HomeNews(ListView):
+class HomeNews(ListView, MyMixin):
     model = News
     context_object_name = 'news'
     template_name = 'News/index.html'
@@ -23,6 +26,7 @@ class HomeNews(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Главная страница'
         return context
+    
     
     def get_queryset(self):
         return News.objects.filter(is_published=True).select_related('category')
@@ -39,7 +43,7 @@ class HomeNews(ListView):
 #     return render(request, 'News/category.html', context=context)
 
   
-class NewsByCategory(ListView):
+class NewsByCategory(ListView, MyMixin):
     model = News
     template_name = 'News/index.html'
     context_object_name = 'news'
@@ -80,4 +84,4 @@ class ViewNews(DetailView):
 class AddNews(CreateView): 
     form_class = NewsForm
     template_name = 'News/add_news.html'
-    
+    login_url = '/admin/'
