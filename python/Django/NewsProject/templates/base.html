@@ -20,6 +20,21 @@
             <div class="col-md-4" style="width: 20vw">
                 {% block sidebar %}SIDEBAR{% endblock %}
             </div>
+
+            {% if messages %}
+            {% for message in massages %}
+                {% if massage.tage == 'error' %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+                {% else %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+                {% endif %}
+            {% endfor %}
+            {% endif %}
+
             <div class="col-md-8">
                 {% block content %}CONTENT{% endblock %}
             </div>

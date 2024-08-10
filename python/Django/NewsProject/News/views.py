@@ -1,3 +1,4 @@
+from django.contrib import messages
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render, get_object_or_404
@@ -5,9 +6,27 @@ from django.views.generic import ListView, DetailView, CreateView
 from .utils import MyMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import News, Category
 from .forms import NewsForm
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Вы успешно зарегистрированы!')
+            return redirect('Login')
+        else:
+            messages.error(request, 'Ошибка регистрации!')
+    else:
+        form = UserCreationForm()
+    return render(request, 'News/register.html', {'form': form})
+
+def login(request):
+    return render(request, 'News/login.html')
 
 # def test(request):
 #     objects = ['john', 'doe', 'rick', 'jane', 'bill', 'sara', 'emma', 'sarah']
