@@ -17,12 +17,40 @@
 
         <h1>{{ title }}</h1>
         <div class="row">
-            <div class="col-md-4" style="width: 20vw">x
+            <div class="col-md-4" style="width: 20vw">
                 {% block sidebar %}SIDEBAR{% endblock %}
             </div>
             <div class="col-md-8">
                 {% block content %}CONTENT{% endblock %}
             </div>
+            {% if page_obj.has_other_pages %}
+            <nav aria-label="..." style="display: flex; justify-content: center">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item disabled">
+                    <a class="page-link" href="?page={{ page.obj.previous_page_number }}">Пред...</a>
+                    </li> 
+                    {% endif %}
+                    {% for p in page_obj.paginator.page_range %}
+                    {% if page_obj.number == p %}
+                    <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?page={{ p }}">{{ p }} <span class='sr-only'> Текущая </span></a>
+                    </li>
+                    {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                    </li>
+                    {% endif %}
+
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item disabled">
+                    <a class="page-link" href="?page={{ page.obj.next_page_number }}">След...</a>
+                    </li> 
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
         </div>
     </div>
     
