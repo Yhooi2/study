@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'Home' %}">Navbar</a>
+        <a class="navbar-brand">Новости</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,9 +19,13 @@
     </div>
     <span class="navbar-text" style="display: flex; margin-right: 7vw"> 
         {% if request.user.is_authenticated %}
+        <span class="auth">
         Привет, {{ user.username }} | <a href="{% url 'Logout' %}">Выйти</a>
+        </span>
         {% else %}
+        <span class="noauth" style="margin-right:2vw; display: flex;">
         <a href="{% url 'Register' %}">Регистация </a> | <a href="{% url 'Login' %}"> Логин</a>
+        </span>
         {% endif %}
     </span>
 </nav>

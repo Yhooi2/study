@@ -1,5 +1,6 @@
 {% include 'inc/_nav.html' %}
 {% load static %}
+{% load cache %}
 <!doctype html>
 <html lang="ru">
     <head>
@@ -12,15 +13,18 @@
 
     </head>
     <body>
-    
+    <div class="title" style='margin-left: 45vw;'>
+        <h1>{{ title }}</h1>
+    </div>
     <div class="container mt-3"style="margin-left: 1%;">
 
-        <h1>{{ title }}</h1>
         <div class="row">
+
+            {% cache 500 sidebar %}
             <div class="col-md-4" style="width: 20vw">
                 {% block sidebar %}SIDEBAR{% endblock %}
             </div>
-
+            {% endcache %}
             {% if messages %}
             {% for message in massages %}
                 {% if massage.tage == 'error' %}
@@ -35,9 +39,10 @@
             {% endfor %}
             {% endif %}
 
-            <div class="col-md-8">
+            <div class="col-md-8" style='width:70vw;'>
                 {% block content %}CONTENT{% endblock %}
             </div>
+
             {% if page_obj.has_other_pages %}
             <nav aria-label="..." style="display: flex; justify-content: center">
                 <ul class="pagination">
@@ -49,7 +54,7 @@
                     {% for p in page_obj.paginator.page_range %}
                     {% if page_obj.number == p %}
                     <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="?page={{ p }}">{{ p }} <span class='sr-only'> Текущая </span></a>
+                    <a class="page-link" href="?page={{ p }}">{{ p }} <span class='sr-only'> </span></a>
                     </li>
                     {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
                     <li class="page-item">

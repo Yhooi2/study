@@ -142,3 +142,10 @@ MEDIA_URL = os.path.join(BASE_DIR, '/media/')
 MEDIA_ROOT = '/media/'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CASHES = {
+    'default': {
+        'BACKEND': 'django_core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'django_cache'),
+    }
+}

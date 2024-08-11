@@ -17,19 +17,19 @@
                     Категория: <a href="{{ item.category.get_absolute_url }}"> {{ item.category.title }} <a>
                 </div>
                 <div class="media" style="display:flex">
-                    <div class="media-photo">
+                    <div class="media-photo" style="margin: 2vw;">
                         {% if item.photo %}
                         <img src="{{ item.photo.url }}" class="mr-3" width="358" alt="photo">
                         {% else %}
                         <img src="https://via.placeholder.com/358x200" class="mr-3" alt="photo">
                         {% endif %}
                     </div>
-                    <div class="media-body">
-                        <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}">{{ item.title }}</h5>
+                    <div class="media-body" style="margin: 2vw;">
+                        <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}" style='display:flex; justify-content:center;'>{{ item.title }}</h5>
                         {% autoescape off %}
                         <p class="card-text">{{ item.content|truncatewords:60|linebreaks }} </p>
                         {% endautoescape %}
-                        <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more...</a>
+                        <a href="{{ item.get_absolute_url }}" class="btn btn-primary" style='display:flex; justify-content:center;'>Read more...</a>
                     </div>
                 </div>
                 <div class="card-footer text-body-secondary">

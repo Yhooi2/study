@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-        <div class="card mb-3">
+        <div class="card mb-3" style='width: 70vw;'>
             {{ forloop.counter }}
             <div class="card-header">
                 Категория: <a href="{{ news_item.category.get_absolute_url }}"> {{ news_item.category.title }} <a>
@@ -22,7 +22,7 @@
                     <img src="https://via.placeholder.com/358x200" class="mr-3" alt="photo">
                     {% endif %}
                 </div>
-                    <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}">{{ news_item.title }}</h5>
+                    <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}" style="display: flex; justify-content: center;">{{ news_item.title }}</h5>
                     {% autoescape off %}
                     <p class="card-text">{{ news_item.content|linebreaks }} </p>
                     {% endautoescape %}

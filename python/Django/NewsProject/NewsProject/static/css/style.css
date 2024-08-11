@@ -1,3 +1,11 @@
 body {
     background-color: #ccc;
 }
+h5 {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vw;
+}
+img {
+    margin: 2vw;
+}

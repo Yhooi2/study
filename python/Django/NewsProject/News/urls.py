@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path
+from django.views.decorators.cache import cache_page
+
 from News.views import HomeNews, NewsByCategory, ViewNews, AddNews, register, user_login, user_logout
 # from News.views import index, get_category, view_news, add_news, test
 
