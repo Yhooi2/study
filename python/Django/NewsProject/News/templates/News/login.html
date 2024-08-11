@@ -11,5 +11,10 @@
 
 {% block content %}
 <h1> Авторизация </h1>
-
+<form method='post' stile='width: 70vw'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button type='submit' class="btn btn-primary btn-block">Авторизация</button>
+</form>
 {% endblock %}

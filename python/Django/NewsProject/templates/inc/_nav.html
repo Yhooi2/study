@@ -18,6 +18,10 @@
         </div>
     </div>
     <span class="navbar-text" style="display: flex; margin-right: 7vw"> 
+        {% if request.user.is_authenticated %}
+        Привет, {{ user.username }} | <a href="{% url 'Logout' %}">Выйти</a>
+        {% else %}
         <a href="{% url 'Register' %}">Регистация </a> | <a href="{% url 'Login' %}"> Логин</a>
+        {% endif %}
     </span>
 </nav>
