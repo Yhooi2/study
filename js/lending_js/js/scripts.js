@@ -24,35 +24,37 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
-    function offset(el) {
-        const rect = el.getBoundingClientRect();
-        scrollLeft = window.scrollX || document.documentElement.scrollLeft,
-        scrollTop = window.scrollY || document.documentElement.scrollTop;
-        return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
-    }
+    // function offset(el) {
+    //     const rect = el.getBoundingClientRect();
+    //     scrollLeft = window.scrollX || document.documentElement.scrollLeft,
+    //     scrollTop = window.scrollY || document.documentElement.scrollTop;
+    //     return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+    // }
 
-    // Animation content
-    const animItems = document.querySelectorAll('.animate');
-    if  (animItems.length > 0) {
-        function onEntry(params){
-            animItems.forEach(item =>  {
-                const itemHeight = item.offsetHeight;
-                const itemOffset = offset(item).top;
-                const startPos = 2;
-                const animPoint = document.documentElement.clientHeight - itemHeight / startPos;
-                if (itemHeight > document.documentElement.clientHeight) { 
-                    const animPoint = document.documentElement.clientHeight - document.documentElement.clientHeight
-                }
-                if ((scrollY > itemOffset - animPoint) && scrollY < itemOffset + itemHeight) {
-                    item.classList.add('show');
-                } else {
-                    if (!item.classList.contains('no-hide')) {
-                        item.classList.remove('show');
-                    }
-                }
-            })
-        }
-    }
+    // // Animation content
+    // const animItems = document.querySelectorAll('.animate');
+    // if  (animItems.length > 0) {
+    //     function onEntry(params){
+    //         animItems.forEach(item =>  {
+    //             const itemHeight = item.offsetHeight;
+    //             const itemOffset = offset(item).top;
+    //             const startPos = 2;
+    //             const animPoint = document.documentElement.clientHeight - itemHeight / startPos;
+    //             if (itemHeight > document.documentElement.clientHeight) { 
+    //                 const animPoint = document.documentElement.clientHeight - document.documentElement.clientHeight
+    //             }
+    //             if ((scrollY > itemOffset - animPoint) && scrollY < itemOffset + itemHeight) {
+    //                 item.classList.add('show');
+    //             } else {
+    //                 if (!item.classList.contains('no-hide')) {
+    //                     item.classList.remove('show');
+    //                 }
+    //             }
+    //         })
+    //     }
+    // }
+
+    
     function onEntry2(entry) {
         entry.forEach(change => {
             if (change.isIntersecting) {

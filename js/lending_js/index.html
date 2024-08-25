@@ -17,7 +17,9 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <header class="masthead1"></header>
+        <div id="wrapper" class ="lock-padding">
+        <nav class="lock-padding navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +42,7 @@
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5 text-animation animate">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
-                        <a class="btn btn-primary" href="#about">Get Started</a>
+                        <a class="btn btn-primary popup-link" href="#popup">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -192,11 +194,24 @@
                 </div>
             </div>
         </section>
+        </div>
+        <div id="popup" class="popup">
+            <div class="popup_body">
+                <div class="popup_content">
+                    <a href="" class="popup_close close-modal">X</a>
+                    <div class="popup_title"> Модальное окно</div>
+                    <div class="popup_text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus, lectus sed vulputate placerat, justo urna ultricies nunc, vel volutpat neque nisi sed nisi. Nulla facilisi. Donec sed arcu at nunc consectetur fermentum. Sed id libero et dui consectetur tincidunt. Nulla facilisi. Nulla facilisi. Nulla facilisi.
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2022</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script src="js/modal.js"></script>
     </body>
 </html>
