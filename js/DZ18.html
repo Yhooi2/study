@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class  Employee {
+            name;
+            surname;
+            rate;
+            experience;
+            constructor(name, surname, rate, experience) {
+                this.name = name;
+                this.surname = surname;
+                this.rate = rate;
+                this.experience = experience;
+            }
+            calculateSalary() {
+                return this.rate * this.experience;
+            }
+        }
+
+        class Employeel extends Employee {
+            constructor(name, surname, rate, experience, bonus) {
+                super(name, surname, rate, experience);
+                this.bonus = bonus;
+            }
+        }
+
+        let employee1 = new Employee("John", "Doe", 10, 5);
+        console.log(employee1.name, employee1.surname, employee1.rate, employee1.experience, " - ", employee1.calculateSalary());
+    </script>
+</body>
+</html>

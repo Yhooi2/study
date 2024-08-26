@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let book = {
+            title: "Book Title",
+            author: "Author Name",
+            annotation: () => {
+                console.log(`This book is about ${this.title} by ${this.author}.`);
+            }
+        }
+        book.annotation();
+
+        function Book(author, title) {
+            this.author = author;
+            this.title = title;
+        }
+
+        let book3 = new Book("Author Name", "Book Title");
+        console.log(book3);
+    </script>
+
+    
+</body>
+</html>
