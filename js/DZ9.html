@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<meta charset="UTF-8">
+    	<meta name="viewport"content="width=device-width, initial-scale=1.0">
+    	<title> Homework </title>
+    	<link rel="stylesheet" type="text/css" href="myHomeWorkCSS.css">
+    </head>
+    <body id = "main">
+    </body>
+    <script>
+    	function loadNewScript(src, callback) {
+    		let script = document.createElement('script');
+    		script.src = src;
+    		script.onload = () => callback(null, script);
+    		script.onerror = () => callback(new Error(`Script download error! ${src}`));
+
+    		document.head.append(script);
+    	}
+
+    	loadNewScript('myHomeWorkScript.js', function(error, script) {
+    		if (error) {
+    			alert(error);
+    		} else createDiv();
+    	});
+    </script>
+</html>

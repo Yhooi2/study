@@ -1,0 +1,48 @@
+<script>
+	// function readBook(book, callback) {
+	// 	alert(`Reading book ${book} in process.`);
+	// 	callback();
+	// }
+
+	// readBook('The Art of Computer Programming', function() {
+	// 	alert('Reading is finished!');
+	// });
+
+	// function loadNewScript(src, callback) {
+	// 	let script = document.createElement('script');
+	// 	script.src = src;
+	// 	script.onload = () => callback(null, script);
+	// 	script.onerror = () =>callback(new Error(`Script download error! ${src}`));
+	// 	document.head.append(script);
+
+	// }
+	function loadNewScript(src) {
+		return new Promise(function(resolve, reject) {
+			let script = document.createElement('script');
+			script.src = src;
+			script.onload = () => resolve(script);
+			script.onerror = () => reject(new Error(`Script download error! ${src}`));
+			document.head.append(script);
+		})
+	}
+
+	// loadNewScript("myScript.js", function(error, script) {
+	// 	if (error) {
+	// 		alert(error);
+	// 	} else {
+	//     veryShortFunction();
+	//     }
+	//     });
+
+	let promise = loadNewScript("myScript.js");
+	// promise.then(
+	// 	function(result) {
+	// 		veryShortFunction();
+	// 	})
+	// promise.catch(alert);
+
+	promise
+	.then(result => veryShortFunction())
+	.catch(result => alert(result));
+
+</script>

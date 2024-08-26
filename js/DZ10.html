@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<meta charset="UTF-8">
+    	<meta name="viewport"content="width=device-width, initial-scale=1.0">
+    	<title> Homework </title>
+    	<link rel="stylesheet" type="text/css" href="myHomeWorkCSS.css">
+    </head>
+    <body id = "main">
+    </body>
+    <script>
+    	function loadNewScript(src) {
+            return new Promise(function(resolve, reject) {
+        		let script = document.createElement('script');
+        		script.src = src;
+        		script.onload = () => resolve(script);
+        		script.onerror = () => reject(new Error(`Script download error! ${src}`));
+
+    		document.head.append(script);
+        })
+    	}
+
+    	loadNewScript('myHomeWorkScript.js')
+        .then(result => loadNewScript('func1.js'))
+        .then(result => loadNewScript('func2.js'))
+        .then(result => {
+            createDiv();
+            veryShortFunction1();
+            veryShortFunction2();
+            })
+        .catch(err => alert(err));
+
+    </script>
+</html>

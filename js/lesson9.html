@@ -1,0 +1,27 @@
+<script>
+	// function readBook(book, callback) {
+	// 	alert(`Reading book ${book} in process.`);
+	// 	callback();
+	// }
+
+	// readBook('The Art of Computer Programming', function() {
+	// 	alert('Reading is finished!');
+	// });
+
+	function loadNewScript(src, callback) {
+		let script = document.createElement('script');
+		script.src = src;
+		script.onload = () => callback(null, script);
+		script.onerror = () =>callback(new Error(`Script download error! ${src}`));
+		document.head.append(script);
+
+	}
+	loadNewScript("myScript.js", function(error, script) {
+		if (error) {
+			alert(error);
+		} else {
+	    veryShortFunction();
+	    }
+	    });
+
+</script>
