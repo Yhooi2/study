@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str = "this is test test string";
+        let regExp = new RegExp('test', 'g');
+        let regExp1 = /test/g;
+        console.log(str.match(regExp1));
+        console.log(str.match(regExp).length);
+        console.log('Test: ' + regExp1.test(str));
+    </script>
+    
+</body>
+</html>
