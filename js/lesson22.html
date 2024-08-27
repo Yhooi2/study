@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        import {newUser} from './user.js';
+        alert(newUser.name);
+        newUser.name ="Pete";
+        alert(newUser.name); // Pete
+    </script>
+    <script type="module">
+        import {newUser} from './user.js';
+        alert(newUser.name); // Pete
+    // <script type="module" src="hello.js"> 
+
+    //     <!-- import { sayHello } from './hello.js';
+    //     sayHello("Art");  // Outputs: "Hello, World!"  // dz19.html -->
+    </script>
+</body>
+</html>
