@@ -7,18 +7,194 @@
 </head>
 <body>
     <script>
-        let str = "this is test test string";
-        let regExp = new RegExp('test', 'g');
-        let regExp1 = /test/g;
-        console.log(str.match(regExp1));
-        console.log(str.match(regExp).length);
-        console.log('Test: ' + regExp1.test(str));
+        // let str = "this is test test string";
+        // let regExp = new RegExp('test', 'g');
+        // let regExp1 = /test/g;
+        // console.log(str.match(regExp1));
+        // console.log(str.match(regExp).length);
+        // console.log('Test: ' + regExp1.test(str));
+
+        // /m - мультистрочный поиск
+        // ^ - Начало строки
         let str1 = `1 puppy
         2 puppy
         3 puppy
         4 puppy`;
+
         console.log(str1.match(/^\d/gm).length);
         console.log(str1.match(/^\d/gm));
+
+        // match - массив совпадений
+        let str2 = "Hello, World!";
+        console.log(str2.match(/Hello/g));
+
+        // test - проверка совпадения
+        let str3 = "Hello, World!";
+        console.log((/Hello/).test(str3));
+
+        // replace - замена
+        let result = 'Alone in a wide, wide sea'.replace('wide', 'far');
+        console.log(result);
+        // replace - замена с подстановкой
+        // $& - конкатенатор
+        result = 'Alone in a wide, wide sea'.replace('wide', '$&, wide sea');
+        console.log(result);
+        // replaceAll - замена всех вхождений
+
+        result = 'Alone in a wide, wide sea'.replaceAll('wide', 'far');
+        console.log(result);
+        result = 'Alone in a wide, wide sea'.replaceAll('wide', '$&, wide sea');
+        console.log(result);
+
+        // Символьнык классы
+
+        // \d - digital любая цифра
+        let str = '+7(955)-212-43-90'
+        regExp = /\d/g;
+        console.log(str.match(regExp).join(''));
+        let date = new Date(0).toString();
+        regExp1 = /\d\d/;
+        console.log((regExp1).test(date));
+        regExp1 = /\d\d/g;
+        console.log(date.match(regExp1));
+        console.log(date.match(regExp1).length);
+        console.log(date)
+
+        // \s - space любой пробельный символ \t - табуляция \n - перевод строки
+        console.log((/\d\d\s/).test(date));
+        console.log(date.match(/\d\d\s/g));
+
+        // \w - word любая латинская буква, цифра или _
+        console.log((/\d\d\s\w/g).test);
+        console.log(date.match(/\d\d\s\w/g));
+
+        // . любой символ, кроме /n
+        console.log((/.\d\d\s\w/g).test(date));
+        console.log(date.match(/.\d\d\s\w/g));
+
+        // \D - не digital любой символ, кроме /n
+        console.log((/\D\d\s\w/g).test(date));
+        console.log(date.match(/.\d\d\s\D/g));
+
+        // \S - не space любой символ, кроме /n
+        console.log((/\S\d\s\w/g).test(date));
+        console.log(date.match(/.\d\d\s\S/g));
+        
+        // \W - не word любой латинская буква, цифра или _
+        console.log((/\W\d\s\w/g).test(date));
+        console.log(date.match(/.\d\d\s\W/g));
+
+        // \b - граница слова
+        str = 'Java is a good language';
+        console.log(/\bJava\b/.test(str));
+        str = 'Java is a good language';
+        console.log(/\bJava\b/.test(str.replace(/Java/g, 'JavaScript')));
+        str = 'Java is a good language';
+        console.log(/\bJava\b/.test(str.replace(/Java/gi, 'JavaScript')));
+
+        // ^ - Начало строки
+        str = 'Java is a good language';
+        console.log(/^Java\b/.test(str));
+
+        // $ - Конец строки
+        str = 'Java is a good language';
+        console.log(/Java$/.test(str));
+
+        // \b - граница слова
+        str = 'Java is a good language';
+        console.log(/\bJava\b/.test)
+
+        str = 'Java is a good language';
+        str1 = 'I like to write code in Java';
+        str2 = 'Hello, World Javascript!';
+        console.log(/\bJava\b/.test(str));
+        console.log(/\bJava\b/.test(str1));
+        console.log(/\bJava\b/.test(str2));
+
+        // Проверка на полное совпадение
+        let dateToCheck = '22.07.2022';
+        // [] - Экранирование {n} - количество
+        console.log(/^\d\d[.]\d\d[.]\d\d\d\d/.test(dateToCheck));
+        console.log(/^\d{2}[.]\d{2}[.]\d{4}$/.test(dateToCheck));
+
+        // [] набор символов
+        str = "Пол, гол, холст, долина";
+        console.log(str.match(/[пгхд]ол/gi));
+        console.log(str.match(/М[ар]т/));
+
+        // Диапазон символов \w - [a-zA-Z0-9_]
+        str = "newpasS24";
+        console.log(str.match(/[a-z][A-Z][0-9]/));
+
+        // [^] - не включая в набор символов
+        str = "newpasS24";
+        console.log("____", str.match(/[^bcdfghjklmnpqrstvwxyz]/gi));
+
+        // ^ - Начало строки
+        // $ - Конец строки
+        str = "newpasS24";
+        console.log(/^[a-zA-Z0-9]$/);
+
+        // \s - space любой пробельный символ \t - табуляция \n - перевод строки
+        str = "newpasS24";
+        console.log(/\s/.test(str));
+
+        // \S - не space любой символ, кроме /n
+        str = "newpasS24";
+        console.log(/\S/.test)
+
+        // Квантификаторы
+        //{n} - количество       
+        //{n,} - от n до бесконечности
+        str = '+7(955)-212-43-90'
+        console.log(str.match(/\d{1,}/g));
+
+        //{n,m} - от n до m
+        console.log(str.match(/\d{1,2}/g));
+
+        //+ - 1 или более повторений
+        console.log(str.match(/\d+/g));
+
+        //? - 0 или 1 повторение
+        console.log(str.match(/\d\d?/g)) // 
+
+        //* - 0 или более повторений
+        console.log(str.match(/\d*/g));
+
+        // {n,m}? - от n до m повторений, либо 0 или 1
+        console.log(str.match(/\d{2,3}?/g));
+
+        // \ - экранирование специальных символов
+        console.log(/\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test);
+        // \\ - экранирование в RegExp экранируется
+        str = '^$.';
+        console.log(/\^\$\./.test(str));
+        regExp = new RegExp('\\^\\$\\.');
+        console.log(regExp.test(str));
+        // () - скобочные группы
+        str = 'Gogo power rangers!';
+        console.log(str.match(/(go)+/i));
+
+        // Проверка email
+        str = 'john.doe@example.com';
+        console.log(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(str));
+        regExp = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
+        console.log(str.match(regExp));
+
+        // Проверка IP адреса
+        str = '192.168.0.1';
+        console.log(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(str));
+        regExp = /(\d{1,3}\.){3}\d{1,3}/g;
+        console.log(str.match(regExp));
+
+        //| - или
+        console.log(/css|html|js/.test('I love html'))   
+
+        //- - диапазон символов
+        str = 'abc-123';
+        console.log(/[a-z]{3}-[0-9]{3}/.test(str));
+        console.log(/[a-z]{3}-[0-9]{3}/.test('abc-123'));
+
     </script>
     
 </body>
