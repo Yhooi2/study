@@ -156,7 +156,7 @@
         console.log(str.match(/\d+/g));
 
         //? - 0 или 1 повторение
-        console.log(str.match(/\d\d?/g)) // 
+        console.log(str.match(/\d\d?/g)) 
 
         //* - 0 или более повторений
         console.log(str.match(/\d*/g));
@@ -167,7 +167,7 @@
         // \ - экранирование специальных символов
         console.log(/\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test);
         // \\ - экранирование в RegExp экранируется
-        str = '^$.';
+        
         console.log(/\^\$\./.test(str));
         regExp = new RegExp('\\^\\$\\.');
         console.log(regExp.test(str));
