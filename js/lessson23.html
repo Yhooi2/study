@@ -13,6 +13,12 @@
         console.log(str.match(regExp1));
         console.log(str.match(regExp).length);
         console.log('Test: ' + regExp1.test(str));
+        let str1 = `1 puppy
+        2 puppy
+        3 puppy
+        4 puppy`;
+        console.log(str1.match(/^\d/gm).length);
+        console.log(str1.match(/^\d/gm));
     </script>
     
 </body>
