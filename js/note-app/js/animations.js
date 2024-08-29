@@ -1,5 +1,3 @@
-// animations.js
-
 const Animations = {
     addNote: (noteElement) => {
         return new Promise((resolve) => {
@@ -21,6 +19,7 @@ const Animations = {
             noteElement.classList.add('deleting');
             noteElement.addEventListener('animationend', function handler() {
                 noteElement.removeEventListener('animationend', handler);
+                noteElement.remove();
                 resolve();
             });
         });
@@ -53,13 +52,13 @@ const Animations = {
                 emptyStateElement.style.display = 'block';
                 emptyStateElement.style.opacity = '0';
                 setTimeout(() => {
-                    emptyStateElement.style.opacity = '1';
+                    emptyStateElement.style.opacity = '1'; // Плавное появление элемента
                     resolve();
                 }, 10);
             } else {
-                emptyStateElement.style.opacity = '0';
+                emptyStateElement.style.opacity = '0'; // Плавное исчезновение элемента
                 emptyStateElement.addEventListener('transitionend', function handler() {
-                    emptyStateElement.style.display = 'none';
+                    emptyStateElement.style.display = 'none'; // Скрываем элемент после завершения анимации
                     emptyStateElement.removeEventListener('transitionend', handler);
                     resolve();
                 });

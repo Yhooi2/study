@@ -1,5 +1,3 @@
-// logic.js
-
 import { createMainContainer, createNoteElement } from './template.js';
 import Animations from './animations.js';
 
@@ -42,8 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('notes', JSON.stringify(notes));
 
         const newNoteElement = createNoteElement(newNote, notes.length - 1);
-        await Animations.addNote(newNoteElement);
         notesContainer.appendChild(newNoteElement);
+        await Animations.addNote(newNoteElement);
 
         noteInput.value = '';
         renderNotes();
@@ -74,4 +72,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     renderNotes();
 });
-
