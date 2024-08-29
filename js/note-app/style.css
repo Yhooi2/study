@@ -1,0 +1,135 @@
+/* Основные стили */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 800px;
+}
+
+/* Заголовок */
+.display-4 {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Форма ввода */
+#noteInput {
+    border: 2px solid #007bff;
+    transition: border-color 0.3s ease;
+}
+
+#noteInput:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#addNoteBtn {
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#addNoteBtn:hover {
+    background-color: #0056b3;
+}
+
+#addNoteBtn:active {
+    transform: scale(0.98);
+}
+
+/* Секция заметок */
+.notes-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Карточка заметки */
+.note {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.note:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.note-content {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.note-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.note-actions button {
+    margin-left: 5px;
+    transition: all 0.2s ease;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(20px); }
+}
+
+.note.new {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.note.deleting {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+.shake {
+    animation: shake 0.6s ease-in-out;
+}
+
+.updating {
+    transition: background-color 0.3s ease;
+    background-color: #e6f3ff;
+}
+
+/* Состояние пустого списка */
+#emptyState {
+    color: #6c757d;
+    font-style: italic;
+    padding: 20px;
+    background-color: #f1f3f5;
+    border-radius: 4px;
+    transition: opacity 0.3s ease;
+}
+
+/* Адаптивность */
+@media (max-width: 576px) {
+    .container {
+        padding: 10px;
+    }
+
+    .display-4 {
+        font-size: 2.5rem;
+    }
+
+    .note {
+        padding: 10px;
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
