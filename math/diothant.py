@@ -15,6 +15,7 @@ def split_unit(a, b):
     print(quotients)
     for q in quotients:
         x, y = y, x - q*y
+        print(x, y)
     return (x, y) if a > b else (y, x)
 
 a, b = map(int, input().split())
