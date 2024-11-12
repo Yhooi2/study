@@ -17,10 +17,13 @@ while left <= right:
             last_pos = pos
 
             if count >= cows:
-                answer = mid
-                left = mid + 1
                 break
 
-    right = mid - 1
+    if count >= cows:
+        answer = mid
+        left = mid + 1
+
+    else:
+        right = mid - 1
 
 print("Max distance between cows:", answer)
