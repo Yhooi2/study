@@ -3,11 +3,12 @@ stalls = sorted([int(x) for x in input().split()])
 cows = int(input("Input count of cows:"))
 
 # Binary Search
-right = stalls[-1] - stalls[0]
-left = answer = 0
+left = 1
+right = stalls[-1] - stalls[0] 
+answer = 0
 
 while left <= right:
-    mid = (right - left) // 2 + left
+    mid = (right + left) // 2
     count = 1
     last_pos = stalls[0]
 
