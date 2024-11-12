@@ -3,9 +3,8 @@ stalls = sorted([int(x) for x in input().split()])
 cows = int(input("Input count of cows:"))
 
 # Binary Search
-left = 1
 right = stalls[-1] - stalls[0] 
-answer = 0
+left = answer = 0
 
 while left <= right:
     mid = (right + left) // 2
@@ -17,9 +16,11 @@ while left <= right:
             count += 1
             last_pos = pos
 
-    if count >= cows:
-        answer = mid
-        left = mid + 1
-    else:
-        right = mid - 1
+            if count >= cows:
+                answer = mid
+                left = mid + 1
+                break
+
+    right = mid - 1
+
 print("Max distance between cows:", answer)
