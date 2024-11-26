@@ -15,7 +15,6 @@ def fast_pow(base, exp, mod):
 
     return res
 
-
 def test_Ferma(p):
     if p <= 1: return False
     if p == 2 or p == 3: return True
