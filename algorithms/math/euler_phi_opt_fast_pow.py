@@ -6,10 +6,10 @@ def euler_phi(n):
         if n % p == 0:
             while n % p == 0:
                 n //= p
-            result *= (1 - 1/p)
+            result -= result/p # result * (1 - 1/p)
         p += 1
 
-    if n > 1: result *=(1 - 1/n)
+    if n > 1: result -= result/n
     return int(result)
 
 def gcd(a, b):

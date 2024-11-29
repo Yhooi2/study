@@ -1,4 +1,4 @@
-import random as rm
+from random import randint
 
 N = 20 # count test
 
@@ -21,7 +21,7 @@ def test_Ferma(p):
     if p & 1 == 0: return False
 
     for _ in range(N):
-        a = rm.randint(2, p - 2)
+        a = randint(2, p - 2)
         if fast_pow(a, p - 1, p) != 1:
             return False
     return True

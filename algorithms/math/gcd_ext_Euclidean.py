@@ -14,11 +14,12 @@ def gcd_ext(a, b):
 def solve_diophantine(a, b, c):
     gcd, x, y = gcd_ext(a, b)
 
-    if c % gcd != 0:
+    if c % gcd != 0: # a/d * x + b/d * y = c/d
         return None
     
     x0 = x * (c // gcd)
     y0 = y * (c // gcd)
     return x0, y0
 
-print(solve_diophantine(15, 25, 10))
+# ax + by = c
+print(solve_diophantine(15, 25, 10)) # print x and y   
