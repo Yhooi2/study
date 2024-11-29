@@ -1,7 +1,7 @@
 
 def generate_numbers(base, size, prefix=""):
     """gererate all combinations of numbers in 
-       a given n-numeric system(base <= 10)"""`
+       a given n-numeric system(base <= 10)"""
     if size == 0:
         print(prefix)
         return

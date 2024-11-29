@@ -29,7 +29,7 @@ def fast_exp(base, exp, mod):
             exp -= 1
         else:
             base = (base * base) % mod
-            exp //= 2
+            exp >>= 1
   
     return res
 

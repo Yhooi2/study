@@ -5,7 +5,7 @@ def fast_matrix_pow(matrix, exp):
         return np.eye(len(matrix))
     if exp & 1:
         return np.dot(matrix, fast_matrix_pow(matrix, exp - 1))
-    return fast_matrix_pow(np.dot(matrix, matrix), exp // 2)
+    return fast_matrix_pow(np.dot(matrix, matrix), exp >> 1)
 
 def fibonacci(n):
     if n < 2: return n
