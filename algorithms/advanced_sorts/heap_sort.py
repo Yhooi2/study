@@ -2,10 +2,11 @@ import heapq
 #simple algo O(n) - memory
 
 def heap_sort(arr):
-    heapq.heapify(arr)
+    arr_copy = arr[:]
+    heapq.heapify(arr_copy)
     res = []
-    while arr:
-        res.append(heapq.heappop(arr))
+    while arr_copy:
+        res.append(heapq.heappop(arr_copy))
     return res
 arr = [12,5,4,3,6,2,1]
 print(heap_sort(arr))
@@ -35,7 +36,7 @@ def heap_sort_inplace(arr):
     for i in range(n - 1, 0, -1):
         arr[0], arr[i] = arr[i], arr[0]
         heapify(i, 0)
-        
+
     return(arr)
     
 print(heap_sort_inplace([12, 11, 13, 5, 6, 7]))
