@@ -1,29 +1,12 @@
-import time
-import random
+import timeit
+import dis
+import sys
+import dis
 
-def euler_phi(n):
-    result = n
-    p = 2
-    while p * p <= n:
-        if n % p == 0:
-            while n % p == 0:
-                n //= p
-            result -= result/p  # result * (1 - 1/p)
-        p += 1
+# Отключение оптимизаций интерпретатора
+sys.flags.optimize = 0
 
-    if n > 1: 
-        result -= result/n
-    return int(result)
-
-def gcd(a, b):
-    while b:
-        a, b = b, a % b
-    return a
-
-def fast_exp(base, exp, mod):
-    if gcd(base, mod) == 1:
-        exp %= euler_phi(mod)
-
+def fast_exp_shift(base, exp, mod):
     res = 1
     base %= mod
     while exp:
@@ -32,32 +15,72 @@ def fast_exp(base, exp, mod):
             exp -= 1
         else:
             base = (base * base) % mod
-            exp //= 1
-  
+            exp >>= 1  # Битовый сдвиг
     return res
 
-def test_fast_exp_performance():
-    # Test parameters for RSA-like scenario
-    base = random.randint(2, 1000000)  # Random base
-    mod = random.randint(1000000, 10000000)  # Large modulus
-    large_exp = 10**15  # 1 quadrillion - very large exponent
+def fast_exp_div(base, exp, mod):
+    res = 1
+    base %= mod
+    while exp:
+        if exp & 1:
+            res = (res * base) % mod
+            exp -= 1
+        else:
+            base = (base * base) % mod
+            exp //= 2  # Целочисленное деление
+    return res
 
-    print(f"Performance Test Parameters:")
-    print(f"Base: {base}")
-    print(f"Modulus: {mod}")
-    print(f"Exponent: {large_exp}")
+def performance_test():
+    # Параметры для теста
+    base = 2
+    mod = 1000000007
+    exp = 10**15
 
-    # Measure execution time
-    start_time = time.time()
-    try:
-        result = fast_exp(base, large_exp, mod)
-        end_time = time.time()
+    # Проверка корректности результатов
+    shift_result = fast_exp_shift(base, exp, mod)
+    div_result = fast_exp_div(base, exp, mod)
+    
+    print(f"Результаты вычислений:")
+    print(f"Битовый сдвиг:   {shift_result}")
+    print(f"Целочисленное деление: {div_result}")
+    
+    if shift_result != div_result:
+        print("ОШИБКА: Результаты не совпадают!")
+        return
 
-        print("\nTest Results:")
-        print(f"Execution Time: {end_time - start_time:.4f} seconds")
-        print(f"Result (last 10 digits): {result % (10**10)}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    # Замер времени с максимально подробной информацией
+    print("\nАнализ производительности:")
+    
+    # Функция для замера с принудительным запуском
+    def measure_performance(func):
+        total_time = 0
+        iterations = 10
+        for _ in range(iterations):
+            start_time = timeit.default_timer()
+            result = func(base, exp, mod)
+            end_time = timeit.default_timer()
+            total_time += end_time - start_time
+        return total_time / iterations
+
+    # Замеры времени
+    shift_time = measure_performance(fast_exp_shift)
+    div_time = measure_performance(fast_exp_div)
+    
+    print(f"Время битового сдвига:   {shift_time:.6f} сек")
+    print(f"Время целочисленного деления: {div_time:.6f} сек")
+    print(f"Разница: {abs(shift_time - div_time):.6f} сек")
+
+    # Вывод байт-кода для дополнительного анализа
+    print("\nБайт-код функции битового сдвига:")
+    dis.dis(fast_exp_shift)
+    print("\nБайт-код функции целочисленного деления:")
+    dis.dis(fast_exp_div)
 
 if __name__ == "__main__":
-    test_fast_exp_performance()
+    # Дополнительные способы отключения оптимизаций
+    import gc
+    gc.disable()  # Отключение сборщика мусора
+
+    performance_test()
+    
+    gc.enable()  # Обратное включение сборщика мусора
