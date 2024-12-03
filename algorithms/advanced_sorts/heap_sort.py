@@ -39,4 +39,5 @@ def heap_sort_inplace(arr):
 
     return(arr)
     
-print(heap_sort_inplace([12, 11, 13, 5, 6, 7]))
+print(heap_sort_inplace(arr))
+print(arr)
