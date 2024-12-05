@@ -12,9 +12,6 @@ class SegmentTree:
         # Bild Tree
         for i in range(len(self.arr)-1, 0, -1):
             self.arr[(i - 1) // 2] += self.arr[i]
-        print(self.arr)
-        print(sum(self.arr[self.size:]))
-
     
     def set(self, index, value):
         i = self.size + index
@@ -23,8 +20,6 @@ class SegmentTree:
         while i:
             i = (i - 1) // 2
             self.arr[i] = self.arr[2*i + 1] + self.arr[2*i + 2]
-        print(self.arr)
-        print(sum(self.arr[self.size:]))
     
     def sum(self, begin, end):
         left = begin + self.size
