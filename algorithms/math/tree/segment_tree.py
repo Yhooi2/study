@@ -1,78 +1,55 @@
 class SegmentTree:
-    def __init__(self, arr, operation=sum):
-        self.n = len(arr)
-        self.operation = operation
-        self.neutral = (
-            0 if operation == sum else 
-            float('inf') if operation == min else
-            float('-inf') if operation == max else 1
-        )
+    def __init__(self, arr):
+        self.size = 1 << (len(arr) - 1).bit_length()
+        self.arr = [0] * (2* self.size - 1)
+        self.size -= 1
         
-        tree_size = 2 * (1 << self.n.bit_length()) - 1
-        self.tree = [self.neutral] * tree_size
+        # Copy arr
+        for i, n in enumerate(arr):
+            self.arr[self.size + i] = n
+        print(self.arr)
 
-        self._build_tree(arr, 0, 0, self.n)
+        # Bild Tree
+        for i in range(len(self.arr)-1, 0, -1):
+            self.arr[(i - 1) // 2] += self.arr[i]
+        print(self.arr)
+        print(sum(self.arr[self.size:]))
+
     
-    def _build_tree(self, arr, node, start, end):
-        if end - start == 1:
-            self.tree[node] = arr[start]
-            return
-        
-        mid = (start + end) // 2
-        child = 2 * node
-        left_child, right_child = child + 1, child + 2
+    def set(self, index, value):
+        i = self.size + index
+        self.arr[i] = value
 
-        self._build_tree(arr, left_child, start, mid)
-        self._build_tree(arr, right_child, mid, end)
-
-        self.tree[node] = self.operation([
-            self.tree[left_child], 
-            self.tree[right_child]
-        ])
-
-
-    def update(self, node, start, end, i, value):
-        if end - start == 1:
-            self.tree[node] = value
-            return
-        
-        mid = (start + end) // 2
-
-        left_child, right_child = 2*node + 1, 2*node + 2
-        if i < mid:
-            self.update(left_child, start, mid, i, value)
-        else:
-            self.update(right_child, mid, end, i, value)
-
-        self.tree[node] = self.operation([
-            self.tree[left_child],
-            self.tree[right_child]
-        ])
-            
-
-
-    def query(self, node, start, end, left, right):
-        if right <= start or left >= end:
-            return self.neutral
-        if left <= start and right >= end:
-            return self.tree[node]
-        
-        mid = (start + end) // 2
-        child = 2 * node
-        left_res = self.query(child + 1, start, mid, left, right)
-        right_res = self.query(child + 2, mid, end, left, right)
-
-        return self.operation([left_res, right_res])
+        while i:
+            i = (i - 1) // 2
+            self.arr[i] = self.arr[2*i + 1] + self.arr[2*i + 2]
+        print(self.arr)
+        print(sum(self.arr[self.size:]))
     
+    def sum(self, begin, end):
+        left = begin + self.size
+        right = end + self.size - 1
+        result = 0
+        while left <= right:
+            if left % 2 == 0:
+                result += self.arr[left]
+            left //= 2
+            if right % 2 == 1:
+                result += self.arr[right]
+            right = right // 2 - 1 
+        return result
 
-arr = [1, 3, 5, 7, 9, 11]
-N = len(arr)
+
+# Demonstration
+arr = [1, 3, 5, 7, 9, 11, 4, 2]
+l = len(arr)
+print(sum(arr))
 st = SegmentTree(arr)
+print(st.sum(0, l), sum(arr))
+print(st.sum(1, 7), sum(arr[1:7]))
+print(st.sum(4, 5), sum(arr[4:5]))
+print(st.sum(1, 5), sum(arr[1:5]))
 
-print(st.query(0, 0, N, 1, 3))
-st.update(0, 0, N, 2, 10)
-print(st.query(0, 0, N, 1, 3))
-
-
-st_min = SegmentTree(arr, min)
-print(st_min.query(0,0, N, 0, 5))
+st.set(2, 6)
+st.set(1, 10)
+st.set(5, 1)
