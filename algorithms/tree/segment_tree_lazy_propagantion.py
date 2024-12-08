@@ -96,37 +96,21 @@ print(st.tree, st.lazy)
 print("Сумма от 1 до 3 индекса после обновления:", st.query(1, 4))  # Ожидается: 23
 print(st.tree, st.lazy)
 print()
-st.lazy_add(3, 1, 3)  # Добавляем 3 к элементам от индекса 1 до 2
-print(st.tree, st.lazy)
-print("Сумма после частичного обновления:", st.query())  # Ожидается: 36
-print("Сумма от 0 до 2 индекса после обновления:", st.query(0, 3))  # Ожидается: 28
-print(st.tree, st.lazy)
-print("Сумма от 1 до 3 индекса после обновления:", st.query(1, 4))  # Ожидается: 29
-print(st.tree, st.lazy)
-print()
-st.lazy_add(-1, 2, 4)  # Вычитаем 1 у элементов от индекса 2 до 3
+st.lazy_add(3, 1, 4)  # Добавляем 3 к элементам от индекса 1 до 2
 print(st.tree, st.lazy)
 
-print("Сумма после пересекающего обновления:", st.query())  # Ожидается: 34
+st.lazy_add(-1, 0, 3)  # Вычитаем 1 у элементов от индекса 2 до 3
+print(st.tree, st.lazy)
+st.lazy_add(2) 
+print(st.tree, st.lazy)
+st.lazy_add(2) 
+print("Сумма после ленивого обновления:", st.query(2,4)) 
+
+print(st.tree, st.lazy)
+st.lazy_add(2) 
+print("Сумма после ленивого обновления:", st.query(1,3)) 
+
 print(st.tree, st.lazy)
 
-print("Сумма от 0 до 2 индекса после обновления:", st.query(0, 3))  # Ожидается: 24
-print(st.tree, st.lazy)
+st.lazy_add(2) 
 
-print("Сумма от 1 до 3 индекса после обновления:", st.query(1, 4))  # Ожидается: 27
-print(st.tree, st.lazy)
-
-
-# Массив из одного элемента
-arr = [42]
-st = SegmentTree(arr)
-print("Сумма массива из одного элемента:", st.query())  # Ожидается: 42
-st.lazy_add(10, 0, 1)  # Добавляем 10
-print("Сумма после ленивого обновления:", st.query())  # Ожидается: 52
-
-# Массив из всех нулей
-arr = [0, 0, 0, 0]
-st = SegmentTree(arr)
-print("Сумма массива из нулей:", st.query())  # Ожидается: 0
-st.lazy_add(5, 0, 4)  # Добавляем 5 ко всем элементам
-print("Сумма после ленивого обновления:", st.query())  # Ожидается: 20
