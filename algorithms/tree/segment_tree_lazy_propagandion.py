@@ -33,13 +33,11 @@ class SegmentTree:
         self.lazy[node] = 0
 
     def _lazy_add(self, val, start, end, node, left, right):
-        self._propagate(node, left, right)
         if right <= start or left >= end:
             return
         
         if left >= start and right  <= end:
             self.lazy[node] += val
-            self._propagate(node, left, right)
             return
      
         self._propagate(node, left, right)
@@ -47,12 +45,17 @@ class SegmentTree:
         child = 2*node
         self._lazy_add(val, start, end, child + 1, left, mid)
         self._lazy_add(val, start, end, child + 2, mid, right)
-        self.tree[node] = self.tree[child + 1] + self.tree[child + 2]
+
+        leftSum = self._query(child + 1, left, mid, left, mid)
+        rightSum = self._query(child +2, mid, right, mid, right)
+        self.tree[node] = leftSum + rightSum
+
 
     def _query(self, node, start, end, left, right):
         if start >= right or end <= left:
             return 0
         if start <= left and end >= right:
+            self._propagate(node, left, right)
             return self.tree[node]
         
         self._propagate(node, left, right)
@@ -79,22 +82,40 @@ class SegmentTree:
 
 arr = [5, 3, 8, 6]
 st = SegmentTree(arr)
+print(st.tree)
 print("Сумма всего массива:", st.query())  # Ожидается: 22
 print("Сумма от 0 до 2 индекса:", st.query(0, 3))  # Ожидается: 16
 print("Сумма от 1 до 4 индекса:", st.query(1, 4))  # Ожидается: 17
 
-st.lazy_add(2, 0, 4)  # Добавляем 2 ко всем элементам
+st.lazy_add(2)  # Добавляем 2 ко всем элементам
+print(st.tree, st.lazy)
 print("Сумма после ленивого обновления:", st.query())  # Ожидается: 30
+print(st.tree, st.lazy)
 print("Сумма от 0 до 2 индекса после обновления:", st.query(0, 3))  # Ожидается: 22
+print(st.tree, st.lazy)
 print("Сумма от 1 до 3 индекса после обновления:", st.query(1, 4))  # Ожидается: 23
+print(st.tree, st.lazy)
+print()
 st.lazy_add(3, 1, 3)  # Добавляем 3 к элементам от индекса 1 до 2
+print(st.tree, st.lazy)
 print("Сумма после частичного обновления:", st.query())  # Ожидается: 36
-print("Сумма от 0 до 2 индекса после обновления:", st.query(0, 3))  # Ожидается: 26
+print("Сумма от 0 до 2 индекса после обновления:", st.query(0, 3))  # Ожидается: 28
+print(st.tree, st.lazy)
 print("Сумма от 1 до 3 индекса после обновления:", st.query(1, 4))  # Ожидается: 29
-st.lazy_add(-1, 2, 5)  # Вычитаем 1 у элементов от индекса 2 до 3
+print(st.tree, st.lazy)
+print()
+st.lazy_add(-1, 2, 4)  # Вычитаем 1 у элементов от индекса 2 до 3
+print(st.tree, st.lazy)
+
 print("Сумма после пересекающего обновления:", st.query())  # Ожидается: 34
+print(st.tree, st.lazy)
+
 print("Сумма от 0 до 2 индекса после обновления:", st.query(0, 3))  # Ожидается: 24
+print(st.tree, st.lazy)
+
 print("Сумма от 1 до 3 индекса после обновления:", st.query(1, 4))  # Ожидается: 27
+print(st.tree, st.lazy)
+
 
 # Массив из одного элемента
 arr = [42]
