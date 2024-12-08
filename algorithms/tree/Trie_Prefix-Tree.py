@@ -23,6 +23,14 @@ class Trie:
             node = node.children[char]
         return node.is_end
     
+    def is_prefix(self, prefix):
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return True
+
     def delete(self, word):
         def _delete(node, depth):
             if not node:
@@ -54,6 +62,7 @@ trie.insert("application")
 # Проверяем наличие слов
 print(trie.search("apple"))        # True
 print(trie.search("app"))          # True\
+print(trie.is_prefix("ap"))       # True
 
 # Удаляем слово
 trie.delete("app")
@@ -64,3 +73,4 @@ trie.delete("apple")
 print(trie.search("apple"))        # False\
 # Удаляем "application"
 trie.delete("application")
+print(trie.is_prefix("applicatio"))       # False
