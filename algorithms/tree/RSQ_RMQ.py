@@ -1,72 +1,72 @@
 # Range sum query and rang min query
 
-def static_RSQ(arr, l, r):
-    '''prefix-sum`'''
-    prefix_sum = [0] * (len(arr) + 1)
-    for i, n in enumerate(arr):
-        prefix_sum[i + 1] = prefix_sum[i] + n
+class PrefixSum:
+    """Static RSQ Preprocessing 
+    O(n) - best algo for static RSQ"""
+    def __init__(self, arr):
+        self.prefix_sum = [0] * (len(arr) - 1)
+        for i, num in enumerate(arr):
+            self.prefix_sum[i + 1] += num
     
-    return prefix_sum[r + 1] - prefix_sum[l]
+    def range_sum(self, left, right):
+        '''O(1) - time complexity'''
+        return self.prefix_sum[right - 1] - self.prefix_sum[left]
 
-def static_RMQ(arr):
-    '''Sort decomposition'''
-    n = len(arr)
-    block_size = int(n ** 0.5)
-    block_min = [float('inf')] * ((n + block_size - 1) // block_size) # ceil(n / block_size)!!!
+class SqrtDecomposition:
+    ''' static RMQ, Preprocesing block 
+    O(n) - Time and O(n + n/sqrt(n))'''
+    def __init__(self, arr):
+        self.arr = arr
+        self.block_size = int(len(arr) ** 0.5)
+        self.blocks = [float('inf')] * ((self.n + self.block_size - 1) // self.block_size) # ceil(n // size)
 
-    for i in range(n):
-        block_index = i // block_size 
-        block_min[block_index] = min(block_min[block_index], arr[i])
-    return block_min, block_size
+        for i, num in enumerate(arr):
+            block_index = i // self.block_size
+            self.blocks[block_index] = min(self.blocks[block_index], num)
+
+    def range_min(self, left, right):
+        '''O(sqrt(n)) - Time'''
+        min_val = float('inf')
+        while left <= right:
+            # Check min_val in the range [left, right]
+            if left % self.block_size == 0 and left + self.block_size <= right:
+                min_val = min(min_val, self.blocks[left // self.block_size])
+                left += self.block_size
+            else:
+                min_val = min(min_val, self.arr[left])
+                left += 1
+        return min_val
     
+class SparseTable:
+    def __init__(self, arr):
+        '''RMQ O(nlogn) memory and time'''
+        n = len(arr)
+        log = n.bit_length()
+        self.table = [[0] * n for _ in range(log)]
+
+        for i, num in enumerate(arr):
+            self.table[0][i] = num # zero lvl 
+
+        for i in range(1, log): # 1 ... log(n)
+            lvl_size = 1 << i # 2, 4, 8... n / 2
+            for j in range(n - lvl_size + 1): #  0, 1 ... n - 2, n - 4, n - n / 2
+                self.table[i][j] = min( # table[1][0] = ..., 1, 1 .. 1, n-2  - filling one lvl of table, next two and etc
+                    self.table[i-1][j], # 0 0, 0 1, ... 0 n - 2- zero lvl, next one and etc
+                    self.table[i-1][j + lvl_size // 2] # 0 1, 0 2, ... 0 n - 1 - zero lvl, next one
+                )
 
 
-def findMin_RMQ(block_min, block_size, arr, left, right):
-    min_value = float('inf')
-    while left <= right:
-        if left % block_size == 0 and left + block_size - 1 <= right:
-            min_value = min(min_value, block_min[left // block_size])
-            left += block_size
-        else:
-            min_value = min(min_value, arr[left])
-            left += 1
-    return min_value
+    def query(self, left, right):
+        '''O(1)'''
+        k = (right - left + 1). bit_length() - 1 # Calculate lvl 
+
+        return min(
+            self.table[k][left], 
+            self.table[k][right - (1 << k) + 1] # Calc right index for k lvl = right - 2^k + 1 = if base = 8 and lvl = 2 right = 8: 
+        ) # 8 - 4 + 1 = 5 = last elem 2 lvl 
 
 
 
-def test_static_RMQ():
-    arr = [5, 2, 4, 1, 7, 3, 6]
-    block, size = static_RMQ(arr)
 
-    # Тест 1: Маленький массив
-    assert findMin_RMQ(block, size, arr, 1, 4) == 1  # Минимум от 2 до 7
 
-    # Тест 2: Полный массив
-    assert findMin_RMQ(block, size, arr, 0, len(arr) - 1) == 1  # Минимум по всему массиву
 
-    # Тест 3: Один элемент
-    assert findMin_RMQ(block, size, arr, 3, 3) == 1  # Минимум одного элемента
-
-    # Тест 4: Границы блоков
-    assert findMin_RMQ(block, size, arr, 0, 2) == 2  # Минимум в первом блоке
-
-    print("Все тесты для static_RMQ пройдены!")
-
-def test_block_count():
-    # Тест 1: Длина делится на block_size без остатка
-    assert (10 + 3 - 1) // 3 == 4  # 10 элементов, блоки по 3, 4 блока
-
-    # Тест 2: Длина не делится на block_size
-    assert (7 + 3 - 1) // 3 == 3  # 7 элементов, блоки по 3, 3 блока
-
-    # Тест 3: Маленький массив
-    assert (2 + 3 - 1) // 3 == 1  # 2 элемента, блоки по 3, 1 блок
-
-    # Тест 4: Один элемент
-    assert (1 + 3 - 1) // 3 == 1  # 1 элемент, блоки по 3, 1 блок
-
-    print("Все тесты для block_count пройдены!")
-
-test_block_count() 
-
-test_static_RMQ()
