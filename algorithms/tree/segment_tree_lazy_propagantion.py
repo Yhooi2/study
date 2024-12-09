@@ -96,10 +96,10 @@ print(st.tree, st.lazy)
 print("Сумма от 1 до 3 индекса после обновления:", st.query(1, 4))  # Ожидается: 23
 print(st.tree, st.lazy)
 print()
-st.lazy_add(3, 1, 4)  # Добавляем 3 к элементам от индекса 1 до 2
+st.lazy_add(3, 1, 4) 
 print(st.tree, st.lazy)
 
-st.lazy_add(-1, 0, 3)  # Вычитаем 1 у элементов от индекса 2 до 3
+st.lazy_add(-1, 0, 3) 
 print(st.tree, st.lazy)
 st.lazy_add(2) 
 print(st.tree, st.lazy)

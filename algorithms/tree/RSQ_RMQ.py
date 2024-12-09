@@ -8,16 +8,20 @@ def static_RSQ(arr, l, r):
     
     return prefix_sum[r + 1] - prefix_sum[l]
 
-def static_RMQ(arr, left, right):
+def static_RMQ(arr):
     '''Sort decomposition'''
     n = len(arr)
-    block_size= int(n ** 0.5)
-    block_min = [float('inf')] * ((n + block_size - 1) // block_size)# ceil(n / block_size)
+    block_size = int(n ** 0.5)
+    block_min = [float('inf')] * ((n + block_size - 1) // block_size) # ceil(n / block_size)!!!
 
     for i in range(n):
         block_index = i // block_size 
         block_min[block_index] = min(block_min[block_index], arr[i])
+    return block_min, block_size
     
+
+
+def findMin_RMQ(block_min, block_size, arr, left, right):
     min_value = float('inf')
     while left <= right:
         if left % block_size == 0 and left + block_size - 1 <= right:
@@ -32,18 +36,19 @@ def static_RMQ(arr, left, right):
 
 def test_static_RMQ():
     arr = [5, 2, 4, 1, 7, 3, 6]
+    block, size = static_RMQ(arr)
 
     # Тест 1: Маленький массив
-    assert static_RMQ(arr, 1, 4) == 1  # Минимум от 2 до 7
+    assert findMin_RMQ(block, size, arr, 1, 4) == 1  # Минимум от 2 до 7
 
     # Тест 2: Полный массив
-    assert static_RMQ(arr, 0, len(arr) - 1) == 1  # Минимум по всему массиву
+    assert findMin_RMQ(block, size, arr, 0, len(arr) - 1) == 1  # Минимум по всему массиву
 
     # Тест 3: Один элемент
-    assert static_RMQ(arr, 3, 3) == 1  # Минимум одного элемента
+    assert findMin_RMQ(block, size, arr, 3, 3) == 1  # Минимум одного элемента
 
     # Тест 4: Границы блоков
-    assert static_RMQ(arr, 0, 2) == 2  # Минимум в первом блоке
+    assert findMin_RMQ(block, size, arr, 0, 2) == 2  # Минимум в первом блоке
 
     print("Все тесты для static_RMQ пройдены!")
 
