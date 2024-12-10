@@ -1,5 +1,6 @@
 # Range sum query and rang min query
 
+
 class PrefixSum:
     """Static RSQ Preprocessing 
     O(n) - best algo for static RSQ"""
@@ -61,7 +62,7 @@ class SparseTable:
         k = (right - left + 1). bit_length() - 1 # Calculate lvl 
 
         return min(
-            self.table[k][left], 
+            self.table[k][left].
             self.table[k][right - (1 << k) + 1] # Calc right index for k lvl = right - 2^k + 1 = if base = 8 and lvl = 2 right = 8: 
         ) # 8 - 4 + 1 = 5 = last elem 2 lvl 
 
