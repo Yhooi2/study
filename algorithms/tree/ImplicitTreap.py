@@ -12,8 +12,17 @@ class ImplicitTreap:
     def __init__(self, arr=None):
         self.root = None
         if arr:
-            for i, val in enumerate(arr):
-                self.insert(i, val)
+            self.root = self._build(arr, 0, len(arr))
+
+    def _build(self, arr, left, right):
+        if left >= right:
+            return None
+        mid = (left + right) // 2
+        root = self.Node(arr[mid])
+        root.left = self._build(arr, left, mid)
+        root.right = self._build(arr, mid + 1, right)
+        self._update_size(root)
+        return root
     
     def __len__(self):
         return self.root.size if self.root else 0
