@@ -7,8 +7,27 @@ class TreapNode:
         self.right = None
 
 class Treap:
-    def __init__(self):
+    def __init__(self, arr=None):
         self.root = None
+        if arr is not None:
+            self._build(arr)
+    
+    def _build(self, arr): 
+        nodes = [TreapNode(key) for key in sorted(arr)]
+
+        def build_rec(left, right):
+            if left > right:
+                return None
+            
+            max_i = left
+            for i in range(left + 1, right + 1):
+                if nodes[i].priority > nodes[max_i].priority:
+                    max_i = i
+            
+            root = nodes[max_i]
+
+            root.left = build_rec(left, max_i - 1)
+            root.right = build_rec(max_i +1, right)
     
     def merge(self, left, right):
         if not left:
