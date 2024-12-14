@@ -55,8 +55,10 @@ class ImplicitTreap:
             return root, right
 
     def merge(self, left, right):
-        if not left: return right
-        if not right: return left
+        if not left: 
+            return right
+        if not right: 
+            return left
 
         if left.priority > right.priority:
             left.right = self.merge(left.right, right)
@@ -70,7 +72,8 @@ class ImplicitTreap:
     def insert(self, idx, val):
         left, right = self.split(self.root, idx)
         new_node = self.Node(val)
-        self.root = self.merge(self.merge(left, new_node), right)
+        left = self.merge(left, new_node)
+        self.root = self.merge(left, right)
 
     def remove(self, idx):
         left, temp = self.split(self.root, idx)
@@ -103,27 +106,3 @@ class ImplicitTreap:
             self._inorder_traversal(node.left, res)
             res.append(node.value)
             self._inorder_traversal(node.right, res)
-
-
-
-def demonstrate_implicit_treap():
-    """
-    Демонстрация работы персистентного массива
-    """
-    # Создание массива
-    treap = ImplicitTreap([1, 2, 3, 4, 5])
-    print("Исходный массив:", treap.to_array())
-
-    # Вставка элемента
-    treap.insert(2, 10)
-    print("После вставки 10 по индексу 2:", treap.to_array())
-
-    # Удаление элемента
-    treap.remove(3)
-    print("После удаления элемента по индексу 3:", treap.to_array())
-
-    # Получение элемента
-    print("Элемент по индексу 2:", treap.get(2))
-
-# Запуск демонстрации
-demonstrate_implicit_treap()
