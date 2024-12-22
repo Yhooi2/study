@@ -4,14 +4,14 @@ import java.net.URLConnection;
 
 public class lesson2 {
     public static void main(String[] args) throws IOException {
-        String sourseCode = downloadWebPage("https://ya.ru");
-    writeToFile(sourseCode.replaceAll("Найдётся", "Input"));
+        String sourceCode = downloadWebPage();
+        writeToFile(sourceCode.replaceAll("Найдётся", "Input"));
     }
 
-    private static String downloadWebPage(String url) throws IOException {
+    private static String downloadWebPage() throws IOException {
         StringBuilder result = new StringBuilder();
         String line;
-        URLConnection urlConnection = new URL(url).openConnection();
+        URLConnection urlConnection = new URL("https://ya.ru").openConnection();
 
         try (InputStream is = urlConnection.getInputStream();
              BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
