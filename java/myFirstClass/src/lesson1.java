@@ -1,5 +1,4 @@
-public class MyFirstClass {
-
+public class lesson1 {
     public static void main(String[] args) {
         //  0*x + b*x*x + c = 0
         int a = 5;
