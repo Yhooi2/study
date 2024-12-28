@@ -3,6 +3,10 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .idea/
+config.json
+*.log
+*.iml
+
 
 ### Eclipse ###
 .apt_generated
