@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class Class8 {
+public class Class8_api_quote_random {
     public static void main(String[] args) throws IOException {
         String page = downloadWebPage("https://zenquotes.io/api/random");
         int start = page.indexOf("\"q\":\"") + "\"q\":".length() + 1;
