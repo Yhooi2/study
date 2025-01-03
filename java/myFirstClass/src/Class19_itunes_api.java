@@ -6,45 +6,84 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
+
 public class Class19_itunes_api {
     public static void main(String[] args) throws IOException {
         String term = getUserInput();
         String url = buildURL(term);
         String page = downloadUrl(url);
 
-        //System.out.println(page);
-        printResult(page);
+        extractedAndPrint(page);
     }
+
+    private static void extractedAndPrint(String page) {
+        String num = getType("resultCount\":", page);
+        int count = Integer.parseInt(num.substring(0, num.length() - 3));
+        if (count == 0){
+            System.out.println("No results found.");
+            return;
+        }
+        int[] ids = new int[count];
+        for (int i = 0; i < count; i++){
+            page = getNextPage(page);
+            int id = getId(page);
+            if (checkExist(ids, id)){ //if it doesn't exist add it and print
+                ids[i] = id;
+                printResult(page);
+            }
+        }
+    }
+static boolean checkExist(int[] arr, int target){
+    for (int i : arr) {
+        if (i == target) {
+            return false;
+        }
+    }
+    return true;
+}
+
+    public static int getId(String page) {
+        String id = getType("Id\":", page);
+        id = id.substring(0, id.length() - 2);
+        return Integer.parseInt(id);
+    }
+
     static void printResult(String page) {
         String wrapperType = getType("wrapperType\":\"", page);
+        System.out.println(getResult(page, wrapperType));
+    }
+
+    private static String getResult(String page, String wrapperType) {
         StringBuilder result = new StringBuilder();
-        result.append("Unknown type: \n");
-        result.append(page);
+        result.append(wrapperType).append("\n");
 
         if (wrapperType.equals("audiobook")) {
-            result.delete(0, result.length());
             result = buildBookResult(page);
+            result.append("\n").append(wrapperType);
 
         } else if (wrapperType.equals("track")) {
             String kind = getType("kind\":\"", page);
 
             if (kind.equals("song")) {
-                result.delete(0, result.length());
                 result = buildResult(page, "artistName\":\"", "trackName\":\"");
 
             } else if (kind.equals("feature-movie")) {
-                result.delete(0, result.length());
-                result = buildResult(page, "trackName\":\"", "longDescription\":\"");
+                result = buildResult(page, "trackName\":\"", "shortDescription\":\"");
             }
+            result.append("\n").append(kind);
         }
-        System.out.println(result.toString());
+        return result.toString();
+    }
+    static String getNextPage(String page){
+        int endIndex = page.indexOf("}") + 1;
+        return page.substring(endIndex);
     }
 
     private static String getType(String str, String page) {
         int start = page.indexOf(str) + str.length();
         int end = page.indexOf("\"", start);
-        String wrapperType = page.substring(start, end);
-        return wrapperType;
+        end = (page.charAt(end - 1) == '\\') ? end - 1 : end;
+        return page.substring(start, end);
     }
 
     static StringBuilder buildResult(String page, String str1, String str2) {
@@ -70,7 +109,7 @@ public class Class19_itunes_api {
     static String buildURL(String searchQuery){
         String searchTerm = searchQuery.replaceAll(" ", "+");
         String api = "https://itunes.apple.com/search?term=";
-        String limit = "&limit=1";//System.out.println(searchTerm);
+        String limit = "&limit=100";//System.out.println(searchTerm);
         return api + searchTerm + limit;
     }
 
