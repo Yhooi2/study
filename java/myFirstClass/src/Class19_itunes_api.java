@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 
 public class Class19_itunes_api {
+    private static final String API = "https://itunes.apple.com/search?term=";
+    private  static final String LIMIT = "100";
+
     public static void main(String[] args) throws IOException {
         String term = getUserInput();
         String url = buildURL(term);
@@ -23,6 +26,7 @@ public class Class19_itunes_api {
             System.out.println("No results found.");
             return;
         }
+
         int[] ids = new int[count];
         for (int i = 0; i < count; i++){
             page = getNextPage(page);
@@ -33,22 +37,23 @@ public class Class19_itunes_api {
             }
         }
     }
-static boolean checkExist(int[] arr, int target){
-    for (int i : arr) {
-        if (i == target) {
-            return false;
-        }
-    }
-    return true;
-}
 
-    public static int getId(String page) {
+    private static boolean checkExist(int[] arr, int target){
+        for (int i : arr) {
+            if (i == target) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static int getId(String page) {
         String id = getType("Id\":", page);
         id = id.substring(0, id.length() - 2);
         return Integer.parseInt(id);
     }
 
-    static void printResult(String page) {
+    private static void printResult(String page) {
         String wrapperType = getType("wrapperType\":\"", page);
         System.out.println(getResult(page, wrapperType));
     }
@@ -59,7 +64,7 @@ static boolean checkExist(int[] arr, int target){
 
         if (wrapperType.equals("audiobook")) {
             result = buildBookResult(page);
-            result.append("\n").append(wrapperType);
+            result.append(wrapperType);
 
         } else if (wrapperType.equals("track")) {
             String kind = getType("kind\":\"", page);
@@ -70,11 +75,11 @@ static boolean checkExist(int[] arr, int target){
             } else if (kind.equals("feature-movie")) {
                 result = buildResult(page, "trackName\":\"", "shortDescription\":\"");
             }
-            result.append("\n").append(kind);
+            result.append(kind).append("\n");
         }
         return result.toString();
     }
-    static String getNextPage(String page){
+    private static String getNextPage(String page){
         int endIndex = page.indexOf("}") + 1;
         return page.substring(endIndex);
     }
@@ -86,16 +91,18 @@ static boolean checkExist(int[] arr, int target){
         return page.substring(start, end);
     }
 
-    static StringBuilder buildResult(String page, String str1, String str2) {
+    private static StringBuilder buildResult(String page, String str1, String str2) {
         StringBuilder result = new StringBuilder();
         String artistName = getType(str1, page);
-
+        String genre = getType("primaryGenreName", page);
         String trackName = getType(str2, page).replaceAll("<br />", "\n");
-        result.append(artistName).append("\n").append(trackName);
+        result.append(artistName).append("\n");
+        result.append(genre).append("\n");
+        result.append(trackName).append("\n");
         return result;
     }
 
-    static StringBuilder buildBookResult(String page) {
+    private static StringBuilder buildBookResult(String page) {
         StringBuilder result = new StringBuilder();
 
         String artistName = getType("artistName\":\"", page);
@@ -106,20 +113,19 @@ static boolean checkExist(int[] arr, int target){
         return result;
     }
 
-    static String buildURL(String searchQuery){
+    private static String buildURL(String searchQuery){
         String searchTerm = searchQuery.replaceAll(" ", "+");
-        String api = "https://itunes.apple.com/search?term=";
-        String limit = "&limit=100";//System.out.println(searchTerm);
-        return api + searchTerm + limit;
+        String limit = "&limit=" + LIMIT;//System.out.println(searchTerm);
+        return API + searchTerm + limit;
     }
 
-    static String getUserInput() {
+    private static String getUserInput() {
         System.out.println("What's you looking for in iTunes?");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
-    static String downloadUrl(String url) throws IOException {
+    private static String downloadUrl(String url) throws IOException {
         StringBuilder result = new StringBuilder();
         String line;
         URLConnection urlConnection = new URL(url).openConnection();
