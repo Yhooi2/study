@@ -1,4 +1,4 @@
-package myClass27Inheritance;
+package myclass27inheritance;
 
 public class MyClass27 {
     public static void main(String[] args) {

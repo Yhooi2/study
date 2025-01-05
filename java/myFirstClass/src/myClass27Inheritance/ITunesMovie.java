@@ -1,4 +1,4 @@
-package myClass27Inheritance;
+package myclass27inheritance;
 
 public class ITunesMovie extends ITunesProduct{
     String trackName;

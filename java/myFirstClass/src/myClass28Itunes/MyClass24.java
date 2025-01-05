@@ -1,4 +1,4 @@
-package myClass28Itunes;
+package myclass28itunes;
 
 import java.io.IOException;
 import java.util.Scanner;

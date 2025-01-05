@@ -1,4 +1,4 @@
-package myClass28Itunes;
+package myclass28itunes;
 
 import java.io.BufferedReader;
 import java.io.IOException;

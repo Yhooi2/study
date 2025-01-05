@@ -1,4 +1,4 @@
-package myClass28Itunes;
+package myclass28itunes;
 
 public class Movie {
     String title;

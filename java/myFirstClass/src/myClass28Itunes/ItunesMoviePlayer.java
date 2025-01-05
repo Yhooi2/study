@@ -1,4 +1,6 @@
-package myClass28Itunes;
+package myclass28itunes;
+
+import myclass27inheritance.ITunesMovie;
 
 import java.awt.*;
 import java.io.*;
@@ -11,10 +13,22 @@ public class ItunesMoviePlayer {
     private static final String API = "https://itunes.apple.com/search?term=";
     private  static final String LIMIT = "1";
     private static final String MEDIA_TYPE = "movie";
+
+    ITunesMovie getMovie(String searchRequest) throws IOException {
+        String  searchTerm = searchRequest.replaceAll(" ", "+");
+        String json = getJson(searchRequest);
+        printInfo(json);
+        String track = getTag("trackName", json);
+        String previewLink = getTag("previewUrl", json);
+        ITunesMovie movie = new ITunesMovie();
+        return  movie;
+    }
+
     void playMovie(String searchRequest) throws IOException {
         String  searchTerm = searchRequest.replaceAll(" ", "+");
         String json = getJson(searchRequest);
-        String track = printInfoGetTrack(json);
+        String track = getTag("trackName", json);
+        printInfo(json);
         String previewLink = getTag("previewUrl", json);
 
         Runtime.getRuntime().exec("open " + previewLink);
@@ -37,7 +51,7 @@ public class ItunesMoviePlayer {
         desktop.open(new File(fileName));
     }
 
-    private static String printInfoGetTrack(String json) {
+    private static void printInfo(String json) {
 
         String artistName = getTag("artistName", json);
         String track = getTag("trackName", json);
@@ -46,8 +60,6 @@ public class ItunesMoviePlayer {
         System.out.println(artistName);
         System.out.println(track);
         System.out.println(longDescription);
-
-        return track;
     }
 
     private static String getJson(String searchRequest) throws IOException {
