@@ -1,13 +1,13 @@
-import java.io.BufferedReader;
+package myClass28Itunes;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class ItunesMusicPlayer {
+    static PageDownloader downloader = new PageDownloader();
     private static final String API = "https://itunes.apple.com/search?term=";
     private  static final String LIMIT = "1";
     private static final String MEDIA_TYPE = "music";
@@ -38,7 +38,7 @@ public class ItunesMusicPlayer {
     private static String getJson(String searchRequest) throws IOException {
         String term = searchRequest.replaceAll(" ", "+");
         String requestUrl = buildURL(term);
-        return downloadWebPage(requestUrl);
+        return downloader.downloadWebPage(requestUrl);
     }
 
     static String getTag(String key, String json){ //get the first song name
@@ -51,19 +51,5 @@ public class ItunesMusicPlayer {
         String limit = "&limit=" + LIMIT;
         String mediaType = "&media=" + MEDIA_TYPE;
         return API + searchTerm + limit + mediaType;
-    }
-    static String downloadWebPage(String url) throws IOException {
-        StringBuilder result = new StringBuilder();
-        String line;
-        URLConnection urlConnection = new URL(url).openConnection();
-
-        try (InputStream is = urlConnection.getInputStream();
-             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
-
-            while ((line = br.readLine()) != null) {
-                result.append(line);
-            }
-            return result.toString();
-        }
     }
 }

@@ -1,3 +1,11 @@
 public class Printer {
-    public String maker;
+    int price;
+    String maker;
+
+    public Printer(int price, String maker) {
+        this.price = price;
+        this.maker = maker;
+    }
+    public Printer() {};
+
 }

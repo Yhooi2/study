@@ -1,3 +1,5 @@
+package myClass28Itunes;
+
 import java.io.IOException;
 import java.util.Scanner;
 

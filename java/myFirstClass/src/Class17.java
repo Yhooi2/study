@@ -19,11 +19,7 @@ public class Class17 {
         FileInfo[] fileInfos = new FileInfo[size];
 
         for (int i = 0; i < size; i++) {
-            File file = files[i];
-            FileInfo info = new FileInfo();
-            info.path = file.getAbsolutePath();
-            info.fileName = file.getName();
-            info.size = file.length();
+            FileInfo info = new FileInfo(files[i]);
             fileInfos[i] = info;
         }
         for (int i = 0; i < size; i++) {
