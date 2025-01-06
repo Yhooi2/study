@@ -1,5 +1,7 @@
 package myclass28itunes;
 
+import utils.PageDownloader;
+
 public class RandomMoviePicker {
     PageDownloader downloader = new PageDownloader();
     Movie[] getRandomMoviesNames(int count) {

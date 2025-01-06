@@ -1,4 +1,4 @@
-package myclass28itunes;
+package utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class PageDownloader {
-    String downloadWebPage(String url) {
+    public String downloadWebPage(String url) {
         StringBuilder result = new StringBuilder();
         String line;
         URLConnection urlConnection = null;

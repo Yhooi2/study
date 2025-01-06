@@ -1,5 +1,7 @@
 package myclass28itunes;
 
+import utils.PageDownloader;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
