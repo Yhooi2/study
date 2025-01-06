@@ -8,25 +8,17 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class PageDownloader {
-    public String downloadWebPage(String url) {
+    public String downloadWebPage(String url) throws IOException {
         StringBuilder result = new StringBuilder();
         String line;
         URLConnection urlConnection = null;
-        try {
             urlConnection = new URL(url).openConnection();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
         try (InputStream is = urlConnection.getInputStream();
              BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
-
             while ((line = br.readLine()) != null) {
                 result.append(line);
             }
-            return result.toString();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
+            return result.toString();
     }
 }

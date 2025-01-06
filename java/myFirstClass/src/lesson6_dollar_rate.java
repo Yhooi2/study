@@ -7,7 +7,12 @@ import java.net.URLConnection;
 
 public class lesson6_dollar_rate {
     public static void main(String[] args) throws IOException {
-        String page = downloadWebPage("https://cbr.ru/scripts/XML_dynamic.asp?date_req1=27/12/2024&date_req2=28/12/2024&VAL_NM_RQ=R01235");
+        String page = "";
+        try {
+             page = downloadWebPage("https://cbr.rru/scripts/XML_dynamic.asp?date_req1=27/12/2024&date_req2=28/12/2024&VAL_NM_RQ=R01235");
+        } catch (Exception e) {
+            throw new CbrNotAvailableException(e);
+        }
         int startIdx = page.lastIndexOf("<Value>");
         int endIdx = page.lastIndexOf("</Value>");
         String rate = page.substring(startIdx + 7, endIdx);

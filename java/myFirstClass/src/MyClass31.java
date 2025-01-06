@@ -1,5 +1,6 @@
 import utils.PageDownloader;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -24,7 +25,10 @@ public class MyClass31 {
         PageDownloader downloader = new PageDownloader();
         String url = "https://cbr.ru/scripts/XML_dynamic.asp?date_req1=" + dateFormat;
         url += "&date_req2=" + dateFormat + "&VAL_NM_RQ=R01235";
-        String page = downloader.downloadWebPage(url);
+        String page = "";
+        try {
+            page = downloader.downloadWebPage(url);
+        } catch(IOException e){}
         int startIdx = page.lastIndexOf("<Value>");
 
         if (startIdx == -1 ) {
