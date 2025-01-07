@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class PageDownloader {
-    public String downloadWebPage(String url) throws IOException {
+    public String downloadWebPage(String url) throws IOException{
         StringBuilder result = new StringBuilder();
         String line;
         URLConnection urlConnection = null;
