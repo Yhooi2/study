@@ -2,13 +2,17 @@ package myclass39speakable;
 
 public class MyClass39 {
     public static void main(String[] args) {
-        Speakable speakable = new Cat();
-        Speakable speakable2 = new Dog();
-        Speakable speakable3 = new Donkey();
+        Speakable cat = new Cat();
+        Speakable dog = new Dog();
+        Speakable donkey = new Donkey();
 
-        sayhello(speakable);
-        sayhello(speakable2);
-        sayhello(speakable3);
+        sayhello(cat);
+        sayhello(dog);
+        sayhello(donkey);
+        Cat cat2 = new Cat();
+        cat2.name = "Tom";
+        cat2.age = 1;
+        System.out.println(cat2);
     }
 
     public static void sayhello(Speakable speakable) {

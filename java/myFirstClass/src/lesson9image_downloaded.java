@@ -33,7 +33,7 @@ public class lesson9image_downloaded {
             throw new RuntimeException(ex);
         }
         try (InputStream is = urlConnection.getInputStream();
-             BufferedReader br = new BufferedReader(new InputStreamReader(is))) { //try with resources
+             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
             while ((line = br.readLine()) != null) {
                 result.append(line);
             }

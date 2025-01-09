@@ -1,6 +1,8 @@
 package myclass39speakable;
 
 public class Cat implements Speakable{
+    public String name;
+    public int age;
 
     @Override
     public void speak(String str) {
@@ -10,5 +12,10 @@ public class Cat implements Speakable{
     @Override
     public void intorduse() {
         System.out.println("Cat is here!");
+    }
+
+    @Override
+    public String toString() {
+        return "Cat: " +this.name + ", " + this.age + " years";
     }
 }
