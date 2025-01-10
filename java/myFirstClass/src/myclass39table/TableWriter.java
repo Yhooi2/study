@@ -5,4 +5,8 @@ public interface TableWriter {
 
     String getOutputPath();
 
+    default void printTableHeaderToConsole(Row[] table) {
+        System.out.println("Whill print table with columns " + table[0].left + " and " + table[0].right);
+    }
+
 }

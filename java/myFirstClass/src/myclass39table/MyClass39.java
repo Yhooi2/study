@@ -9,6 +9,7 @@ public class MyClass39 {
         // TableWriter tableWriter = new TextFileTableWriter("output");
         // TableWriter tableWriter = new CsvTableWriter("output");
         TableWriter tableWriter = new HtmlTableWriter("output");
+        tableWriter.printTableHeaderToConsole(table);
         tableWriter.writeTable(table);
         System.out.println("Table written to " + tableWriter.getOutputPath());
     }
