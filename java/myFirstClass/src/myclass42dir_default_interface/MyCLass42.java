@@ -1,6 +1,4 @@
-package myclass42;
-
-import java.io.File;
+package myclass42dir_default_interface;
 
 public class MyCLass42 {
     public static void main(String[] args) {

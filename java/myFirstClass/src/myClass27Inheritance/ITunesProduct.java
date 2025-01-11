@@ -1,6 +1,6 @@
 package myclass27inheritance;
 
-public class ITunesProduct {
+public abstract class ITunesProduct {
     String artistName;
     String collectionName;
     String previewUrl;
