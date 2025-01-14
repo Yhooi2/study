@@ -1,14 +1,14 @@
-package collections;
+package myclass50collections;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Comporator {
+public class myClassComporator {
     //    Нужно отсортировать случайный список чисел.
     //    Числа нужно отсортировать следующим образом:
     //    Четные идут в начале по возрастанию, нечетные по убыванию в конце списка.
-    
+
     public static void main(String[] args) {
 
         Random random = new Random();
