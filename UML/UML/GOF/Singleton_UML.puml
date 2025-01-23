@@ -1,0 +1,9 @@
+@startuml
+class Singleton {
+  - static instance: Singleton
+  - Singleton()
+  + static getInstance(): Singleton
+}
+
+note left: Паттерн Singleton гарантирует,\nчто класс имеет только один экземпляр.
+@enduml

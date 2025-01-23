@@ -1,0 +1,10 @@
+@startuml
+component "Компонент A" {
+    interface "Предоставляемый интерфейс" as ProvidedInterface
+}
+
+interface "Интерфейс 1" as Interface1
+
+ProvidedInterface -- (Компонент A)
+Interface1 -- (Компонент A)
+@enduml

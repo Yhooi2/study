@@ -1,0 +1,79 @@
+@startuml
+' Интерфейсы
+interface Identifiable {
+    +String getId()
+    +void setId(String id)
+}
+
+interface Searchable {
+    +List<Item> search(String query)
+}
+
+' Абстрактный класс
+abstract class Item {
+    -String id
+    -String title
+    +{abstract} void displayInfo()
+    +String getId()
+    +void setId(String id)
+    +String getTitle()
+    +void setTitle(String title)
+}
+
+' Конкретные классы
+class Book extends Item implements Identifiable {
+    -String isbn
+    -Author author
+    +void displayInfo()
+    +String getIsbn()
+    +void setIsbn(String isbn)
+    +Author getAuthor()
+    +void setAuthor(Author author)
+}
+
+class Author {
+    -String name
+    -List<Book> books
+    +String getName()
+    +void setName(String name)
+    +List<Book> getBooks()
+    +void addBook(Book book)
+}
+
+class Library implements Searchable {
+    -String name
+    -List<Item> items
+    -List<Member> members
+    +String getName()
+    +void setName(String name)
+    +void addItem(Item item)
+    +void addMember(Member member)
+    +List<Item> getItems()
+    +List<Member> getMembers()
+    +List<Item> search(String query)
+}
+
+class Member {
+    -String id
+    -String name
+    -List<Book> borrowedBooks
+    +String getId()
+    +void setId(String id)
+    +String getName()
+    +void setName(String name)
+    +void borrowBook(Book book)
+    +void returnBook(Book book)
+    +List<Book> getBorrowedBooks()
+}
+
+' Связи с агрегацией
+Library "1" o-- "*" Item : contains
+Library "1" *-- "*" Member : has
+
+' Остальные связи
+Book "1" -- "1" Author : writtenBy
+Member "1" -- "*" Book : borrows
+Item <|-- Book : extends
+Identifiable <|.. Book : implements
+Searchable <|.. Library : implements
+@enduml

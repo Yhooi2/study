@@ -1,0 +1,4 @@
+@startuml
+Alice -> Bob: Привет!
+Bob --> Alice: Привет, как дела?
+@enduml

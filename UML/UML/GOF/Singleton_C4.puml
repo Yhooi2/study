@@ -1,0 +1,11 @@
+@startuml
+!include <C4/C4_Component>
+
+title Singleton (C4 Component Diagram)
+
+Container(api, "Приложение", "Java", "Использует Singleton для доступа к общему ресурсу")
+
+Component(singleton, "Singleton", "Класс Singleton", "Обеспечивает глобальный доступ к единственному экземпляру")
+
+Rel(api, singleton, "использует", "getInstance()")
+@enduml
