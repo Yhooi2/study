@@ -1,0 +1,16 @@
+@startuml ProxyPatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Proxy (C4 Model)
+
+Container_Boundary(proxy_system, "Система контроля доступа") {
+    Component(client, "Client", "Клиент", "Инициирует запросы")
+    Component(proxy, "Proxy", "Заместитель", "Контролирует доступ к RealSubject")
+    Component(real_subject, "RealSubject", "Реальный объект", "Выполняет основную логику")
+}
+
+Rel(client, proxy, "Вызывает", "request()")
+Rel(proxy, real_subject, "Делегирует", "при выполнении условий")
+Rel_U(proxy, real_subject, "Реализует тот же интерфейс", "implements")
+SHOW_LEGEND()
+@enduml

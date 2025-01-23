@@ -1,8 +1,7 @@
 public class Singleton {
-    // Статическое поле для хранения единственного экземпляра
     private static final Singleton instance = new Singleton();
 
-    // Приватный конструктор
+    // Приватный конструктор!
     private Singleton() {
         System.out.println("Singleton instance created");
     }

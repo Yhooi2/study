@@ -1,0 +1,16 @@
+@startuml PrototypePatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Prototype (C4 Model)
+
+Container_Boundary(prototype_system, "Система клонирования объектов") {
+    Component(client, "Client", "Использует прототипы", "Запрашивает копии объектов")
+    Component(prototype_registry, "PrototypeRegistry", "Реестр прототипов", "Хранит и возвращает клонируемые объекты")
+    Component(prototype, "Prototype", "Интерфейс", "Объявляет метод clone()")
+    Component(concrete_prototype, "ConcretePrototype", "Конкретный прототип", "Реализует клонирование")
+}
+
+Rel(client, prototype_registry, "Запрашивает прототип", "getPrototype()")
+Rel(prototype_registry, concrete_prototype, "Возвращает клон", "clone()")
+Rel_U(prototype, concrete_prototype, "Реализует", "наследование")
+@enduml

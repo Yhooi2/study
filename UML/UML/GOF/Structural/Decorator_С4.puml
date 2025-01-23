@@ -1,0 +1,17 @@
+@startuml DecoratorPatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Декоратор: Кофейный Магазин (C4)
+
+Container_Boundary(coffee_shop, "Система приготовления кофе") {
+    Component(Coffee, "Coffee", "Базовый напиток", "Определяет методы стоимости и описания")
+    Component(SimpleCoffee, "SimpleCoffee", "Простой кофе", "Базовая реализация напитка")
+    Component(CoffeeDecorator, "CoffeeDecorator", "Абстрактная добавка", "Обертка для кофе")
+    Component(MilkDecorator, "MilkDecorator", "Добавка молока", "Увеличивает стоимость на 0.5$")
+}
+
+Rel(CoffeeDecorator, Coffee, "Оборачивает", "композиция")
+Rel_U(Coffee, SimpleCoffee, "Реализует", "наследование")
+Rel_U(CoffeeDecorator, MilkDecorator, "Реализует", "наследование")
+Rel(MilkDecorator, Coffee, "Расширяет", "добавляет функциональность")
+@enduml

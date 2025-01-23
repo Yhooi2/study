@@ -1,0 +1,40 @@
+@startuml FactoryMethodUML
+title Паттерн Factory Method (UML)
+
+abstract class Logistics {
+    + planDelivery(): void
+    + {abstract} createTransport(): Transport
+}
+
+class RoadLogistics {
+    + createTransport(): Transport
+}
+
+class SeaLogistics {
+    + createTransport(): Transport
+}
+
+interface Transport {
+    + deliver(): void
+}
+
+class Truck {
+    + deliver(): void
+}
+
+class Ship {
+    + deliver(): void
+}
+
+Logistics <|-- RoadLogistics
+Logistics <|-- SeaLogistics
+Transport <|.. Truck
+Transport <|.. Ship
+RoadLogistics --> Truck : creates
+SeaLogistics --> Ship : creates
+
+note top of Logistics
+Фабричный метод createTransport()
+определен в подклассах
+end note
+@enduml

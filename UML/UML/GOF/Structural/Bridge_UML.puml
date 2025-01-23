@@ -1,0 +1,31 @@
+@startuml BridgePatternUML
+title Паттерн Мост (UML)
+
+abstract class Shape {
+    # color: Color
+    + Shape(Color color)
+    + draw(): void
+}
+
+class Circle {
+    + draw(): void
+}
+
+interface Color {
+    + fill(): String
+}
+
+class Red {
+    + fill(): String
+}
+
+class Blue {
+    + fill(): String
+}
+
+Shape o--> Color : использует
+Shape <|-- Circle : наследует
+Color <|.. Red : реализует
+Color <|.. Blue : реализует
+
+@enduml

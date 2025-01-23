@@ -1,0 +1,16 @@
+@startuml CompositePatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Компоновщик (C4 Model)
+
+Container_Boundary(composite_system, "Система иерархических объектов") {
+    Component(component, "Component", "Абстрактный элемент", "Общий интерфейс для листьев и контейнеров")
+    Component(leaf, "Leaf", "Лист", "Базовый элемент без дочерних компонентов")
+    Component(composite, "Composite", "Контейнер", "Содержит дочерние компоненты и управляет ими")
+}
+
+Rel(composite, component, "Содержит", "children: List<Component>")
+Rel_U(component, leaf, "Реализует", "наследование")
+Rel_U(component, composite, "Реализует", "наследование")
+
+@enduml

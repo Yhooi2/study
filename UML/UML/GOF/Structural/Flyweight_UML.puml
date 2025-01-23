@@ -1,0 +1,33 @@
+@startuml FlyweightPatternUML
+title Flyweight (UML)
+
+class TreeFactory {
+    - treeTypes: Map<String, TreeType>
+    + getTreeType(name, color, texture): TreeType
+}
+
+class TreeType {
+    - name: String
+    - color: String
+    - texture: String
+    + draw(x, y): void
+}
+
+class Forest {
+    - trees: List<Tree>
+    + plantTree(x, y, name, color, texture): void
+    + draw(): void
+}
+
+class Tree {
+    - x: int
+    - y: int
+    - type: TreeType
+    + draw(): void
+}
+
+TreeFactory o--> TreeType : создает
+Forest --> TreeFactory : использует
+Forest *--> Tree : содержит
+Tree --> TreeType : ссылается
+@enduml

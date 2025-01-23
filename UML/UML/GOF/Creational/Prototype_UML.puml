@@ -1,0 +1,33 @@
+@startuml PrototypePatternUML
+title Паттерн Prototype (UML)
+interface Cloneable << (R,orchid) external >> {
+  + clone(): Object
+}
+
+interface Prototype {
+    + clone(): Prototype
+}
+
+class ConcretePrototype {
+    - field: String
+    + clone(): Prototype
+    + getField(): String
+    + setField(field: String): void
+}
+
+class PrototypeRegistry {
+    - prototypes: Map<String, Prototype>
+    + addPrototype(key: String, prototype: Prototype): void
+    + getPrototype(key: String): Prototype
+}
+
+class Client {
+    + operation(): void
+}
+
+Prototype <|.. ConcretePrototype : реализует
+PrototypeRegistry o--> Prototype : хранит
+Client --> PrototypeRegistry : использует
+Prototype -|> Cloneable
+
+@enduml

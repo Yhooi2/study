@@ -1,0 +1,18 @@
+@startuml AdapterPatternC4_Sockets
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Адаптер - Розетки (C4 Model)
+
+Container_Boundary(power_system, "Система электропитания") {
+    Component(client, "Клиент", "Европейское устройство", "Требует 220В")
+    Component(euro_socket, "EuropeanSocket", "Цель (Target)", "Европейская розетка")
+    Component(adapter, "EuroToAmericanAdapter", "Адаптер", "Преобразует 220В → 110В")
+    Component(american_plug, "AmericanPlug", "Адаптируемый объект", "Американская вилка 110В")
+}
+
+Rel(client, euro_socket, "Использует", "plugIn()")
+Rel(adapter, american_plug, "Адаптирует", "delegateToAmerican()")
+Rel_U(euro_socket, adapter, "Реализует", "наследование")
+
+SHOW_LEGEND()
+@enduml

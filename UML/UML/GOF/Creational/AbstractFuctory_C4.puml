@@ -1,0 +1,32 @@
+@startuml AbstractFactoryC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Abstract Factory (C4 Model)
+
+Container_Boundary(factory_system, "Система создания семейств объектов") {
+    Component(abstract_factory, "AbstractFactory", "Абстрактная фабрика", "Объявляет методы создания продуктов")
+    Component(concrete_factory1, "WinFactory", "Конкретная фабрика", "Создает продукты для Windows")
+    Component(concrete_factory2, "MacFactory", "Конкретная фабрика", "Создает продукты для MacOS")
+
+    Component(button, "Button", "Абстрактная кнопка", "Интерфейс кнопки")
+    Component(checkbox, "Checkbox", "Абстрактный чекбокс", "Интерфейс чекбокса")
+
+    Component(win_button, "WinButton", "Кнопка Windows", "Реализация для Windows")
+    Component(win_checkbox, "WinCheckbox", "Чекбокс Windows", "Реализация для Windows")
+    Component(mac_button, "MacButton", "Кнопка MacOS", "Реализация для MacOS")
+    Component(mac_checkbox, "MacCheckbox", "Чекбокс MacOS", "Реализация для MacOS")
+}
+
+Rel(abstract_factory, button, "Создает", "createButton()")
+Rel(abstract_factory, checkbox, "Создает", "createCheckbox()")
+Rel(concrete_factory1, win_button, "Создает", "реализация")
+Rel(concrete_factory1, win_checkbox, "Создает", "реализация")
+Rel(concrete_factory2, mac_button, "Создает", "реализация")
+Rel(concrete_factory2, mac_checkbox, "Создает", "реализация")
+Rel_U(abstract_factory, concrete_factory1, "Реализует", "наследование")
+Rel_U(abstract_factory, concrete_factory2, "Реализует", "наследование")
+Rel_U(button, win_button, "Реализует", "наследование")
+Rel_U(checkbox, win_checkbox, "Реализует", "наследование")
+Rel_U(button, mac_button, "Реализует", "наследование")
+Rel_U(checkbox, mac_checkbox, "Реализует", "наследование")
+@enduml

@@ -1,0 +1,41 @@
+@startuml DecoratorPatternUML
+title Паттерн Декоратор: Приготовление Кофе (UML)
+
+interface Coffee {
+    + getCost(): double
+    + getDescription(): String
+}
+
+class SimpleCoffee {
+    + getCost(): double
+    + getDescription(): String
+}
+
+abstract class CoffeeDecorator {
+    # decoratedCoffee: Coffee
+    + CoffeeDecorator(decoratedCoffee: Coffee)
+    + getCost(): double
+    + getDescription(): String
+}
+
+class MilkDecorator {
+    + getCost(): double
+    + getDescription(): String
+}
+
+class SugarDecorator {
+    + getCost(): double
+    + getDescription(): String
+}
+
+Coffee <|.. SimpleCoffee
+Coffee <|.. CoffeeDecorator
+CoffeeDecorator <|-- MilkDecorator
+CoffeeDecorator <|-- SugarDecorator
+CoffeeDecorator o--> Coffee
+
+note top of CoffeeDecorator
+Методы вызывают обернутый объект
+и добавляют свою логику
+end note
+@enduml

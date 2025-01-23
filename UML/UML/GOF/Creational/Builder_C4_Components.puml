@@ -1,0 +1,17 @@
+@startuml BuilderPatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Builder (C4 Model)
+
+Container_Boundary(builder_system, "Система построения объектов") {
+    Component(director, "Director", "Управляет процессом построения", "Определяет шаги создания")
+    Component(builder, "Builder", "Абстрактный интерфейс", "Объявляет методы для сборки продукта")
+    Component(concrete_builder, "ConcreteBuilder", "Реализация Builder", "Создает конкретные части продукта")
+    Component(product, "Product", "Сложный объект", "Результат работы Builder")
+}
+
+Rel(director, builder, "Использует", "вызов buildPart()")
+Rel(concrete_builder, product, "Создает", "инкапсулирует логику сборки")
+Rel_U(builder, concrete_builder, "Реализует", "наследование")
+
+@enduml

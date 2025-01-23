@@ -1,0 +1,23 @@
+@startuml FactoryMethodC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Factory Method (C4 Model)
+
+Container_Boundary(transport_system, "Транспортная система") {
+    Component(logistics, "Logistics", "Абстрактная логистика", "Объявляет фабричный метод createTransport()")
+    Component(road_logistics, "RoadLogistics", "Дорожная логистика", "Создает грузовики")
+    Component(sea_logistics, "SeaLogistics", "Морская логистика", "Создает корабли")
+
+    Component(transport, "Transport", "Абстрактный транспорт", "Метод deliver()")
+    Component(truck, "Truck", "Грузовик", "Реализация доставки по дороге")
+    Component(ship, "Ship", "Корабль", "Реализация доставки по морю")
+}
+
+Rel(logistics, transport, "Использует", "планирует доставку")
+Rel(road_logistics, truck, "Создает", "createTransport()")
+Rel(sea_logistics, ship, "Создает", "createTransport()")
+Rel_U(logistics, road_logistics, "Реализует", "наследование")
+Rel_U(logistics, sea_logistics, "Реализует", "наследование")
+Rel_U(transport, truck, "Реализует", "наследование")
+Rel_U(transport, ship, "Реализует", "наследование")
+@enduml

@@ -1,0 +1,20 @@
+@startuml AdapterPatternUML_Sockets
+title Паттерн Адаптер - Розетки (UML)
+
+interface EuropeanSocket {
+    + plugIn(): void
+}
+
+class EuroToAmericanAdapter {
+    - americanPlug: AmericanPlug
+    + plugIn(): void
+}
+
+class AmericanPlug {
+    + plugIntoAmericanSocket(): void
+}
+
+EuropeanSocket <|.. EuroToAmericanAdapter : реализует
+EuroToAmericanAdapter --> AmericanPlug : содержит
+
+@enduml

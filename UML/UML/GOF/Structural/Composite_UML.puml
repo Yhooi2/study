@@ -1,0 +1,23 @@
+@startuml CompositePatternUML
+title Паттерн Компоновщик (UML)
+
+interface Component {
+    + operation(): void
+}
+
+class Leaf {
+    + operation(): void
+}
+
+class Composite {
+    - children: List<Component>
+    + add(component: Component): void
+    + remove(component: Component): void
+    + operation(): void
+}
+
+Component <|.. Leaf
+Component <|.. Composite
+Composite o--> Component : содержит
+
+@enduml

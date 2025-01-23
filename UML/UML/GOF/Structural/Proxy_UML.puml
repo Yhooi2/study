@@ -1,0 +1,26 @@
+@startuml ProxyPatternUML
+title Паттерн Proxy (UML)
+
+interface Subject {
+    + request(): void
+}
+
+class RealSubject {
+    + request(): void
+}
+
+class Proxy {
+    - realSubject: RealSubject
+    + request(): void
+    - checkAccess(): boolean
+}
+
+class Client {
+    + main(): void
+}
+
+Subject <|.. RealSubject
+Subject <|.. Proxy
+Client --> Subject : использует
+Proxy --> RealSubject : содержит
+@enduml

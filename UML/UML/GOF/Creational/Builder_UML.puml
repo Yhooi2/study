@@ -1,0 +1,31 @@
+@startuml BuilderPatternUML
+title Паттерн Builder (UML)
+
+class Director {
+    + construct(): Product
+    - builder: Builder
+}
+
+interface Builder {
+    + buildPartA(): void
+    + buildPartB(): void
+    + getResult(): Product
+}
+
+class ConcreteBuilder {
+    - product: Product
+    + buildPartA(): void
+    + buildPartB(): void
+    + getResult(): Product
+}
+
+class Product {
+    + parts: List<String>
+    + addPart(part: String): void
+}
+
+Director o--> Builder : использует
+Builder <|.. ConcreteBuilder : реализует
+ConcreteBuilder --> Product : создает
+
+@enduml

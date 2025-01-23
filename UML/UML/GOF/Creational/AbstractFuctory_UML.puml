@@ -1,0 +1,53 @@
+@startuml AbstractFactoryUML
+title Паттерн Abstract Factory (UML)
+
+interface AbstractFactory {
+    + createButton(): Button
+    + createCheckbox(): Checkbox
+}
+
+class WinFactory {
+    + createButton(): Button
+    + createCheckbox(): Checkbox
+}
+
+class MacFactory {
+    + createButton(): Button
+    + createCheckbox(): Checkbox
+}
+
+interface Button {
+    + render(): void
+}
+
+interface Checkbox {
+    + render(): void
+}
+
+class WinButton {
+    + render(): void
+}
+
+class WinCheckbox {
+    + render(): void
+}
+
+class MacButton {
+    + render(): void
+}
+
+class MacCheckbox {
+    + render(): void
+}
+
+AbstractFactory <|.. WinFactory : реализует
+AbstractFactory <|.. MacFactory : реализует
+Button <|.. WinButton : реализует
+Checkbox <|.. WinCheckbox : реализует
+Button <|.. MacButton : реализует
+Checkbox <|.. MacCheckbox : реализует
+WinFactory --> WinButton : создает
+WinFactory --> WinCheckbox : создает
+MacFactory --> MacButton : создает
+MacFactory --> MacCheckbox : создает
+@enduml

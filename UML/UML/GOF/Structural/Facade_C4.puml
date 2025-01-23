@@ -1,0 +1,17 @@
+@startuml FacadePatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Фасад (C4 Model)
+
+Container_Boundary(facade_system, "Система управления подсистемами") {
+    Component(client, "Клиент", "Использует фасад", "Внешний пользователь")
+    Component(facade, "Facade", "Упрощенный интерфейс", "Объединяет вызовы подсистем")
+    Component(subsystemA, "SubSystemA", "Логика модуля A", "Обработка данных")
+    Component(subsystemB, "SubSystemB", "Логика модуля B", "Валидация")
+}
+
+Rel(client, facade, "Вызывает", "execute()")
+Rel(facade, subsystemA, "Доступ к", "process()")
+Rel(facade, subsystemB, "Доступ к", "validate()")
+SHOW_LEGEND()
+@enduml

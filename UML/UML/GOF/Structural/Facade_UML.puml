@@ -1,0 +1,25 @@
+@startuml FacadePatternUML
+title Паттерн Фасад (UML)
+
+class Client {
+    + executeOperation()
+}
+
+class Facade {
+    - subsystemA: SubSystemA
+    - subsystemB: SubSystemB
+    + execute(): void
+}
+
+class SubSystemA {
+    + process(): void
+}
+
+class SubSystemB {
+    + validate(): void
+}
+
+Client --> Facade : вызывает
+Facade --> SubSystemA : использует
+Facade --> SubSystemB : использует
+@enduml

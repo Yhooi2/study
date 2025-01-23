@@ -1,0 +1,17 @@
+@startuml BridgePatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Bridge Pattern (C4 Model)
+
+Container_Boundary(bridge_system, "Система рисования фигур") {
+    Component(shape, "Shape", "Абстракция фигуры", "Делегирует рисование цвету")
+    Component(color, "Color", "Реализация цвета", "Определяет метод заливки")
+    Component(circle, "Circle", "Конкретная фигура", "Круг")
+    Component(red, "Red", "Конкретный цвет", "Красная заливка")
+}
+
+Rel(shape, color, "Использует", "вызов fill()")
+Rel_U(color, red, "Реализует", "наследование")
+Rel_U(shape, circle, "Реализует", "наследование")
+
+@enduml

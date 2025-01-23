@@ -1,0 +1,17 @@
+@startuml FlyweightPatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Flyweight (C4 Model)
+
+Container_Boundary(flyweight_system, "Система управления деревьями") {
+    Component(factory, "TreeFactory", "Фабрика типов", "Кэширует TreeType")
+    Component(tree_type, "TreeType", "Внутреннее состояние", "Текстура, цвет, модель")
+    Component(forest, "Лес (Forest)", "Клиент", "Создает деревья с координатами")
+    Component(tree, "Tree", "Внешнее состояние", "x, y + ссылка на TreeType")
+}
+
+Rel(forest, factory, "Запрос типа", "getTreeType()")
+Rel(factory, tree_type, "Создает/возвращает", "пул объектов")
+Rel(forest, tree, "Содержит", "список Tree")
+Rel(tree, tree_type, "Использует", "draw(x,y)")
+@enduml
