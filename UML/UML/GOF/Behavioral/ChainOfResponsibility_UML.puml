@@ -1,0 +1,27 @@
+@startuml
+title Chain of Responsibility (UML)
+
+class Client {
+  + main(): void
+}
+
+abstract class Handler {
+  # nextHandler: Handler
+  + setNextHandler(handler: Handler): void
+  + {abstract} handleRequest(request: String): void
+  # passToNext(request: String): void
+}
+
+class ConcreteHandlerA {
+  + handleRequest(request: String): void
+}
+
+class ConcreteHandlerB {
+  + handleRequest(request: String): void
+}
+
+Client --> Handler : создает и использует
+Handler <|-- ConcreteHandlerA
+Handler <|-- ConcreteHandlerB
+Handler <- Handler : nextHandler
+@enduml

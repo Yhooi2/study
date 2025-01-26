@@ -1,0 +1,34 @@
+@startuml
+title Паттерн Состояние (переходы через стрелки)
+
+class Context {
+  - state: State
+  + request(): void
+  + setState(state: State): void
+}
+
+interface State {
+  + handle(context: Context): void
+}
+
+class OnlineState
+class BusyState
+class OfflineState
+
+Context o--> State : текущее состояние
+State <|.. OnlineState
+State <|.. BusyState
+State <|.. OfflineState
+
+'--- Переходы между состояниями ---
+OnlineState --> BusyState : handle()
+BusyState --> OfflineState : handle()
+OfflineState --> OfflineState : handle()
+
+'--- Начальное состояние ---
+Context --> OfflineState : <<start>>
+
+'--- Взаимодействие с Context ---
+OnlineState --> Context : setState()
+BusyState --> Context : setState()
+@enduml

@@ -1,0 +1,18 @@
+@startuml CommandPatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Command (C4 Model)
+
+Container_Boundary(command_system, "Система управления командами") {
+    Component(client, "Client", "Создает команды", "Формирует очередь")
+    Component(invoker, "Invoker", "Управление командами", "execute(), undo(), redo()")
+    Component(command, "Command", "Интерфейс", "execute(), undo()")
+    Component(concrete_command, "ToggleLightCommand", "Реализация", "Сохраняет состояние (prevState)")
+    Component(receiver, "Light", "Получатель", "turnOn(), turnOff(), isOn()")
+}
+
+Rel(client, invoker, "Добавляет в очередь", "addToQueue()")
+Rel(invoker, command, "Управляет выполнением/отменой", "execute(), undo()")
+Rel(concrete_command, receiver, "Вызывает методы", "turnOn(), turnOff()")
+Rel_U(command, concrete_command, "Реализует", "implements")
+@enduml

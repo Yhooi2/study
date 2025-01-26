@@ -1,0 +1,19 @@
+@startuml InterpreterPatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Interpreter (C4 Model)
+
+Container_Boundary(interpreter_system, "Система интерпретации выражений") {
+    Component(expression, "Expression", "Абстрактное выражение", "interpret()")
+    Component(number, "NumberExpression", "Терминальное выражение", "Хранит число")
+    Component(add, "AddExpression", "Нетерминальное выражение", "Реализует операцию сложения")
+}
+
+Container_Ext(client, "Клиент", "Внешний код", "Строит и выполняет выражения")
+
+Rel(client, expression, "Использует", "Создает выражения")
+Rel_U(expression, number, "Реализует")
+Rel_U(expression, add, "Реализует")
+Rel(add, expression, "Содержит", "left: Expression, right: Expression")
+
+@enduml

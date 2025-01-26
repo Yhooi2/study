@@ -1,0 +1,18 @@
+@startuml IteratorPatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Iterator (C4 Model)
+
+Container_Boundary(iterator_system, "Система для обхода коллекций") {
+    Component(aggregate, "Aggregate", "Абстрактный интерфейс", "Создает итератор")
+    Component(concrete_aggregate, "ConcreteAggregate", "Конкретная коллекция", "Хранит данные и создает итератор")
+    Component(iterator, "Iterator", "Абстрактный интерфейс", "Объявляет методы обхода")
+    Component(concrete_iterator, "ConcreteIterator", "Реализация итератора", "Логика обхода элементов")
+}
+
+Rel(aggregate, iterator, "Создает", "createIterator()")
+Rel(concrete_aggregate, concrete_iterator, "Создает", "инкапсулирует данные")
+Rel(iterator, concrete_iterator, "Реализует", "наследование")
+Rel(concrete_iterator, concrete_aggregate, "Использует", "доступ к данным")
+
+@enduml

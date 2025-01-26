@@ -1,0 +1,30 @@
+@startuml IteratorPatternUML
+title Паттерн Iterator (UML)
+
+interface Aggregate {
+    + createIterator(): Iterator
+}
+
+interface Iterator {
+    + next(): Object
+    + hasNext(): boolean
+}
+
+class ConcreteAggregate {
+    - data: List<String>
+    + createIterator(): Iterator
+}
+
+class ConcreteIterator {
+    - aggregate: ConcreteAggregate
+    - index: int
+    + next(): Object
+    + hasNext(): boolean
+}
+
+Aggregate <|.. ConcreteAggregate : реализует
+Iterator <|.. ConcreteIterator : реализует
+ConcreteAggregate --> ConcreteIterator : создает
+ConcreteIterator --> ConcreteAggregate : использует
+
+@enduml

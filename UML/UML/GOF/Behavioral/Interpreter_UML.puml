@@ -1,0 +1,25 @@
+@startuml InterpreterPatternUML
+title Паттерн Interpreter (UML)
+
+interface Expression {
+    + interpret(): int
+}
+
+
+class NumberExpression {
+    - value: int
+    + interpret(): int
+}
+
+class AddExpression {
+    - left: Expression
+    - right: Expression
+    + interpret(): int
+}
+
+Expression <|.. NumberExpression
+Expression <|.. AddExpression
+AddExpression o--> Expression : left
+AddExpression o--> Expression : right
+
+@enduml

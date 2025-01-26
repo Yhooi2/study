@@ -1,0 +1,27 @@
+@startuml TemplateMethodUML
+title Паттерн "Шаблонный метод" (UML)
+
+abstract class AbstractProcessor {
+    # open(): void
+    # {abstract} read(): void
+    # close(): void
+    + <<final>> processDocument(): void
+}
+
+class PdfProcessor {
+    # read(): void
+}
+
+class DocxProcessor {
+    # read(): void
+}
+
+class Client {
+    + main(): void
+}
+
+AbstractProcessor <|-- PdfProcessor
+AbstractProcessor <|-- DocxProcessor
+Client --> AbstractProcessor : использует
+
+@enduml

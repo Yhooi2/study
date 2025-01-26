@@ -1,0 +1,17 @@
+@startuml TemplateMethodC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн "Шаблонный метод" (C4 Model)
+
+Container_Boundary(document_system, "Система обработки документов") {
+    Component(abstract_processor, "AbstractProcessor", "Абстрактный класс", "Определяет шаги обработки (шаблонный метод)")
+    Component(pdf_processor, "PdfProcessor", "Конкретная реализация", "Обработка PDF-документов")
+    Component(docx_processor, "DocxProcessor", "Конкретная реализация", "Обработка DOCX-документов")
+    Component(client, "Клиентский код", "Использует процессор", "Вызывает processDocument()")
+}
+
+Rel(abstract_processor, pdf_processor, "Наследует", "extends")
+Rel(abstract_processor, docx_processor, "Наследует", "extends")
+Rel(client, abstract_processor, "Использует", "вызов processDocument()")
+
+@enduml

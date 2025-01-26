@@ -1,0 +1,25 @@
+@startuml MediatorPatternUML
+title Паттерн Посредник (UML)
+
+interface ChatMediator {
+    + sendMessage(message: String, user: User): void
+    + addUser(user: User): void
+}
+
+class ChatRoom {
+    - users: List<User>
+    + sendMessage(message: String, user: User): void
+    + addUser(user: User): void
+}
+
+class User {
+    - name: String
+    - mediator: ChatMediator
+    + sendMessage(message: String): void
+    + receiveMessage(message: String): void
+}
+
+ChatMediator <|.. ChatRoom : реализует
+ChatRoom o--> User : содержит
+User --> ChatMediator : зависит от
+@enduml

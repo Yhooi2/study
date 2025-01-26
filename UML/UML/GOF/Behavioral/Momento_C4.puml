@@ -1,0 +1,21 @@
+@startuml MementoPatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container_Boundary(memento_system, "Система управления состояниями") {
+    Container_Boundary(originator_group, "Originator") {
+        Component(originator, "Originator", "Создает и восстанавливает снимки")
+        Component(memento, "Memento", "Внутренний хранитель состояния")
+    }
+    Component(caretaker, "Caretaker", "Управляет историей снимков")
+}
+
+Component_Ext(client, "Client", "Клиентский код")
+
+Rel(client, originator, "Управляет состоянием", "setState()")
+Rel(client, caretaker, "Сохраняет/загружает снимки", "addMemento() / getMemento()")
+Rel(originator, memento, "Создает", "createMemento()")
+Rel(originator, memento, "Восстанавливает", "restoreFromMemento()")
+Rel(caretaker, memento, "Хранит", "addMemento()")
+Rel(originator, caretaker, "Получает снимок", "getMemento()")
+
+@enduml

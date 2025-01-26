@@ -1,0 +1,18 @@
+@startuml DoctorPatientC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container_Boundary(hospital, "Больница") {
+    Component(patient, "Patient", "Интерфейс пациента", "accept(Doctor)")
+    Component(human, "Человек", "Реализует Patient")
+    Component(cat, "Кот", "Реализует Patient")
+    Component(dog, "Собака", "Реализует Patient")
+    Component(doctor, "Доктор", "Интерфейс посетителя", "visit() для каждого пациента")
+    Component(surgeon, "Хирург", "Реализует Доктор")
+}
+
+Rel(patient, doctor, "Вызывает visit()", "accept()")
+Rel(human, patient, "Реализует")
+Rel(cat, patient, "Реализует")
+Rel(dog, patient, "Реализует")
+Rel(surgeon, doctor, "Реализует")
+@enduml

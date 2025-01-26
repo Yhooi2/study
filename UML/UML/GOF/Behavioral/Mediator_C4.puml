@@ -1,0 +1,17 @@
+@startuml MediatorPatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Посредник (C4 Model)
+
+Container_Boundary(chat_system, "Чат-система") {
+    Component(mediator, "ChatMediator", "Посредник", "Управляет коммуникацией")
+    Component(user, "User", "Пользователь", "Отправляет/получает сообщения")
+    Component(concrete_mediator, "ChatRoom", "Конкретный посредник", "Реализует логику чата")
+    Component(message, "Message", "Сообщение", "Содержит текст и автора")
+}
+
+Rel(user, mediator, "Использует", "sendMessage()")
+Rel(concrete_mediator, user, "Уведомляет", "notifyUsers()")
+Rel_U(mediator, concrete_mediator, "Реализует", "наследование")
+Rel(concrete_mediator, message, "Хранит", "список сообщений")
+@enduml

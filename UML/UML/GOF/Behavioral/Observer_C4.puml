@@ -1,0 +1,10 @@
+@startuml ObserverSimpleC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Наблюдатель (C4) - Простой пример
+
+Component(Subject, "Subject", "Наблюдаемый объект", "Управляет подпиской и уведомлениями")
+Component(Observer, "Observer", "Наблюдатель", "Реагирует на изменения Subject")
+
+Rel(Subject, Observer, "Уведомляет", "вызывает update()")
+@enduml

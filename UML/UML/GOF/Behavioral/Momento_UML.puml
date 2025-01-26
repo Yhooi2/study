@@ -1,0 +1,31 @@
+@startuml MementoPatternUML
+title Паттерн Хранитель (UML)
+
+class Originator {
+    - state: String
+    + createMemento(): Memento
+    + restoreFromMemento(m: Memento): void
+}
+
+class Memento {
+    - state: String
+    - Memento(state: String)
+    - getState(): String
+}
+
+class Caretaker {
+    - mementos: List<Memento>
+    + addMemento(m: Memento): void
+    + getMemento(index: int): Memento
+}
+
+' Композиция: Memento является частью Originator'
+Originator *-- Memento : создает
+
+' Ассоциация: Caretaker хранит Memento'
+Caretaker --> Memento : хранит
+
+' Зависимость: Originator использует Memento для восстановления'
+Originator ..> Memento : использует
+
+@enduml

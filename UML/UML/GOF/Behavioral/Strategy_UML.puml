@@ -1,0 +1,25 @@
+@startuml StrategyPatternUML
+title Паттерн Стратегия (UML)
+
+class Context {
+    - strategy: Strategy
+    + setStrategy(strategy: Strategy): void
+    + executeStrategy(): void
+}
+
+interface Strategy {
+    + execute(): void
+}
+
+class ConcreteStrategyA {
+    + execute(): void
+}
+
+class ConcreteStrategyB {
+    + execute(): void
+}
+
+Context o--> Strategy : использует
+Strategy <|.. ConcreteStrategyA : реализует
+Strategy <|.. ConcreteStrategyB : реализует
+@enduml

@@ -1,0 +1,33 @@
+@startuml DoctorPatientUML
+title Больница (UML)
+
+interface Patient {
+    + accept(doctor: Doctor): void
+}
+
+class Human implements Patient {
+    + accept(doctor: Doctor): void
+}
+
+class Cat implements Patient {
+    + accept(doctor: Doctor): void
+}
+
+class Dog implements Patient {
+    + accept(doctor: Doctor): void
+}
+
+interface Doctor {
+    + visit(human: Human): void
+    + visit(cat: Cat): void
+    + visit(dog: Dog): void
+}
+
+class Surgeon implements Doctor {
+    + visit(human: Human): void
+    + visit(cat: Cat): void
+    + visit(dog: Dog): void
+}
+
+Patient <- Doctor : Зависит
+@enduml

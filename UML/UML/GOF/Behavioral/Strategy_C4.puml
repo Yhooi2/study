@@ -1,0 +1,16 @@
+@startuml StrategyPatternC4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Паттерн Стратегия (C4 Model)
+
+Container_Boundary(strategy_system, "Система стратегий") {
+    Component(context, "Context", "Контекст выполнения", "Делегирует работу стратегии")
+    Component(strategy, "Strategy", "Интерфейс стратегии", "Объявляет метод execute()")
+    Component(concrete_strategy_a, "ConcreteStrategyA", "Конкретная стратегия", "Реализация алгоритма A")
+    Component(concrete_strategy_b, "ConcreteStrategyB", "Конкретная стратегия", "Реализация алгоритма B")
+}
+
+Rel(context, strategy, "Использует", "вызов execute()")
+Rel(strategy, concrete_strategy_a, "Реализует", "наследование")
+Rel(strategy, concrete_strategy_b, "Реализует", "наследование")
+@enduml

@@ -1,0 +1,20 @@
+@startuml ObserverSimpleUML
+title Наблюдатель (UML) - Простой пример
+
+class Subject {
+    - observers: List<Observer>
+    + addObserver(observer: Observer): void
+    + notifyObservers(): void
+}
+
+interface Observer {
+    + update(): void
+}
+
+class ConcreteObserver {
+    + update(): void
+}
+
+Subject "1" --> "0..*" Observer : уведомляет
+Observer <|.. ConcreteObserver : реализует
+@enduml

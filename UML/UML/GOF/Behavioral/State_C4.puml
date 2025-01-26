@@ -1,0 +1,17 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container_Boundary(state_system, "Система управления состояниями") {
+    Component(context, "Context", "", "Хранит текущее состояние и делегирует запросы")
+    Component(state, "State", "Интерфейс", "Метод handle(context)")
+    Component(concrete_state_a, "ConcreteStateA", "Состояние A", "Реализует логику для состояния A")
+    Component(concrete_state_b, "ConcreteStateB", "Состояние B", "Реализует логику для состояния B")
+
+Rel(context, state, "Вызывает", "handle()", "Делегирование")
+Rel(state, concrete_state_a, "Реализует")
+Rel(state, concrete_state_b, "Реализует")
+Rel(concrete_state_a, context, "Может изменить состояние", "setState()")
+Rel(concrete_state_b, context, "Может изменить состояние", "setState()")
+
+Note right of (context): "Начальное состояние задаётся при инициализации.")
+@enduml

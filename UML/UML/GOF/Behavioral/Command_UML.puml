@@ -1,0 +1,41 @@
+@startuml CommandPatternUML
+title Паттерн Command (UML)
+
+class Client {
+    + main()
+}
+
+class Invoker {
+    - executedCommands: Stack<Command>
+    - undoneCommands: Stack<Command>
+    - commandQueue: Queue<Command>
+    + addToQueue(Command): void
+    + executeCommands(): void
+    + undo(): void
+    + redo(): void
+}
+
+interface Command {
+    + execute(): void
+    + undo(): void
+}
+
+class ToggleLightCommand {
+    - light: Light
+    - prevState: boolean
+    + execute(): void
+    + undo(): void
+}
+
+class Light {
+    - isOn: boolean
+    + isOn(): boolean
+    + turnOn(): void
+    + turnOff(): void
+}
+
+Client --> Invoker : использует
+Invoker o--> Command : управляет
+Command <|.. ToggleLightCommand : реализует
+ToggleLightCommand --> Light : вызывает turnOn() / turnOff()
+@enduml

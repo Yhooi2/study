@@ -8,29 +8,24 @@ class Red implements Color {
         return "красный";
     }
 }
-
 class Blue implements Color {
     @Override
     public String fill() {
         return "синий";
     }
 }
-
 abstract class Shape {
     protected Color color;
-
     public Shape(Color color) {
         this.color = color;
     }
 
     abstract void draw();
 }
-
 class Circle extends Shape {
     public Circle(Color color) {
         super(color);
     }
-
     @Override
     void draw() {
         System.out.println("Рисуем круг цветом: " + color.fill());

@@ -13,5 +13,4 @@ Container_Boundary(facade_system, "Система управления подс�
 Rel(client, facade, "Вызывает", "execute()")
 Rel(facade, subsystemA, "Доступ к", "process()")
 Rel(facade, subsystemB, "Доступ к", "validate()")
-SHOW_LEGEND()
 @enduml

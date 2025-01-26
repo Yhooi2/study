@@ -1,0 +1,17 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Chain of Responsibility (C4 Model)
+
+Container_Boundary(chain_system, "Обработка запросов") {
+  Component(client, "Client", "Клиент", "Создает цепочку: handlerA.setNextHandler(handlerB)")
+  Component(handler, "Handler", "Абстрактный обработчик", "nextHandler, handleRequest(), passToNext()")
+  Component(concrete_handlerA, "ConcreteHandlerA", "Обработчик A", "Обрабатывает 'TypeA'")
+  Component(concrete_handlerB, "ConcreteHandlerB", "Обработчик B", "Обрабатывает 'TypeB'")
+}
+
+Rel(client, handler, "использует")
+Rel(concrete_handlerA, concrete_handlerB, "nextHandler", "ссылка")
+Rel_R(client, concrete_handlerA, "создает")
+Rel_R(client, concrete_handlerB, "создает")
+@enduml
