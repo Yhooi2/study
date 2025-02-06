@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/UML.iml" filepath="$PROJECT_DIR$/UML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UML_C4_patterns.iml" filepath="$PROJECT_DIR$/UML_C4_patterns.iml" />
     </modules>
   </component>
 </project>
