@@ -1,0 +1,23 @@
+@startuml
+component App 
+    component Header
+    component Menu
+    component Footer
+
+
+
+component Pizza
+
+
+component "Footer"
+component Order
+
+database PizzaData
+
+App --> Header
+App --> Menu
+App --> Footer
+Menu --> Pizza
+Pizza --> PizzaData
+"Footer" --> Order
+@enduml

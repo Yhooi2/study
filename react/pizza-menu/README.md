@@ -1,3 +1,12 @@
+## Диаграмма проекта
+
+Ниже представлена диаграмма, которая показывает структуру проекта:
+
+![Диаграмма проекта](./docs/diagram.png)
+
+[Исходный код диаграммы C4](./docs/diagram_C4.puml)
+[Исходный код диаграммы UML](./docs/diagram_UML.puml)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
