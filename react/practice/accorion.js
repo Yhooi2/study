@@ -1,6 +1,53 @@
 import { useState } from "react";
 import "./styles.css";
 
+export default function App() {
+  return (
+    <div>
+      <Accordion data={faqs} />
+    </div>
+  );
+}
+
+function Accordion({ data }) {
+  const [curOpen, setCurOpen] = useState(null);
+
+  return (
+    <div className="accordion">
+      {data.map((el, i) => (
+        <AccordionItem
+          title={el.title}
+          num={i}
+          key={el.title}
+          onOpen={setCurOpen}
+          curOpen={curOpen}
+        >
+          {el.text}
+        </AccordionItem>
+      ))}
+    </div>
+  );
+}
+
+function AccordionItem({ num, title, onOpen, curOpen, children }) {
+  const isOpen = num === curOpen;
+
+  function handleToggle() {
+    if (curOpen !== num) onOpen(num);
+    else onOpen(null);
+  }
+
+  return (
+    <div className={`item ${isOpen ? "open" : ""}`} onClick={handleToggle}>
+      <p className="number">{num < 9 ? `0${num + 1}` : num + 1}</p>
+      <p className="title">{title}</p>
+      <p className="icon">{isOpen ? "-" : "+"}</p>
+
+      {isOpen && <div className="content-box">{children}</div>}
+    </div>
+  );
+}
+
 const faqs = [
   {
     title: "Where are these chairs assembled?",
@@ -15,35 +62,3 @@ const faqs = [
     text: "Excepturi velit laborum, perspiciatis nemo perferendis reiciendis aliquam possimus dolor sed! Dolore laborum ducimus veritatis facere molestias!",
   },
 ];
-
-export default function App() {
-  return (
-    <div>
-      <Accordion />
-    </div>
-  );
-}
-
-function Accordion() {
-  return (
-    <div className="accordion">
-      {faqs.map((el, i) => (
-        <AccordionItem num={i} title={el.title} text={el.text} key={i} />
-      ))}
-    </div>
-  );
-}
-
-function AccordionItem({ num, title, text }) {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handleIsOpen = () => setIsOpen((isOpen) => !isOpen);
-  return (
-    <div className={`item ${isOpen ? "open" : ""}`} onClick={handleIsOpen}>
-      <p className="number"> {num < 10 ? "0" + (num + 1) : num + 1} </p>
-      <p className="title"> {title} </p>
-      <p className="icon"> {isOpen ? "-" : "+"} </p>
-      {isOpen && <div className="content-box"> {text}</div>}
-    </div>
-  );
-}
