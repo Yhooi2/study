@@ -44,22 +44,29 @@ function printText(text, wordsLimit) {
 function TextExpander({
   children,
   className = "",
-  expandButtonText = "Show",
-  buttonColor = "red",
-  collapseButtonText = "Collapse",
-  collapsedNumWords = 0,
+  expandButtonText = "Show more",
+  buttonColor = "blue",
+  collapseButtonText = "Show less",
+  collapsedNumWords = 10,
   expanded = false,
 }) {
-  const [show, setShow] = useState(expanded);
+  const [isExpended, setIsExpended] = useState(expanded);
   const buttonStyle = {
+    background: "none",
+    border: "none",
+    font: "inherit",
+    cursor: "pointer",
+    marginLeft: "6px",
     color: buttonColor,
   };
 
   return (
     <div className={className}>
-      <p>{show ? children : printText(children, collapsedNumWords)}</p>
-      <button style={buttonStyle} onClick={() => setShow((show) => !show)}>
-        {show ? collapseButtonText : expandButtonText}
+      <span>
+        {isExpended ? children : printText(children, collapsedNumWords)}
+      </span>
+      <button style={buttonStyle} onClick={() => setIsExpended((exp) => !exp)}>
+        {isExpended ? collapseButtonText : expandButtonText}
       </button>
     </div>
   );
