@@ -1,23 +1,13 @@
 export function WatchedSummary({ watched }) {
-  function round(num) {
-    return Math.round(num * 10) / 10;
-  }
-
   const average = (arr) =>
     arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-  const avgImdbRating = round(
-    average(
-      watched.map((movie) =>
-        movie.imdbRating !== "N/A" ? movie.imdbRating : 5
-      )
-    )
+  const avgImdbRating = average(
+    watched.map((movie) => (movie.imdbRating !== "N/A" ? movie.imdbRating : 5))
   );
-  const avgUserRating = round(
-    average(watched.map((movie) => movie.userRating))
-  );
-  const avgRuntime = round(
-    average(watched.map((movie) => movie.Runtime.split(" ")[0]))
+  const avgUserRating = average(watched.map((movie) => movie.userRating));
+  const avgRuntime = average(
+    watched.map((movie) => movie.Runtime?.split(" ")[0] || "")
   );
   return (
     <>
@@ -30,15 +20,15 @@ export function WatchedSummary({ watched }) {
           </p>
           <p>
             <span>⭐️</span>
-            <span>{avgImdbRating}</span>
+            <span>{avgImdbRating.toFixed(2)}</span>
           </p>
           <p>
             <span>🌟</span>
-            <span>{avgUserRating}</span>
+            <span>{avgUserRating.toFixed(2)}</span>
           </p>
           <p>
             <span>⏳</span>
-            <span>{avgRuntime} min</span>
+            <span>{avgRuntime.toFixed(2)} min</span>
           </p>
         </div>
       </div>

@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
-import { KEY, Loader, ErrorMassage } from "./App";
+import { KEY, Loader, ErrorMessage } from "./App";
+import { PrintMovieDetails } from "./PrintMovieDetails";
 
 export function MovieDetails({
-  children,
   selectId,
   onCloseMovie,
-  setMovieInfo,
+  watched,
+  onAddWatched,
 }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [movieInfo, setMovieInfo] = useState("");
   const [error, setError] = useState("");
 
   useEffect(
@@ -31,14 +33,38 @@ export function MovieDetails({
     },
     [selectId]
   );
+
+  useEffect(() => {
+    function callback(e) {
+      if (e.code === "Escape") {
+        console.log("ClOSE");
+        onCloseMovie();
+      }
+    }
+    document.addEventListener("keydown", callback);
+    return () => document.removeEventListener("keydown", callback);
+  }, [onCloseMovie]);
+
+  useEffect(() => {
+    if (!movieInfo.Title) return;
+    document.title = `Movie | ${movieInfo.Title}`;
+    return () => (document.title = "usePopcorn");
+  }, [movieInfo.Title]);
+
   return (
     <div className="details">
       <button className="btn-back" onClick={onCloseMovie}>
         &larr;
       </button>
       {isLoading && <Loader />}
-      {!isLoading && !error && children}
-      {error && <ErrorMassage>{error}</ErrorMassage>}
+      {!isLoading && !error && (
+        <PrintMovieDetails
+          movie={movieInfo}
+          watched={watched}
+          onAddWatched={onAddWatched}
+        />
+      )}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </div>
   );
 }

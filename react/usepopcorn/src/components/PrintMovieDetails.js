@@ -1,7 +1,21 @@
 import StarsRaiting from "./StarsRaiting";
+import { useState } from "react";
 
-export function PrintMovieDeatails({ movie, onClick, rating, setRating }) {
-  console.log(rating);
+export function PrintMovieDetails({ movie, watched, onAddWatched }) {
+  const [rating, setRating] = useState();
+
+  function handleAddMove() {
+    const addMovie = { ...movie, userRating: rating };
+    onAddWatched(addMovie);
+  }
+
+  function getUserRating() {
+    const watchedMovie = watched.find(
+      (watchedMovie) => watchedMovie.imdbID === movie.imdbID
+    );
+    return watchedMovie?.userRating || 0;
+  }
+
   return (
     <>
       <header>
@@ -20,9 +34,14 @@ export function PrintMovieDeatails({ movie, onClick, rating, setRating }) {
       </header>
       <section>
         <div className="rating">
-          <StarsRaiting maxStars={10} size={24} onSetRating={setRating} />
-          {rating > 0 && (
-            <button className="btn-add" onClick={onClick}>
+          <StarsRaiting
+            maxStars={10}
+            size={24}
+            onSetRating={setRating}
+            defaultRating={getUserRating}
+          />
+          {rating > 0 && !getUserRating() > 0 && (
+            <button className="btn-add" onClick={handleAddMove}>
               + Add to list
             </button>
           )}

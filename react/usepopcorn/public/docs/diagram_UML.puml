@@ -1,23 +1,44 @@
 @startuml
 component App 
-    component HeaderNav
-    component Menu
-    component Footer
+    component NavBar
+    component Logo
+    component Search
+    component NumResults
+
+    frame "Box left" {
+        component MoviesList
+        component Movie
+    }
+
+    frame "Box right" {
+        component MovieDetails
+        component PrintMovieDetails
+        component StarsRating
+        component Stars
+
+        component WatchedMovieList
+        component WatchedSummary
+        component WatchedMovie
+    }
 
 
 
-component Pizza
 
+database omdbapi
+App --> omdbapi
+MovieDetails --> omdbapi
 
-component "Footer"
-component Order
-
-database PizzaData
-
-App --> Header
-App --> Menu
-App --> Footer
-Menu --> Pizza
-Pizza --> PizzaData
-"Footer" --> Order
+App --> NavBar
+NavBar *-- Logo
+NavBar --> Search
+NavBar --> NumResults
+App --> MoviesList
+MoviesList *-- Movie
+App --> MovieDetails
+MovieDetails --> PrintMovieDetails
+PrintMovieDetails *-- StarsRating
+StarsRating *-- Stars
+App --> WatchedSummary
+App --> WatchedMovieList
+WatchedMovieList --> WatchedMovie
 @enduml
