@@ -24,7 +24,7 @@ export default function StarsRaiting({
     lineHight: "1",
     margin: "0",
     color: color,
-    fontSize: size / 1.3,
+    fontSize: size / 1.5,
   };
 
   const [rating, setRating] = useState(defaultRating);
