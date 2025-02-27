@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { KEY, Loader, ErrorMessage } from "./App";
 import { PrintMovieDetails } from "./PrintMovieDetails";
+import { useKey } from "./hooks/useKey";
+import { useTitle } from "./hooks/useTitle";
 
 export function MovieDetails({
   selectId,
@@ -33,23 +35,9 @@ export function MovieDetails({
     },
     [selectId]
   );
+  useKey("Escape", onCloseMovie);
 
-  useEffect(() => {
-    function callback(e) {
-      if (e.code === "Escape") {
-        console.log("ClOSE");
-        onCloseMovie();
-      }
-    }
-    document.addEventListener("keydown", callback);
-    return () => document.removeEventListener("keydown", callback);
-  }, [onCloseMovie]);
-
-  useEffect(() => {
-    if (!movieInfo.Title) return;
-    document.title = `Movie | ${movieInfo.Title}`;
-    return () => (document.title = "usePopcorn");
-  }, [movieInfo.Title]);
+  useTitle(movieInfo.Title);
 
   return (
     <div className="details">
