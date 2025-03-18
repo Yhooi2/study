@@ -1,30 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": 738930385
-    },
-    {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
-      "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": 178906751
-    },
-    {
       "cityName": "Berlin",
       "country": "Germany",
       "emoji": "🇩🇪",
@@ -34,7 +10,55 @@
         "lat": 52.53586782505711,
         "lng": 13.376933665713324
       },
-      "id": 908443197
+      "id": "908443197"
+    },
+    {
+      "id": "3a24",
+      "cityName": "Sochi",
+      "country": "Russian Federation (the)",
+      "emoji": "🇷🇺",
+      "date": "2025-03-18T13:08:18.401Z",
+      "notes": "",
+      "position": {
+        "lat": "43.54058479482877",
+        "lng": "39.80346679687501"
+      }
+    },
+    {
+      "id": "a625",
+      "cityName": "Apsheronsk",
+      "country": "Russian Federation (the)",
+      "emoji": "🇷🇺",
+      "date": "2025-03-18T13:19:54.981Z",
+      "notes": "",
+      "position": {
+        "lat": "44.12702800650004",
+        "lng": "40.02319335937501"
+      }
+    },
+    {
+      "id": "2147",
+      "cityName": "Duneau",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-03-18T13:26:23.559Z",
+      "notes": "",
+      "position": {
+        "lat": "48.070738264258324",
+        "lng": "0.5053710937500001"
+      }
+    },
+    {
+      "id": "b5ac",
+      "cityName": "Harztor",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2025-03-18T14:09:48.236Z",
+      "notes": "",
+      "position": {
+        "lat": "51.590722643120166",
+        "lng": "10.87646484375"
+      }
     }
   ]
 }
