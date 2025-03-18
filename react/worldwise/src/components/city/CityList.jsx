@@ -2,8 +2,10 @@ import CityItem from "./CityItem";
 import Spinner from "../spinner/Spinner";
 import styles from "./CityList.module.css";
 import Message from "../Message";
+import useCities from "../../context/useCities";
 
-function CityList({ cities, isLoading }) {
+function CityList() {
+  const { cities, isLoading } = useCities();
   if (!cities.length)
     return (
       <Message
