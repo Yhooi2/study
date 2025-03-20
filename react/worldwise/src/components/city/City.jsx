@@ -8,14 +8,14 @@ import ButtonBack from "../ButtonBack";
 
 function City() {
   const { id } = useParams();
-  const { isLoading, cityInfo, getCityInfo } = useCities();
+  const { isLoading, curCity, getCityInfo } = useCities();
   useEffect(
     function () {
       getCityInfo(id);
     },
     [id]
   );
-  const { cityName, emoji, date, notes } = cityInfo;
+  const { cityName, emoji, date, notes } = curCity;
 
   return isLoading ? (
     <Spinner />

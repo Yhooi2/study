@@ -4,7 +4,7 @@ import { formatDate } from "./formatDate";
 import useCities from "../../context/useCities";
 
 function CityItem({ city }) {
-  const { cityInfo, deleteCity } = useCities();
+  const { curCity, deleteCity } = useCities();
   const { cityName, emoji, date, id, position } = city;
   const { lat, lng } = position;
 
@@ -17,7 +17,7 @@ function CityItem({ city }) {
     <li>
       <Link
         className={`${styles.cityItem} ${
-          cityInfo?.id === id ? styles["cityItem--active"] : ""
+          curCity?.id === id ? styles["cityItem--active"] : ""
         }`}
         to={`${id}?lat=${lat}&lng=${lng}`}
       >

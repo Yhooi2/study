@@ -25,18 +25,6 @@
       }
     },
     {
-      "id": "a625",
-      "cityName": "Apsheronsk",
-      "country": "Russian Federation (the)",
-      "emoji": "🇷🇺",
-      "date": "2025-03-18T13:19:54.981Z",
-      "notes": "",
-      "position": {
-        "lat": "44.12702800650004",
-        "lng": "40.02319335937501"
-      }
-    },
-    {
       "id": "2147",
       "cityName": "Duneau",
       "country": "France",
@@ -58,6 +46,18 @@
       "position": {
         "lat": "51.590722643120166",
         "lng": "10.87646484375"
+      }
+    },
+    {
+      "id": "5e0d",
+      "cityName": "Giaginskaya",
+      "country": "Russian Federation (the)",
+      "emoji": "🇷🇺",
+      "date": "2025-03-18T17:44:07.960Z",
+      "notes": "",
+      "position": {
+        "lat": "44.68427737181225",
+        "lng": "40.166015625"
       }
     }
   ]
