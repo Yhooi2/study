@@ -1,7 +1,4 @@
-import useQuizContext from "../context/useQuizContext";
-
-function ResetButton() {
-  const { dispatch } = useQuizContext();
+function ResetButton({ dispatch }) {
   return (
     <button
       className="btn btn-ui"
