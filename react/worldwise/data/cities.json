@@ -13,18 +13,6 @@
       "id": "908443197"
     },
     {
-      "id": "3a24",
-      "cityName": "Sochi",
-      "country": "Russian Federation (the)",
-      "emoji": "🇷🇺",
-      "date": "2025-03-18T13:08:18.401Z",
-      "notes": "",
-      "position": {
-        "lat": "43.54058479482877",
-        "lng": "39.80346679687501"
-      }
-    },
-    {
       "id": "2147",
       "cityName": "Duneau",
       "country": "France",
@@ -37,27 +25,51 @@
       }
     },
     {
-      "id": "b5ac",
-      "cityName": "Harztor",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2025-03-18T14:09:48.236Z",
+      "id": "72e9",
+      "cityName": "Basingstoke",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2025-04-09T14:33:12.521Z",
       "notes": "",
       "position": {
-        "lat": "51.590722643120166",
-        "lng": "10.87646484375"
+        "lat": "51.33061163769853",
+        "lng": "-1.2963867187500002"
       }
     },
     {
-      "id": "5e0d",
-      "cityName": "Giaginskaya",
+      "id": "047e",
+      "cityName": "Hockliffe",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2025-04-09T14:34:29.147Z",
+      "notes": "dfghdf",
+      "position": {
+        "lat": "51.93071827931289",
+        "lng": "-0.6152343750000001"
+      }
+    },
+    {
+      "id": "e3ae",
+      "cityName": "Mainhausen",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2025-04-09T14:34:53.113Z",
+      "notes": "fthrfth",
+      "position": {
+        "lat": "50.014799234787844",
+        "lng": "9.000284824728572"
+      }
+    },
+    {
+      "id": "238a",
+      "cityName": "Maykop",
       "country": "Russian Federation (the)",
       "emoji": "🇷🇺",
-      "date": "2025-03-18T17:44:07.960Z",
-      "notes": "",
+      "date": "2025-04-09T14:36:20.639Z",
+      "notes": "asfsdfsdfsdfc",
       "position": {
-        "lat": "44.68427737181225",
-        "lng": "40.166015625"
+        "lat": "44.584599008752015",
+        "lng": "40.15526462561118"
       }
     }
   ]
