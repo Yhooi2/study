@@ -13,7 +13,7 @@ function City() {
     function () {
       getCityInfo(id);
     },
-    [id]
+    [id, getCityInfo]
   );
   const { cityName, emoji, date, notes } = curCity;
 
