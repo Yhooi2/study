@@ -1,6 +1,6 @@
-import { useLoaderData } from "react-router-dom";
-import { getMenu } from "../services/apiRestaurant";
-import MenuItem from "./MenuItem";
+import { useLoaderData } from 'react-router-dom';
+import MenuItem from './MenuItem';
+//import { loader } from '../services/apiMenu';
 
 function Menu() {
   const menu = useLoaderData();
@@ -15,9 +15,5 @@ function Menu() {
       </ul>
     </>
   );
-}
-export async function loader() {
-  const menu = await getMenu();
-  return menu;
 }
 export default Menu;
