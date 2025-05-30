@@ -1,6 +1,7 @@
 // import { useState } from "react";
 
 import { Form, useActionData, useNavigation } from 'react-router-dom';
+import Button from '../../ui/Button';
 //import { action } from '../services/apiOrder';
 
 // https://uibakery.io/regex-library/phone-number
@@ -44,13 +45,23 @@ function CreateOrder() {
       <Form method="POST">
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <input
+            className="input"
+            type="text"
+            name="customer"
+            required
+          />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input
+              className="input"
+              type="tel"
+              name="phone"
+              required
+            />
           </div>
           {!!formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
@@ -59,9 +70,7 @@ function CreateOrder() {
           <label>Address</label>
           <div>
             <input
-              className="w-full border border-stone-200 text-sm placeholder:text-gray-400
-                rounded-full px-4 py-2 focus:outline-none focus:ring
-                focus:ring-yellow-400 md:px-6 md:py-4 transition-all duration-300"
+              className="input"
               type="text"
               name="address"
               required
@@ -90,15 +99,9 @@ function CreateOrder() {
             name="cart"
             value={JSON.stringify(cart)}
           />
-          <button
-            disabled={isSubmitting}
-            className="my-3 inline-block rounded-full bg-yellow-400 px-4 py-3 font-semibold
-              uppercase tracking-wide text-stone-800 transition-colors duration-300
-              hover:bg-yellow-300 focus:bg-yellow-300 focus:outline-none focus:ring
-              focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed"
-          >
+          <Button disabled={isSubmitting}>
             {isSubmitting ? 'Placing order...' : 'Order now'}
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
