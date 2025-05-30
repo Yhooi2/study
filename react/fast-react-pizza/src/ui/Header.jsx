@@ -12,13 +12,19 @@ function Header() {
     setQuery('');
   }
   return (
-    <header className="bg-yellow-500 uppercase">
+    <header
+      className="flex items-center justify-between border-b border-stone-200
+        bg-yellow-400 px-4 py-3 uppercase sm:px-6"
+    >
       <Link to="/" className="tracking-widest">
-        {' '}
         Fast React Pizza Go
       </Link>
       <form onSubmit={handleSubmit}>
         <input
+          className="w-28 rounded-full bg-yellow-100 px-4 py-2 text-sm
+            placeholder:text-stone-400 sm:w-64 focus:outline-none focus:ring
+            focus:ring-yellow-300 focus:ring-opacity-50 sm:focus:w-72
+            transition-all duration-300"
           placeholder={'Search order #'}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
