@@ -1,4 +1,5 @@
 import { formatCurrency } from '../../utils/helpers';
+import Button from './../../ui/Button';
 
 function MenuItem({ pizza }) {
   if (!pizza) return null;
@@ -9,17 +10,18 @@ function MenuItem({ pizza }) {
       <img
         src={imageUrl}
         alt={name}
-        className={`h-24 sm:h-32 md:h-48 xl:h-64 ${soldOut ? 'opacity-70 grayscale' : ''}`}
+        className={`h-24 rounded-sm ${soldOut ? 'opacity-70 grayscale' : ''}`}
       />
-      <div className="flex flex-col text-sm">
+      <div className="flex grow flex-col pt-0.5 text-sm">
         <p className="text-base font-medium">{name}</p>
         <p className="capitalize italic">{ingredients.join(', ')}</p>
-        <div className="mt-auto">
+        <div className="mt-auto flex items-center justify-between">
           {!soldOut ? (
             <p>{formatCurrency(unitPrice)}</p>
           ) : (
             <p className="font-medium uppercase text-stone-500">Sold out</p>
           )}
+          <Button type="small">Add to card</Button>
         </div>
       </div>
     </li>
