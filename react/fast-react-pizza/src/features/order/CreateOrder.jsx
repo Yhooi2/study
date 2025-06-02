@@ -2,6 +2,7 @@
 
 import { Form, useActionData, useNavigation } from 'react-router-dom';
 import Button from '../../ui/Button';
+import Input from '../../ui/Input';
 //import { action } from '../services/apiOrder';
 
 // https://uibakery.io/regex-library/phone-number
@@ -38,60 +39,21 @@ function CreateOrder() {
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
 
+  
+
   return (
-    <div>
-      <h2>Ready to order? Let&apos;s go!</h2>
+    <div className='p-6'>
+      <h2 className=' text-xl mb-8 font-semibold '>Ready to order? Let&apos;s go!</h2>
 
       <Form method="POST">
-        <div>
-          <label>First Name</label>
-          <input
-            className="input"
-            type="text"
-            name="customer"
-            required
-          />
-        </div>
+        <Input style='form' label="First Name" type="text" name="customer" />
 
-        <div>
-          <label>Phone number</label>
-          <div>
-            <input
-              className="input"
-              type="tel"
-              name="phone"
-              required
-            />
-          </div>
-          {!!formErrors?.phone && <p>{formErrors.phone}</p>}
-        </div>
+        <Input style='form' label='Phone number' type='tel' name="phone" error={formErrors?.phone} />
 
-        <div>
-          <label>Address</label>
-          <div>
-            <input
-              className="input"
-              type="text"
-              name="address"
-              required
-            />
-          </div>
-        </div>
+        <Input style='form' label='Addres' type='text' name='address' />
 
-        <div>
-          <input
-            className="h-6 w-6 accent-yellow-400 focus:ring focus:ring-offset-2
-              focus:ring-yellow-400"
-            type="checkbox"
-            name="priority"
-            id="priority"
-            // value={withPriority}
-            // onChange={(e) => setWithPriority(e.target.checked)}
-          />
-          <label htmlFor="priority">
-            Want to yo give your order priority?
-          </label>
-        </div>
+        <Input style='checkbox' label='Want to yo give your order priority?' type='checkbox' name="priority" />
+ 
 
         <div>
           <input
