@@ -186,7 +186,9 @@ h3 {
 .chair-details li:last-child {
   margin-bottom: 0;
 }
-
+.chees {
+  width: 30px;
+}
 .chair-icon {
   stroke: #0d9488;
   width: 24px;
