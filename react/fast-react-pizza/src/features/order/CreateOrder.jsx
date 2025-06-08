@@ -3,6 +3,7 @@
 import { Form, useActionData, useNavigation } from 'react-router-dom';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
+import { useSelector } from 'react-redux';
 //import { action } from '../services/apiOrder';
 
 // https://uibakery.io/regex-library/phone-number
@@ -32,6 +33,7 @@ const fakeCart = [
 ];
 
 function CreateOrder() {
+  const username = useSelector((store) => store.user.username);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
   const formErrors = useActionData();
@@ -39,28 +41,40 @@ function CreateOrder() {
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
 
-  
-
   return (
-    <div className='p-6'>
-      <h2 className=' text-xl mb-8 font-semibold '>Ready to order? Let&apos;s go!</h2>
+    <div className="p-6">
+      <h2 className="mb-8 text-xl font-semibold">
+        Ready to order? Let&apos;s go!
+      </h2>
 
       <Form method="POST">
-        <Input style='form' label="First Name" type="text" name="customer" />
+        <Input
+          style="form"
+          label="First Name"
+          type="text"
+          name="customer"
+          defaultValue={username}
+        />
 
-        <Input style='form' label='Phone number' type='tel' name="phone" error={formErrors?.phone} />
+        <Input
+          style="form"
+          label="Phone number"
+          type="tel"
+          name="phone"
+          error={formErrors?.phone}
+        />
 
-        <Input style='form' label='Addres' type='text' name='address' />
+        <Input style="form" label="Addres" type="text" name="address" />
 
-        <Input style='checkbox' label='Want to yo give your order priority?' type='checkbox' name="priority" />
- 
+        <Input
+          style="checkbox"
+          label="Want to yo give your order priority?"
+          type="checkbox"
+          name="priority"
+        />
 
         <div>
-          <input
-            type="hidden"
-            name="cart"
-            value={JSON.stringify(cart)}
-          />
+          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <Button disabled={isSubmitting}>
             {isSubmitting ? 'Placing order...' : 'Order now'}
           </Button>
