@@ -22,7 +22,7 @@ function CreateUser() {
       <p className="mb-4 text-sm text-stone-600 md:text-base">
         👋 Welcome! Please start by telling us your name:
       </p>
-      <Input username={username} setUsername={setUsername} />
+      <Input getter={username} setter={setUsername} />
       {username !== '' && (
         <div>
           <Button>Start ordering</Button>

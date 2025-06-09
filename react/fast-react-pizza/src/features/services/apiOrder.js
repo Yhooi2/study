@@ -10,10 +10,15 @@ const isValidPhone = (str) =>
 async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
+  const cart = JSON.parse(data.cart);
   const order = {
     ...data,
-    priority: data.priority === 'on',
-    cart: JSON.parse(data.cart),
+    priority: data.priority === 'true',
+    cart: cart.map((item) => ({
+      ...item,
+      pizzaId: item.id,
+      totalPrice: item.unitPrice * item.quantity,
+    })),
   };
   const errors = {};
   if (!isValidPhone(order.phone)) {

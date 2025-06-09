@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import UserName from '../features/user/userName';
 import Input from './Input';
 
-const styleHeader = "flex items-center justify-between border-b border-stone-200 bg-yellow-400 px-4 py-3 uppercase sm:px-6";
+const styleHeader =
+  'flex items-center justify-between border-b border-stone-200 bg-yellow-400 px-4 py-3 uppercase sm:px-6';
 
 function Header() {
   const [query, setQuery] = useState('');
@@ -15,12 +16,12 @@ function Header() {
     setQuery('');
   }
   return (
-    <header className= {styleHeader}>
+    <header className={styleHeader}>
       <Link to="/" className="tracking-widest">
         Fast React Pizza Go
       </Link>
       <form onSubmit={handleSubmit}>
-        <Input style='search' query={query} setQuery={setQuery} />
+        <Input style="search" getter={query} setter={setQuery} />
       </form>
       <UserName />
     </header>

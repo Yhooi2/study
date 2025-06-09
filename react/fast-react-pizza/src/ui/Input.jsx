@@ -7,18 +7,7 @@ const styles = {
     'h-6 w-6 accent-yellow-400 focus:ring focus:ring-offset-2 focus:ring-yellow-400',
 };
 
-function Input({
-  style,
-  label,
-  type,
-  name,
-  error,
-  query,
-  setQuery,
-  username,
-  setUsername,
-  defaultValue = '',
-}) {
+function Input({ style, label, type, name, error, setter = '', getter }) {
   if (style === 'form') {
     return (
       <div className={styles[style]}>
@@ -27,7 +16,7 @@ function Input({
           className={input}
           type={type}
           name={name}
-          defaultValue={defaultValue}
+          defaultValue={setter}
           required
         />
         {!!error && (
@@ -39,7 +28,14 @@ function Input({
   if (style === 'checkbox') {
     return (
       <div className="mb-12 flex items-center gap-5">
-        <input className={styles[style]} type={type} name={name} id={name} />
+        <input
+          className={styles[style]}
+          type={type}
+          name={name}
+          id={name}
+          value={getter}
+          onChange={(e) => setter(e.target.checked)}
+        />
         <label htmlFor={name}>{label}</label>
       </div>
     );
@@ -49,16 +45,16 @@ function Input({
       <input
         className="w-28 rounded-full bg-yellow-100 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:w-32 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-50 sm:w-64 sm:focus:w-72"
         placeholder={'Search order #'}
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        value={getter}
+        onChange={(e) => setter(e.target.value)}
       />
     );
   return (
     <input
       type="text"
       placeholder="Your full name"
-      value={username}
-      onChange={(e) => setUsername(e.target.value)}
+      value={getter}
+      onChange={(e) => setter(e.target.value)}
       className={`${input} mb-8 !w-72`}
     />
   );

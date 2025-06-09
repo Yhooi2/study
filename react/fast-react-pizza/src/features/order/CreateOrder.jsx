@@ -1,36 +1,14 @@
-// import { useState } from "react";
+import { useState } from 'react';
 
 import { Form, useActionData, useNavigation } from 'react-router-dom';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
 import { useSelector } from 'react-redux';
+import { getTotalPrice } from '../cart/cartSlice';
+import { formatCurrency } from '../../utils/helpers';
 //import { action } from '../services/apiOrder';
 
 // https://uibakery.io/regex-library/phone-number
-
-const fakeCart = [
-  {
-    pizzaId: 12,
-    name: 'Mediterranean',
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32,
-  },
-  {
-    pizzaId: 6,
-    name: 'Vegetale',
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13,
-  },
-  {
-    pizzaId: 11,
-    name: 'Spinach and Mushroom',
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15,
-  },
-];
 
 function CreateOrder() {
   const username = useSelector((store) => store.user.username);
@@ -38,8 +16,11 @@ function CreateOrder() {
   const isSubmitting = navigation.state === 'submitting';
   const formErrors = useActionData();
 
-  // const [withPriority, setWithPriority] = useState(false);
-  const cart = fakeCart;
+  const [withPriority, setWithPriority] = useState(false);
+  const cart = useSelector((state) => state.cart.cart);
+
+  const totalPrice = useSelector(getTotalPrice);
+  const finalPrice = totalPrice + (withPriority ? totalPrice * 0.2 : 0);
 
   return (
     <div className="p-6">
@@ -53,7 +34,7 @@ function CreateOrder() {
           label="First Name"
           type="text"
           name="customer"
-          defaultValue={username}
+          setter={username}
         />
 
         <Input
@@ -71,12 +52,16 @@ function CreateOrder() {
           label="Want to yo give your order priority?"
           type="checkbox"
           name="priority"
+          getter={withPriority}
+          setter={setWithPriority}
         />
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <Button disabled={isSubmitting}>
-            {isSubmitting ? 'Placing order...' : 'Order now'}
+            {isSubmitting
+              ? 'Placing order...'
+              : `Order now ${formatCurrency(finalPrice)}`}
           </Button>
         </div>
       </Form>
