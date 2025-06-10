@@ -3,15 +3,26 @@ import { useState } from 'react';
 import { Form, useActionData, useNavigation } from 'react-router-dom';
 import Button from '../../ui/Button';
 import Input from '../../ui/Input';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getTotalPrice } from '../cart/cartSlice';
 import { formatCurrency } from '../../utils/helpers';
+import { feathAddress } from '../user/userSlice';
+import CartEmpty from '../cart/CartEmpty';
 //import { action } from '../services/apiOrder';
 
 // https://uibakery.io/regex-library/phone-number
 
 function CreateOrder() {
-  const username = useSelector((store) => store.user.username);
+  const {
+    username,
+    address,
+    position: positionUser,
+    error: errorPosition,
+    status: statusPosition,
+  } = useSelector((store) => store.user);
+
+  const isLoading = statusPosition === 'loading';
+
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
   const formErrors = useActionData();
@@ -21,6 +32,14 @@ function CreateOrder() {
 
   const totalPrice = useSelector(getTotalPrice);
   const finalPrice = totalPrice + (withPriority ? totalPrice * 0.2 : 0);
+
+  const dispatch = useDispatch();
+
+  const handlePosition = (e) => {
+    e.preventDefault();
+    dispatch(feathAddress());
+  };
+  if (totalPrice === 0) return <CartEmpty />;
 
   return (
     <div className="p-6">
@@ -34,7 +53,7 @@ function CreateOrder() {
           label="First Name"
           type="text"
           name="customer"
-          setter={username}
+          getter={username}
         />
 
         <Input
@@ -45,7 +64,28 @@ function CreateOrder() {
           error={formErrors?.phone}
         />
 
-        <Input style="form" label="Addres" type="text" name="address" />
+        <div className="relative">
+          <Input
+            style="form"
+            label="Addres"
+            type="text"
+            name="address"
+            getter={address}
+            disabled={isLoading}
+            error={errorPosition}
+          />
+          {!positionUser.latitude && (
+            <span className="absolute right-[3px] top-[26.6px] sm:top-[2.6px] md:right-[4.5px] md:top-[16.5px]">
+              <Button
+                type="small"
+                onClick={handlePosition}
+                disabled={isLoading}
+              >
+                Get position
+              </Button>
+            </span>
+          )}
+        </div>
 
         <Input
           style="checkbox"
@@ -57,13 +97,23 @@ function CreateOrder() {
         />
 
         <div>
-          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <Button disabled={isSubmitting}>
+          <Button disabled={isSubmitting || isLoading}>
             {isSubmitting
               ? 'Placing order...'
               : `Order now ${formatCurrency(finalPrice)}`}
           </Button>
         </div>
+
+        <input
+          type="hidden"
+          name="position"
+          value={
+            positionUser.latitude
+              ? `${positionUser.latitude} ${positionUser.longitude}`
+              : ''
+          }
+        />
+        <input type="hidden" name="cart" value={JSON.stringify(cart)} />
       </Form>
     </div>
   );

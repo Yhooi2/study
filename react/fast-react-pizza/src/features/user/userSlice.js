@@ -29,7 +29,7 @@ const userSlice = createSlice({
       })
       .addCase(feathAddress.rejected, (state, action) => {
         state.status = 'error';
-        state.error = action.message;
+        state.error = action.error.message;
       }),
 });
 
