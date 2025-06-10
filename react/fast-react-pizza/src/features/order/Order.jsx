@@ -1,40 +1,14 @@
-// Test ID: IIDSAT
-//import { action, loader } from './../services/apiOrder';
-import { useFetcher, useLoaderData } from 'react-router-dom';
-import {
-  calcMinutesLeft,
-  formatCurrency,
-  formatDate,
-} from '../../utils/helpers';
-import OrderItem from './OrderItem';
-import { useEffect } from 'react';
-
-const styles = {
-  badge: ' rounded-full tracking-wide text-sm font-semibold px-3 py-1 ',
-
-  row: ' flex flex-wrap gap-2 my-2 items-center justify-between',
-
-  summary: ' text-sm bg-stone-200 py-6 px-5 rounded-md',
-};
+import OrderHeader from './OrderHeader';
+import OrderDelivery from './OrderDelivery';
+import OrderItemsList from './OrderItemsList';
+import { useLoaderData } from 'react-router-dom';
+import OrderSummary from './OrderSummary';
 
 export function Order() {
   const order = useLoaderData();
 
-  const fetcher = useFetcher();
-
-  useEffect(() => {
-    if (!fetcher.data && fetcher.state === 'idle') {
-      fetcher.load('/menu');
-    }
-  }, [fetcher]);
-
-  const isLoadingIngredients = fetcher.state === 'loading';
-
-  // Everyone can search for all orders, so for privacy reasons we're gonna
-  // gonna exclude names or address, these are only for the restaurant staff
-
   const {
-    pizzaId,
+    id,
     status,
     priority,
     priorityPrice,
@@ -42,66 +16,20 @@ export function Order() {
     estimatedDelivery,
     cart,
   } = order;
-  const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
     <div className="space-y-8">
-      <div className={styles.row}>
-        <h2 className="text-xl font-semibold">Order #{pizzaId} status</h2>
+      <OrderHeader id={id} status={status} priority={priority} />
 
-        <div className="space-x-2 uppercase">
-          {priority && (
-            <span className={`${styles.badge} bg-red-500 text-red-50`}>
-              Priority
-            </span>
-          )}
-          <span className={`${styles.badge} bg-green-500 text-green-50`}>
-            {status} order
-          </span>
-        </div>
-      </div>
+      <OrderDelivery estimatedDelivery={estimatedDelivery} />
 
-      <div className={styles.row + styles.summary}>
-        <p className="text-base font-medium">
-          {deliveryIn >= 0
-            ? `Only ${deliveryIn} minutes left 😃`
-            : 'Order should have arrived'}
-        </p>
-        <p className="text-xs text-stone-500">
-          (Estimated delivery: {formatDate(estimatedDelivery)})
-        </p>
-      </div>
+      <OrderItemsList cart={cart} />
 
-      <ul className="divide-y border-y">
-        {cart.map((item) => (
-          <OrderItem
-            item={item}
-            key={item.pizzaId}
-            isLoadingIngredients={isLoadingIngredients}
-            ingredients={
-              fetcher.data?.find((it) => it.id === item.pizzaId)?.ingredients ??
-              []
-            }
-          />
-        ))}
-      </ul>
-
-      <div className={styles.summary}>
-        <div className={styles.row}>
-          <span>Price pizza:</span>
-          <span>{formatCurrency(orderPrice)}</span>
-        </div>
-        {priority && (
-          <div className={styles.row}>
-            <span>Price priority: </span>
-            <span>{formatCurrency(priorityPrice)}</span>
-          </div>
-        )}
-        <div className={styles.row + ' text-base font-bold'}>
-          <span>To pay on delivery: </span>
-          <span>{formatCurrency(orderPrice + priorityPrice)}</span>
-        </div>
-      </div>
+      <OrderSummary
+        priority={priority}
+        priorityPrice={priorityPrice}
+        orderPrice={orderPrice}
+      />
     </div>
   );
 }
