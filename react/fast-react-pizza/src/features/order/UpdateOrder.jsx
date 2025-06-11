@@ -6,7 +6,7 @@ function UpdateOrder({ order }) {
   const fetcher = useFetcher();
   return (
     <fetcher.Form method="PATCH" className="text-right">
-      <Button>Make priority</Button>
+      <Button>Get priority</Button>
     </fetcher.Form>
   );
 }
