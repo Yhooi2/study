@@ -5,11 +5,13 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tailwind from "eslint-plugin-tailwindcss";
 
 export default [
+  js.configs.recommended,
   { ignores: ["dist"] },
   {
     files: ["**/*.{js,jsx}"],
     languageOptions: {
       ecmaVersion: 2020,
+      sourceType: "module",
       globals: globals.browser,
       parserOptions: {
         ecmaVersion: "latest",
