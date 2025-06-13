@@ -56,17 +56,7 @@ const GlobalStyles = createGlobalStyle`
   --image-opacity: 100%;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-
-  /* Creating animations for dark mode */
-  transition: background-color 0.3s, border 0.3s;
-}
-
+/* 
 html {
   font-size: 62.5%;
 }
@@ -112,7 +102,7 @@ select:focus {
 }
 
 /* Parent selector, finally ðŸ˜ƒ */
-button:has(svg) {
+/* button:has(svg) {
   line-height: 0;
 }
 
@@ -140,7 +130,7 @@ img {
   max-width: 100%;
 
   /* For dark mode */
-  filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
+  filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity)); */ */
 }
 
 /*

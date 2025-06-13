@@ -9,5 +9,11 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase }) {
+      addBase({
+        html: { fontSize: "62.5%" },
+      });
+    },
+  ],
 };

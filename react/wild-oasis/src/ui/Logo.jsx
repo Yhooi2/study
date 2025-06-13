@@ -1,13 +1,22 @@
-import styled from "styled-components";
+//import styled from "styled-components";
+import tw from "tailwind-styled-components";
 
-const StyledLogo = styled.div`
-  text-align: center;
+const StyledLogo = tw.div`
+  justify-items-center
 `;
 
-const Img = styled.img`
-  height: 9.6rem;
-  width: auto;
+// const StyledLogo = styled.div`
+//   text-align: center;
+// `;
+
+const Img = tw.img`
+  h-[15rem]
+  w-auto
 `;
+// const Img = styled.img`
+//   height: 9.6rem;
+//   width: auto;
+// `;
 
 function Logo() {
   return (
