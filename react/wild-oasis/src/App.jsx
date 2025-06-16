@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import AppLayout from "./ui/AppLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,6 +43,18 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
+
+      <Toaster
+        toastOptions={{
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px 24px",
+            background: "rgb(250 250 249)",
+            color: "rgb(68 64 60)",
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }

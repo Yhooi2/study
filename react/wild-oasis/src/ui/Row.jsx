@@ -19,11 +19,12 @@ import tw from "tailwind-styled-components";
 //     `}
 // `;
 
-// Row.defaultProps = {
-//   type: "vertical",
-// };
 const Row = tw.div`
   flex
-  ${(props) => props.type === "horizontal" && "justify-center justify-between"}
+  ${(props) => props.type === "horizontal" && "items-center justify-between"}
   ${(props) => props.type === "vertical" && "flex-col gap-6"}`;
 export default Row;
+
+Row.defaultProps = {
+  type: "vertical",
+};
