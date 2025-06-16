@@ -1,8 +1,10 @@
 // import styled from "styled-components";
+import tw from "tailwind-styled-components";
 import CabinRow from "./CabinRow";
 import { useQuery } from "@tanstack/react-query";
 import { getCabins } from "../../services/apiCabins";
 import Spinner from "../../ui/Spinner";
+import PageNotFound from "../../pages/PageNotFound";
 
 // const Table = styled.div`
 //   border: 1px solid var(--color-grey-200);
@@ -12,6 +14,14 @@ import Spinner from "../../ui/Spinner";
 //   border-radius: 7px;
 //   overflow: hidden;
 // `;
+const Table = tw.div`
+  border
+  border-stone-200
+  text-2xl
+  bg-stone-50
+  rounded-md
+  overflow-hidden
+`;
 
 // const TableHeader = styled.header`
 //   display: grid;
@@ -27,6 +37,21 @@ import Spinner from "../../ui/Spinner";
 //   color: var(--color-grey-600);
 //   padding: 1.6rem 2.4rem;
 // `;
+const TableHeader = tw.header`
+  grid
+  grid-cols-[0.6fr_1.8fr_2.2fr_1fr_1fr_1fr]
+  gap-10
+  items-center
+  border-b
+  bg-stone-100
+  border-stone-200
+  uppercase
+  tracking-wider
+  font-semibold
+  text-stone-600
+  py-6
+  px-10
+`;
 
 function CabinTable() {
   const {
@@ -37,14 +62,23 @@ function CabinTable() {
     queryKey: ["cabin"],
     queryFn: getCabins,
   });
-  console.log(cabins, error, isLoading);
 
-  if (true) return <Spinner />;
+  if (isLoading) return <Spinner />;
+  if (error) return <PageNotFound />;
   return (
-    <div>
-      <p>Table</p>
-      <CabinRow />
-    </div>
+    <Table role="table">
+      <TableHeader role="row">
+        <div></div>
+        <div>Cabin</div>
+        <div>Capacity</div>
+        <div>Price</div>
+        <div>Discount</div>
+        <div></div>
+      </TableHeader>
+      {cabins.map((cabin) => (
+        <CabinRow cabin={cabin} key={cabin.id} />
+      ))}
+    </Table>
   );
 }
 

@@ -1,5 +1,6 @@
-import styled from "styled-components";
+//import styled from "styled-components";
 import tw from "tailwind-styled-components";
+import { formatCurrency } from "../../utils/helpers";
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -15,13 +16,13 @@ import tw from "tailwind-styled-components";
 
 const TableRow = tw.div`
   grid
-  grid-cols-[0.6fr_1.8fr_2.2fr]
+  grid-cols-[0.6fr_1.8fr_2.2fr_1fr_1fr_1fr]
   gap-10
   items-center
   py-6
   px-10
   divide-y
-  divide-gray-100
+  divide-stone-100
 `;
 
 // const Img = styled.img`
@@ -43,26 +44,52 @@ const Img = tw.img`
   -translate-x-2
 `;
 
-const Cabin = styled.div`
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--color-grey-600);
-  font-family: "Sono";
+// const Cabin = styled.div`
+//   font-size: 1.6rem;
+//   font-weight: 600;
+//   color: var(--color-grey-600);
+//   font-family: "Sono";
+// `;
+const Cabin = tw.div`
+  text-2xl
+  font-semibold
+  text-stone-600
+  font-heading
 `;
 
-const Price = styled.div`
-  font-family: "Sono";
-  font-weight: 600;
+// const Price = styled.div`
+//   font-family: "Sono";
+//   font-weight: 600;
+// `;
+const Price = tw.div`
+  font-heading
+  font-semibold
 `;
 
-const Discount = styled.div`
-  font-family: "Sono";
-  font-weight: 500;
-  color: var(--color-green-700);
+// const Discount = styled.div`
+//   font-family: "Sono";
+//   font-weight: 500;
+//   color: var(--color-green-700);
+// `;
+const Discount = tw.div`
+  font-heading
+  font-medium
+  text-stone-700
 `;
 
-function CabinRow() {
-  return <div>CabinRow</div>;
+function CabinRow({ cabin }) {
+  const { name, maxCapacity, regularPrice, discount, image } = cabin;
+
+  return (
+    <TableRow>
+      <Img src={image}></Img>
+      <Cabin> {name}</Cabin>
+      <div> Fits up to {maxCapacity}</div>
+      <Price> {formatCurrency(regularPrice)}</Price>
+      <Discount>{formatCurrency(discount)}</Discount>
+      <button>Delete</button>
+    </TableRow>
+  );
 }
 
 export default CabinRow;
