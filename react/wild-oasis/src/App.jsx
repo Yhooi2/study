@@ -4,7 +4,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Settings from "./pages/Settings";
 import Users from "./pages/Users";
 import Account from "./pages/Account";
-import GlobalStyles from "./styles/GlobalStyle";
+import GlobalStyles from "./styles/GlobalStyles";
 import Cabins from "./pages/Cabins";
 import Bookings from "./pages/Bookings";
 import Login from "./pages/Login";
