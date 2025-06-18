@@ -5,9 +5,13 @@ import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createCabin, editCabin } from "../../services/apiCabins";
+import { toast } from "react-hot-toast";
+import FormRow from "../../ui/FormRow";
 
-const FormRow = styled.div`
+const StyleFormRow = styled.div`
   display: grid;
   align-items: center;
   grid-template-columns: 24rem 1fr 1.2fr;
@@ -34,74 +38,125 @@ const FormRow = styled.div`
   }
 `;
 
-const Label = styled.label`
-  font-weight: 500;
-`;
+function CreateCabinForm({ cabinToEdit = {} }) {
+  const editValues = cabinToEdit;
+  const editId = editValues.id;
 
-const Error = styled.span`
-  font-size: 1.4rem;
-  color: var(--color-red-700);
-`;
+  const methods = useForm({
+    defaultValues: editId ? editValues : {},
+  });
+  const { handleSubmit, reset, getValues } = methods;
 
-function CreateCabinForm() {
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm();
+  const queryClient = useQueryClient();
 
-  const onSubmit = (data) => console.log(data);
+  const { mutate: mutateCreate, isPending: isCreating } = useMutation({
+    mutationFn: createCabin,
+    onSuccess: () => {
+      toast.success("Successfully created!!");
+      queryClient.invalidateQueries({ queryKey: ["cabins"] });
+      reset();
+    },
+
+    onError: (err) => toast.error(err.message),
+  });
+
+  const { mutate: mutateEdit, isPending: isUpdating } = useMutation({
+    mutationFn: editCabin,
+    onSuccess: () => {
+      toast.success("Cabin successfully edited!!");
+      queryClient.invalidateQueries({ queryKey: ["cabins"] });
+      reset();
+    },
+
+    onError: (err) => toast.error(err.message),
+  });
+  const onSubmit = editId
+    ? (editValues) => mutateEdit({ ...editValues, id: editId })
+    : (newCabin) => mutateCreate(newCabin);
+  const isWorks = isCreating || isUpdating;
+
+  // const onError = (err) => console.log(err);
+  // console.log(errors);
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow>
-        <Label htmlFor="name">Cabin name</Label>
-        <Input type="text" id="name" {...register("name")} />
-      </FormRow>
+    <FormProvider {...methods}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <StyleFormRow>
+          <FormRow label="Cabin name">
+            <Input type="text" id="name" disabled={isWorks} />
+          </FormRow>
+        </StyleFormRow>
 
-      <FormRow>
-        <Label htmlFor="maxCapacity">Maximum capacity</Label>
-        <Input type="number" id="maxCapacity" {...register("maxCapasity")} />
-      </FormRow>
+        <StyleFormRow>
+          <FormRow
+            label="Maximum capacity"
+            rules={{
+              min: { value: 1, message: "Capacity should be at least 1" },
+            }}
+          >
+            <Input type="number" id="maxCapacity" disabled={isWorks} />
+          </FormRow>
+        </StyleFormRow>
 
-      <FormRow>
-        <Label htmlFor="regularPrice">Regular price</Label>
-        <Input type="number" id="regularPrice" {...register("regularPricer")} />
-      </FormRow>
+        <StyleFormRow>
+          <FormRow
+            label="Regular price"
+            rules={{
+              min: { value: 1, message: "Price should be at least 1" },
+            }}
+          >
+            <Input type="number" id="regularPrice" disabled={isWorks} />
+          </FormRow>
+        </StyleFormRow>
 
-      <FormRow>
-        <Label htmlFor="discount">Discount</Label>
-        <Input
-          type="number"
-          id="discount"
-          defaultValue={0}
-          {...register("discont")}
-        />
-      </FormRow>
+        <StyleFormRow>
+          <FormRow
+            label="Discount"
+            rules={{
+              validate: (val) => {
+                return (
+                  Number(val) <= Number(getValues("regularPrice")) ||
+                  "Discount should be less than regular price"
+                );
+              },
+            }}
+          >
+            <Input
+              type="number"
+              id="discount"
+              defaultValue={0}
+              disabled={isWorks}
+            />
+          </FormRow>
+        </StyleFormRow>
 
-      <FormRow>
-        <Label htmlFor="description">Description for website</Label>
-        <Textarea
-          type="number"
-          id="description"
-          defaultValue=""
-          {...register("description")}
-        />
-      </FormRow>
+        <StyleFormRow>
+          <FormRow label="Description for website">
+            <Textarea
+              type="text"
+              id="description"
+              defaultValue=""
+              disabled={isWorks}
+            />
+          </FormRow>
+        </StyleFormRow>
 
-      <FormRow>
-        <Label htmlFor="image">Cabin photo</Label>
-        <FileInput id="image" accept="image/*" />
-      </FormRow>
+        <StyleFormRow>
+          <FormRow label="Cabin photo" required={editId ? false : undefined}>
+            <FileInput id="image" accept="image/*" disabled={isWorks} />
+          </FormRow>
+        </StyleFormRow>
 
-      <FormRow>
-        {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
-          Cancel
-        </Button>
-        <Button>Edit cabin</Button>
-      </FormRow>
-    </Form>
+        <StyleFormRow>
+          <Button variation="secondary" type="reset">
+            Cancel
+          </Button>
+          <Button disabled={isWorks}>
+            {editId ? "Edit cabin" : "Create cabin"}
+          </Button>
+        </StyleFormRow>
+      </Form>
+    </FormProvider>
   );
 }
 
