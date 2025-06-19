@@ -1,33 +1,18 @@
-import { TableRow, Discount, Price, Cabin, Img } from "./styles";
-
-import toast from "react-hot-toast";
 import { useState } from "react";
+import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+
+import { TableRow, Discount, Price, Cabin, Img } from "./styles";
 
 import { formatCurrency } from "../../utils/helpers";
 import CreateCabinForm from "./CreateCabinForm";
-import useCabinMutation from "./hooks/useCabinMutation";
-import { copyCabin, deleteCabin } from "../../services/apiCabins";
-import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import useCabinOperations from "./hooks/useCabinOperations";
 
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);
   const { name, maxCapacity, regularPrice, discount, image, id } = cabin;
 
-  const { isPending: isCopying, mutate: mutateCopy } =
-    useCabinMutation(copyCabin);
-
-  const { isPending: isDeleting, mutate: mutateDelete } =
-    useCabinMutation(deleteCabin);
-
-  const handleCopy = () =>
-    mutateCopy(cabin, {
-      onSuccess: () => toast.success("Succesfully copyted!"),
-    });
-
-  const handleDelete = () =>
-    mutateDelete(id, {
-      onSuccess: () => toast.success("Succesfully deleted!"),
-    });
+  const { isCopying, isDeleting, copyCabin, deleteCabin } =
+    useCabinOperations();
 
   return (
     <>
@@ -40,13 +25,13 @@ function CabinRow({ cabin }) {
           {discount ? formatCurrency(discount) : <span>&mdash;</span>}
         </Discount>
         <div>
-          <button onClick={handleCopy}>
+          <button disabled={isCopying} onClick={() => copyCabin(cabin)}>
             <HiSquare2Stack />
           </button>
-          <button disabled={isCopying} onClick={() => setShowForm((v) => !v)}>
+          <button onClick={() => setShowForm((v) => !v)}>
             <HiPencil />
           </button>
-          <button disabled={isDeleting} onClick={handleDelete}>
+          <button disabled={isDeleting} onClick={() => deleteCabin(id)}>
             <HiTrash />
           </button>
         </div>

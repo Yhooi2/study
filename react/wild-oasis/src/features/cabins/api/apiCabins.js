@@ -1,4 +1,4 @@
-import supabase, { supabaseUrl } from "./supabase";
+import supabase, { supabaseUrl } from "../../../services/supabase";
 
 // Copy
 export async function copyCabin(cabinForCopy) {
