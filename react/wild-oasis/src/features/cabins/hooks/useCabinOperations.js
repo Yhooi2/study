@@ -26,13 +26,13 @@ function useCabinOperations() {
   const updateCabinHandler = (cabin) =>
     mutateEdit(cabin, {
       onSuccess: () => {
-        toast.success("Successfully edited!!");
+        toast.success("Successfully edited!");
       },
     });
   const createCabinHandler = (newCabin) =>
     mutateCreate(newCabin, {
       onSuccess: () => {
-        toast.success("Successfully created!!");
+        toast.success("Successfully created!");
       },
     });
 
