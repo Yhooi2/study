@@ -18,27 +18,36 @@ function useCabinOperations() {
   const { isPending: isCopying, mutate: mutateCopy } =
     useCabinMutation(copyCabin);
 
-  const copyCabinHandler = (cabin) =>
+  const copyCabinHandler = (cabin, options = {}) =>
     mutateCopy(cabin, {
-      onSuccess: () => toast.success("Succesfully copyted!"),
+      onSuccess: (data) => {
+        toast.success("Succesfully copied!");
+        options.onSuccess?.(data);
+      },
     });
 
-  const updateCabinHandler = (cabin) =>
+  const updateCabinHandler = (cabin, options = {}) =>
     mutateEdit(cabin, {
-      onSuccess: () => {
+      onSuccess: (data) => {
         toast.success("Successfully edited!");
+        options.onSuccess?.(data);
       },
+      ...options,
     });
-  const createCabinHandler = (newCabin) =>
+  const createCabinHandler = (newCabin, options = {}) =>
     mutateCreate(newCabin, {
-      onSuccess: () => {
+      onSuccess: (data) => {
         toast.success("Successfully created!");
+        options.onSuccess?.(data);
       },
     });
 
-  const deleteCabinHandler = (id) =>
+  const deleteCabinHandler = (id, options = {}) =>
     mutateDelete(id, {
-      onSuccess: () => toast.success("Succesfully deleted!"),
+      onSuccess: (data) => {
+        toast.success("Successfully deleted!");
+        options.onSuccess?.(data);
+      },
     });
 
   return {
