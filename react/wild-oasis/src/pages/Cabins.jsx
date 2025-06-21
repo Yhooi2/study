@@ -16,7 +16,9 @@ function Cabins() {
       <Row>
         <CabinTable />
       </Row>
-      <ShowModalCabin />
+      <Row>
+        <ShowModalCabin />
+      </Row>
     </>
   );
 }

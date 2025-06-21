@@ -1,26 +1,20 @@
-import { useState } from "react";
 import Button from "../../ui/Button";
-import Row from "../../ui/Row";
 import Modal from "../../ui/Modal";
+// import CabinTable from "./CabinTable";
 import CreateCabinForm from "./CreateCabinForm";
 
 function ShowModalCabin() {
-  const [openModal, setOpenModal] = useState(false);
-  const onToggleModal = () => setOpenModal((show) => !show);
-
   return (
-    <>
-      <Row>
-        <Button onClick={onToggleModal}>Add new cabin</Button>
-      </Row>
-      <Row>
-        {openModal && (
-          <Modal onClick={onToggleModal}>
-            <CreateCabinForm onCloseModal={onToggleModal} />
-          </Modal>
-        )}
-      </Row>
-    </>
+    <div>
+      <Modal>
+        <Modal.Open window="cabin-create">
+          <Button> Add new cabin </Button>
+        </Modal.Open>
+        <Modal.Window window="cabin-create">
+          <CreateCabinForm />
+        </Modal.Window>
+      </Modal>
+    </div>
   );
 }
 
