@@ -90,7 +90,7 @@ const Button = tw.button`
 
 function Modal({ children, onClick }) {
   return createPortal(
-    <Overlay>
+    <Overlay onClick={(e) => e.target === e.currentTarget && onClick()}>
       <StyledModal>
         <Button onClick={onClick}>
           <HiXMark />

@@ -1,5 +1,6 @@
 import CabinTable from "../features/cabins/CabinTable";
-import CreateCabin from "../features/cabins/CreateCabin";
+
+import ShowModalCabin from "../features/cabins/ShowModalCabin";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
 
@@ -15,7 +16,7 @@ function Cabins() {
       <Row>
         <CabinTable />
       </Row>
-      <CreateCabin />
+      <ShowModalCabin />
     </>
   );
 }

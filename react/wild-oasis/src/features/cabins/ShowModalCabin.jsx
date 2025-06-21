@@ -4,7 +4,7 @@ import Row from "../../ui/Row";
 import Modal from "../../ui/Modal";
 import CreateCabinForm from "./CreateCabinForm";
 
-function CreateCabin() {
+function ShowModalCabin() {
   const [openModal, setOpenModal] = useState(false);
   const onToggleModal = () => setOpenModal((show) => !show);
 
@@ -24,4 +24,4 @@ function CreateCabin() {
   );
 }
 
-export default CreateCabin;
+export default ShowModalCabin;
