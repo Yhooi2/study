@@ -18,8 +18,10 @@ export async function copyCabin(cabinForCopy) {
 
 // Update
 export async function editCabin(cabin) {
-  const hasImagePath = cabin.image?.startsWith?.(supabaseUrl);
+  const hasImagePath =
+    typeof cabin.image === "string" && cabin.image.includes(supabaseUrl);
   const image = hasImagePath ? cabin.image : cabin.image[0];
+  console.log(cabin.image, supabaseUrl, hasImagePath);
   const imageName = hasImagePath
     ? cabin.image.split("/").pop()
     : Math.random() + image.name.replace("/", "");

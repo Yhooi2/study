@@ -71,44 +71,6 @@ const StyledButton = styled.button`
     transition: all 0.3s;
   }
 `;
-// const StyledMenu = tw.div
-//
-//   flex,
-//   items-center
-//   justify-end
-//   z-10
-// `;
-
-// const StyledDropdown = tw.div`
-//   p-2
-//   bg-transparent
-//   border-none
-//   rounded-md
-//   mr-auto
-//   [&>svg]:size-10
-//   [&>svg]:hover:bg-none
-//   [&>svg]:text-stone-700
-//   z-30
-// `;
-
-// const StyledList = tw.ul`
-//   absolute
-//   top-full
-//   bg-stone-50
-//   shadow-md
-//   rounded-xl
-//   z-40
-// `;
-
-// const StyledButton = tw.button`
-//   z-50
-//   w-full
-//   text-left
-//   bg-transparent
-//   border-none
-//   py-5
-//   px-10
-// `;
 
 const MenuContext = createContext();
 
@@ -129,7 +91,7 @@ function Menus({ children }) {
   );
 }
 
-function Tuggle({ id }) {
+function Tuggle({ id, disabled }) {
   const { openId, openMenu, closeMenu } = useContext(MenuContext);
   const buttonRef = useRef();
   const handleToggle = () => {
@@ -140,7 +102,7 @@ function Tuggle({ id }) {
     }
   };
   return (
-    <StyledTuggle ref={buttonRef} onClick={handleToggle}>
+    <StyledTuggle ref={buttonRef} onClick={handleToggle} disabled={disabled}>
       <HiEllipsisVertical />
     </StyledTuggle>
   );
@@ -161,8 +123,17 @@ function List({ children, id }) {
   );
 }
 
-function Item({ children }) {
-  return <StyledButton>{children}</StyledButton>;
+function Item({ children, icon, onClick }) {
+  const { closeMenu } = useContext(MenuContext);
+  const handleClick = () => {
+    onClick?.();
+    closeMenu();
+  };
+  return (
+    <StyledButton onClick={handleClick}>
+      {icon} <span>{children}</span>
+    </StyledButton>
+  );
 }
 Menus.Menu = StyledMenu;
 Menus.Tuggle = Tuggle;

@@ -1,13 +1,12 @@
-// import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
 
 import { formatCurrency } from "../../utils/helpers";
-// import CreateCabinForm from "./CreateCabinForm";
-// import useCabinOperations from "./hooks/useCabinOperations";
-// import Modal from "../../ui/Modal";
-// import ConfirmDelete from "../../ui/ConfirmDelete";
+import CreateCabinForm from "./CreateCabinForm";
+import useCabinOperations from "./hooks/useCabinOperations";
+import Modal from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 import Menus from "../../ui/Menus";
 import styled from "styled-components";
-import tw from "tailwind-styled-components";
 
 export const Img = styled.img`
   display: block;
@@ -18,36 +17,16 @@ export const Img = styled.img`
   transform: scale(1.5) translateX(-7px);
 `;
 
-// const Img = tw.img`
-//   block
-//   w-[6.5rem]
-//   aspect-[3/2]
-//   object-cover
-//   transform
-//   scale-150
-//   -translate-x-2
-// `;
-
-// export const Cabin = styled.div`
-//   font-size: 1.6rem;
-//   font-weight: 600;
-//   color: var(--color-grey-600);
-//   font-family: "Sono";
-// `;
-const Cabin = tw.div`
-  text-2xl
-  font-semibold
-  text-stone-600
-  font-heading
+export const Cabin = styled.div`
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-grey-600);
+  font-family: "Sono";
 `;
 
-// export const Price = styled.div`
-//   font-family: "Sono";
-//   font-weight: 600;
-// `;
-const Price = tw.div`
-  font-heading
-  font-semibold
+export const Price = styled.div`
+  font-family: "Sono";
+  font-weight: 600;
 `;
 
 export const Discount = styled.div`
@@ -55,17 +34,14 @@ export const Discount = styled.div`
   font-weight: 500;
   color: var(--color-green-700);
 `;
-// const Discount = tw.div`
-//   font-heading
-//   font-medium
-//   text-stone-700
-// `;
 
 function CabinRow({ cabin }) {
   const { name, maxCapacity, regularPrice, discount, image, id } = cabin;
 
-  // const { isCopying, isDeleting, copyCabin, deleteCabin } =
-  //   useCabinOperations();
+  const { isCopying, isDeleting, copyCabin, deleteCabin } =
+    useCabinOperations();
+
+  const isLoading = isCopying || isDeleting;
 
   return (
     <>
@@ -76,40 +52,33 @@ function CabinRow({ cabin }) {
       <Discount>
         {discount ? formatCurrency(discount) : <span>&mdash;</span>}
       </Discount>
-      {/* <div>
-        <button disabled={isCopying} onClick={() => copyCabin(cabin)}>
-          <HiSquare2Stack />
-        </button>
-        <Modal>
-          <Modal.Open window="create">
-            <button>
-              <HiPencil />
-            </button>
-          </Modal.Open>
-          <Modal.Window window="create">
-            <CreateCabinForm cabinToEdit={cabin} />
-          </Modal.Window>
-          <Modal.Open window="delete">
-            <button>
-              <HiTrash />
-            </button>
-          </Modal.Open>
-          <Modal.Window window="delete">
-            <ConfirmDelete
-              disabled={isDeleting}
-              onConfirm={() => deleteCabin(id)}
-            />
-          </Modal.Window>
-        </Modal> */}
-      {/* </div> */}
-      <Menus.Menu>
-        <Menus.Tuggle id={id} />
-        <Menus.List id={id}>
-          <Menus.Item>Copy</Menus.Item>
-          <Menus.Item>Edit</Menus.Item>
-          <Menus.Item>Delete</Menus.Item>
-        </Menus.List>
-      </Menus.Menu>
+      <Modal>
+        <Menus.Menu>
+          <Menus.Tuggle id={id} disabled={isLoading} />
+          <Menus.List id={id}>
+            <Menus.Item
+              icon={<HiSquare2Stack />}
+              onClick={() => copyCabin(cabin)}
+            >
+              Copy
+            </Menus.Item>
+
+            <Modal.Open window="create">
+              <Menus.Item icon={<HiPencil />}>Edit</Menus.Item>
+            </Modal.Open>
+
+            <Modal.Open window="delete">
+              <Menus.Item icon={<HiTrash />}>Delete</Menus.Item>
+            </Modal.Open>
+          </Menus.List>
+        </Menus.Menu>
+        <Modal.Window window="create">
+          <CreateCabinForm cabinToEdit={cabin} />
+        </Modal.Window>
+        <Modal.Window window="delete">
+          <ConfirmDelete onConfirm={() => deleteCabin(id)} />
+        </Modal.Window>
+      </Modal>
     </>
   );
 }
