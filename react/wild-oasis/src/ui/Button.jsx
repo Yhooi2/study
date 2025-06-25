@@ -50,7 +50,7 @@ const variations = {
 
 const Button = styled.button`
   border: none;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
 
   ${({ size = "medium" }) => {

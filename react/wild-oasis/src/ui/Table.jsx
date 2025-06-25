@@ -7,7 +7,7 @@ const StyledTable = styled.div`
   font-size: 1.4rem;
   background-color: var(--color-grey-0);
   border-radius: 7px;
-  overflow: hidden;
+  overflow: visible;
 `;
 
 const CommonRow = styled.div`
@@ -73,7 +73,7 @@ function Table({ children, columns }) {
 function Header({ children }) {
   const { columns } = useContext(TableContext);
   return (
-    <StyledHeader role="header" columns={columns}>
+    <StyledHeader role="row" as="header" columns={columns}>
       {children}
     </StyledHeader>
   );
@@ -81,10 +81,16 @@ function Header({ children }) {
 
 function Row({ children }) {
   const { columns } = useContext(TableContext);
-  return <StyledRow columns={columns}>{children}</StyledRow>;
+  return (
+    <StyledRow role="row" columns={columns}>
+      {children}
+    </StyledRow>
+  );
 }
 
-function Body() {}
+function Body({ data, render }) {
+  return <StyledBody>{data.map(render)}</StyledBody>;
+}
 
 Table.Header = Header;
 Table.Row = Row;

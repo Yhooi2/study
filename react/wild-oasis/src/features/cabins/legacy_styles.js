@@ -1,4 +1,4 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 // import tw from "tailwind-styled-components";
 
 // export const StyleFormRow = styled.div`
@@ -96,56 +96,4 @@ import styled from "styled-components";
 //   px-10
 //   divide-y
 //   divide-stone-100
-// `;
-
-export const Img = styled.img`
-  display: block;
-  width: 6.4rem;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.5) translateX(-7px);
-`;
-
-// const Img = tw.img`
-//   block
-//   w-[6.5rem]
-//   aspect-[3/2]
-//   object-cover
-//   transform
-//   scale-150
-//   -translate-x-2
-// `;
-
-export const Cabin = styled.div`
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--color-grey-600);
-  font-family: "Sono";
-`;
-// const Cabin = tw.div`
-//   text-2xl
-//   font-semibold
-//   text-stone-600
-//   font-heading
-// `;
-
-export const Price = styled.div`
-  font-family: "Sono";
-  font-weight: 600;
-`;
-// const Price = tw.div`
-//   font-heading
-//   font-semibold
-// `;
-
-export const Discount = styled.div`
-  font-family: "Sono";
-  font-weight: 500;
-  color: var(--color-green-700);
-`;
-// const Discount = tw.div`
-//   font-heading
-//   font-medium
-//   text-stone-700
 // `;
