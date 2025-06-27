@@ -1,15 +1,13 @@
-import tw from "tailwind-styled-components";
+import styled from "styled-components";
 
-const TwHeader = tw.header`
-  bg-stone-0
-  py-6
-  px-16
-  border
-  border-stone-100
+const StyledHeader = styled.header`
+  background-color: var(--color-grey-0);
+  padding: 1.2rem 4.8rem;
+  border-bottom: 1px solid var(--color-grey-100);
 `;
 
 function Header() {
-  return <TwHeader>Header</TwHeader>;
+  return <StyledHeader>HEADER</StyledHeader>;
 }
 
 export default Header;
