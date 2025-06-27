@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCabins } from "./../api/apiCabins";
+import { getCabins } from "../../../services/apiCabins";
 
 function useCabins() {
   const {

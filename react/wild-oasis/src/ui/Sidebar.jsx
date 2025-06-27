@@ -1,6 +1,7 @@
 import tw from "tailwind-styled-components";
 import Logo from "./Logo";
 import MainNav from "./MainNav";
+import Uploader from "../data/Uploader";
 
 const Aside = tw.aside`
   bg-stone-0
@@ -19,6 +20,7 @@ function Sidebar() {
     <Aside>
       <Logo />
       <MainNav />
+      <Uploader />
     </Aside>
   );
 }

@@ -5,7 +5,7 @@ import {
   copyCabin,
   editCabin,
   deleteCabin,
-} from "./../api/apiCabins";
+} from "../../../services/apiCabins";
 import toast from "react-hot-toast";
 
 function useCabinOperations() {
