@@ -8,7 +8,10 @@ export async function getBookings({ filter, sortBy, page }) {
     .select("*, cabins(name), guests(fullName, email)", { count: "exact" });
 
   // FILTER
-  if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
+  if (filter) {
+    query = query[filter.method || "eq"](filter.field, filter.value);
+    page = 1;
+  }
 
   // SORT
   if (sortBy)
@@ -17,12 +20,13 @@ export async function getBookings({ filter, sortBy, page }) {
     });
 
   // PAGINATION
-  if (page)
-    query = query.range(
-      (page - 1) * SINGLE_PAGE_COUNT,
-      page * SINGLE_PAGE_COUNT - 1,
-    );
+  if (page) {
+    const from = (page - 1) * SINGLE_PAGE_COUNT;
+    const to = page * SINGLE_PAGE_COUNT;
+    query = query.range(from, to);
+  }
 
+  // EXECUTE QUERY
   const { data, count, error } = await query;
   if (error) {
     console.error(error);
