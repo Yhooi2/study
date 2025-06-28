@@ -36,7 +36,9 @@ const StyledTuggle = styled.button`
     color: var(--color-grey-700);
   }
 `;
-const StyledList = styled.ul`
+const StyledList = styled.ul.withConfig({
+  shouldForwardProp: (prop) => prop !== "position",
+})`
   position: fixed;
 
   background-color: var(--color-grey-0);
