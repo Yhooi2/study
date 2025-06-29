@@ -3,7 +3,6 @@ import supabase, { supabaseUrl } from "./supabase";
 // Copy
 export async function copyCabin(cabinForCopy) {
   const { id: _, ...cabin } = cabinForCopy;
-  console.log(cabin);
   const { data, error } = await supabase
     .from("cabins")
     .insert({ ...cabin, name: "Copy_" + cabin.name })

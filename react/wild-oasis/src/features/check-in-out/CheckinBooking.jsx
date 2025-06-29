@@ -12,7 +12,7 @@ import useBooking from "../bookings/hooks/useBooking";
 import Spinner from "../../ui/Spinner";
 import Checkbox from "../../ui/Checkbox";
 import { formatCurrency } from "../../utils/helpers";
-import useCheckin from "./useCheckin";
+import useCheckin from "./hooks/useCheckin";
 import { useState } from "react";
 import useSettings from "../settings/useSettings";
 
@@ -28,12 +28,12 @@ function CheckinBooking() {
   const moveBack = useMoveBack();
   const { booking, isLoading } = useBooking();
   const { checkin, isCheckingIn } = useCheckin();
-  const { settings, isLoading: isLoadingSettings } = useSettings();
+  const { settings } = useSettings();
   const [confirmPaid, setConfirmPaid] = useState(false);
 
   const [includeBreakfast, setIncludeBreakfast] = useState(false);
 
-  if (isLoading || isCheckingIn || isLoadingSettings) return <Spinner />;
+  if (isLoading || isCheckingIn) return <Spinner />;
 
   const {
     id: bookingId,
