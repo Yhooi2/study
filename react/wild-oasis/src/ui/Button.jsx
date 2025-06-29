@@ -59,6 +59,11 @@ const Button = styled.button.withConfig({
     return sizes[size];
   }}
   ${({ variation = "primary" }) => variations[variation]}
+
+  &:disabled {
+    background-color: var(--color-grey-200);
+    color: var(--color-grey-400);
+  }
 `;
 
 Button.defaultProps = {
