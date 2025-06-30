@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
-import { getSettings, updateSetting } from "./apiSettings";
-import useBaseMutation from "../../hooks/useBaseMutation";
+import { getSettings, updateSetting } from "../../../services/apiSettings";
+import useBaseMutation from "../../../hooks/useBaseMutation";
 import { useQuery } from "@tanstack/react-query";
 
 function useUpdateSetting() {

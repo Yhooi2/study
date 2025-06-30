@@ -2,7 +2,7 @@ import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import Spinner from "../../ui/Spinner";
-import useUpdateSetting from "./useSettingsOperations";
+import useUpdateSetting from "./hooks/useSettingsOperations";
 
 function UpdateSettingsForm() {
   const { isLoading, isUpdate, getSettings, updateSetting } =

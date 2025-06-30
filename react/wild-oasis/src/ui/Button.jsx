@@ -51,6 +51,9 @@ const variations = {
 const Button = styled.button.withConfig({
   shouldForwardProp: (prop) => !["size", "variation"].includes(prop),
 })`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
