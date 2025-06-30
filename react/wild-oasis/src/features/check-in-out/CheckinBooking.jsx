@@ -30,7 +30,6 @@ function CheckinBooking() {
   const { checkin, isCheckingIn } = useCheckin();
   const { settings } = useSettings();
   const [confirmPaid, setConfirmPaid] = useState(false);
-
   const [includeBreakfast, setIncludeBreakfast] = useState(false);
 
   if (isLoading || isCheckingIn) return <Spinner />;
@@ -104,6 +103,7 @@ function CheckinBooking() {
         <Button onClick={handleCheckin} disabled={!confirmPaid}>
           Check in booking #{bookingId}
         </Button>
+
         <Button variation="secondary" onClick={moveBack}>
           Back
         </Button>

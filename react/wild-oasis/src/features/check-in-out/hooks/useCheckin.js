@@ -15,7 +15,6 @@ function useCheckin() {
         ...breakfast,
       }),
     onSuccess: (data) => {
-      console.log(data);
       toast.success(`Booking #${data.id} successfully checked in`);
       queryClient.invalidateQueries({ active: true });
       queryClient.setQueryData(["booking", data.id], data);

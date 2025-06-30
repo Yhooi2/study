@@ -76,7 +76,10 @@ function CabinRow({ cabin }) {
           <CreateCabinForm cabinToEdit={cabin} />
         </Modal.Window>
         <Modal.Window window="delete">
-          <ConfirmDelete onConfirm={() => deleteCabin(id)} />
+          <ConfirmDelete
+            resourceName="cabin"
+            onConfirm={() => deleteCabin(id)}
+          />
         </Modal.Window>
       </Modal>
     </>
