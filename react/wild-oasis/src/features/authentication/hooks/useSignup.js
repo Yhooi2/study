@@ -6,7 +6,9 @@ function useSignup() {
   const { mutate, isPanding } = useMutation({
     mutationFn: signup,
     onSuccess: (user) => {
-      toast.success("Account successfully created!");
+      toast.success(
+        `Account ${user.data.user.name} successfully created! Please verify the new account from the user's email address`,
+      );
     },
     onError: (error) => {
       console.log(error);
