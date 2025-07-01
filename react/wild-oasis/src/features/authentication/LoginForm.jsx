@@ -14,9 +14,16 @@ function LoginForm() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) return;
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+      },
+    );
   }
-  console.log(isLoading);
 
   return (
     <Form onSubmit={handleSubmit}>
