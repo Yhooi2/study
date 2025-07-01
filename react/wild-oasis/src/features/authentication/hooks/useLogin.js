@@ -10,7 +10,7 @@ function useLogin() {
     mutationFn: login,
     onSuccess: (data) => {
       queryClient.setQueryData(["user"], data.user);
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
     },
     onError: () => {
       toast.error("Provided email or password are incorrect");
