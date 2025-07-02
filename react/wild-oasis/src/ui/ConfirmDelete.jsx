@@ -1,37 +1,38 @@
 // import styled from "styled-components";
 import Button from "./Button";
 import Heading from "./Heading";
-import tw from "tailwind-styled-components";
+import styled from "styled-components";
+// import tw from "tailwind-styled-components";
 
-// const StyledConfirmDelete = styled.div`
-//   width: 40rem;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1.2rem;
+const StyledConfirmDelete = styled.div`
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 
-//   & p {
-//     color: var(--color-grey-500);
-//     margin-bottom: 1.2rem;
-//   }
+  & p {
+    color: var(--color-grey-500);
+    margin-bottom: 1.2rem;
+  }
 
-//   & div {
-//     display: flex;
-//     justify-content: flex-end;
-//     gap: 1.2rem;
-//   }
-// `;
-const StyledConfirmDelete = tw.div`
-  w-[44rem]
-  flex
-  flex-col
-  gap-5
-  [&>p]:text-stone-500
-  [&>p]
-  mb-5
-  [&>div]:flex
-  [&>div]:justify-end
-  [&>div]:gap-5
+  & div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.2rem;
+  }
 `;
+// const StyledConfirmDelete = tw.div`
+//   w-[44rem]
+//   flex
+//   flex-col
+//   gap-5
+//   [&>p]:text-stone-500
+//   [&>p]
+//   mb-5
+//   [&>div]:flex
+//   [&>div]:justify-end
+//   [&>div]:gap-5
+// `;
 
 function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
   return (
