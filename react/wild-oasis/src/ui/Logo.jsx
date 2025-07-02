@@ -14,7 +14,7 @@ const StyledLogo = styled.div`
 //   w-auto
 // `;
 const Img = styled.img`
-  height: 9.6rem;
+  height: 15rem;
   width: auto;
 `;
 
