@@ -5,12 +5,13 @@ import useBookings from "./hooks/useBookings";
 import Error from "../../ui/Error";
 import Spinner from "../../ui/Spinner";
 import Pagination from "../../ui/Pagination";
+import Empty from "../../ui/Empty";
 
 function BookingTable() {
   const { bookings, count, isLoading, error } = useBookings();
-
   if (isLoading) return <Spinner />;
   if (error) return <Error error={error} />;
+  if (bookings.length === 0) return <Empty>No bookings found</Empty>;
 
   return (
     <Menus>
