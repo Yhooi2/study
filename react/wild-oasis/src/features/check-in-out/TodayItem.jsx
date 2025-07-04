@@ -27,7 +27,6 @@ const Guest = styled.div`
 function TodayItem({ activity }) {
   const { checkout, isCheckingOut } = useCheckout();
   const navigate = useNavigate();
-  console.log(activity);
   const { guests, status, numNights, id } = activity;
 
   return (
