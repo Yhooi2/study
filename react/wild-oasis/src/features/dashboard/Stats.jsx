@@ -7,14 +7,16 @@ import {
 import Stat from "./Stat";
 import { formatCurrency } from "../../utils/helpers";
 
-function Stats({ bookings, confirmedStays, stays }) {
+function Stats({ bookings, confirmedStays }) {
   const totalBookings = bookings.length;
   const totalSales = confirmedStays.reduce(
     (acc, curr) => acc + curr.totalPrice,
     0,
   );
-  const totalCheckins = confirmedStays.length;
-  const occupancyRate = Math.round((totalCheckins / stays.length) * 100);
+  const occupancyRate =
+    confirmedStays.length === 0
+      ? 0
+      : Math.round((confirmedStays.length / totalBookings) * 100);
 
   return (
     <>
@@ -33,7 +35,7 @@ function Stats({ bookings, confirmedStays, stays }) {
       <Stat
         icon={<HiOutlineCalendarDays />}
         title="Checkins"
-        value={totalCheckins}
+        value={confirmedStays.length}
         color="indigo"
       />
       <Stat

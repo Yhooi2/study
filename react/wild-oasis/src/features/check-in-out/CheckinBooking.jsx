@@ -61,6 +61,7 @@ function CheckinBooking() {
         },
       });
     else checkin({ bookingId, breakfast: {} });
+    moveBack();
   }
 
   return (
