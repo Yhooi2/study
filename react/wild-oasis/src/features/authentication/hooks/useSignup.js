@@ -7,7 +7,7 @@ function useSignup() {
     mutationFn: signup,
     onSuccess: (user) => {
       toast.success(
-        `Account ${user.data.user.name} successfully created! Please verify the new account from the user's email address`,
+        `Account ${user.user?.user_metadata?.fullName} successfully created! Please verify the new account from the user's email address`,
       );
     },
     onError: (error) => {
