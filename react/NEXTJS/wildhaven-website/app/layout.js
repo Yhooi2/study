@@ -1,5 +1,7 @@
-import Navigation from "./components/Navigation";
-import Logo from "./components/Logo";
+import Navigation from "./_components/Navigation";
+import Logo from "./_components/Logo";
+
+import "@/app/_styles/globals.css";
 
 export const metadata = {
   title: "Wildhaven",
@@ -8,14 +10,14 @@ export const metadata = {
 function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-primary-950 text-primary-100 min-h-screen">
         <header>
           <Logo />
         </header>
         <Navigation />
         {children}
         <footer>
-          <p>Wildhaven &copy; 2025</p>
+          <p>Copyright by Wildhaven &copy; 2025</p>
         </footer>
       </body>
     </html>
