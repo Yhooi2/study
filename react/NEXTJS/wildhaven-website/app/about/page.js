@@ -1,12 +1,16 @@
 import Image from "next/image";
 import image1 from "@/public/about-1.jpg";
+import CabinsCounter from "./CabinsCounter";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "About",
 };
 const styles = {
-  h1: "text-4xl text-accent-400 font-medium mb-10",
+  h1: "text-3xl text-accent-400 font-medium mb-10",
 };
+
+export const experimental_ppr = true;
 
 function Page() {
   return (
@@ -22,10 +26,16 @@ function Page() {
             and enjoying simple pleasures with family.
           </p>
           <p>
-            Our 8 luxury cabins provide a cozy base, but the real freedom and
-            peace you&apos;ll find in the surrounding mountains. Wander through
-            lush forests, breathe in the fresh air, and watch the stars twinkle
-            above from the warmth of a campfire or your hot tub.
+            Our{" "}
+            {
+              <Suspense>
+                <CabinsCounter />
+              </Suspense>
+            }{" "}
+            luxury cabins provide a cozy base, but the real freedom and peace
+            you&apos;ll find in the surrounding mountains. Wander through lush
+            forests, breathe in the fresh air, and watch the stars twinkle above
+            from the warmth of a campfire or your hot tub.
           </p>
           <p>
             This is where memorable moments are made, surrounded by
