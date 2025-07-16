@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "trunk check",
+    "fmt": "trunk fmt",
+    "trunk": "trunk"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -17,6 +19,7 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@trunkio/launcher": "^1.3.4",
     "eslint": "^8",
     "eslint-config-next": "15.4.1",
     "postcss": "^8",

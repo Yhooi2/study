@@ -1,4 +1,4 @@
-import { getCabins } from "../_lib/data-service";
+import { getCabins } from "../../_lib/data-service";
 import CabinCard from "./CabinCard";
 import { unstable_noStore } from "next/cache";
 
