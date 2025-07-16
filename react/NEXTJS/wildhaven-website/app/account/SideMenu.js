@@ -1,9 +1,11 @@
+"use client";
 import {
-  ArrowRightOnRectangleIcon,
+  ArrowRightStartOnRectangleIcon,
   CalendarDaysIcon,
   HomeIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const styles = {
@@ -31,12 +33,19 @@ const navItems = [
   },
 ];
 function SideMenu() {
+  const pathname = usePathname();
+  const isActive = (href) => pathname === href;
   return (
     <nav className={styles.nav}>
       <ul className={styles.ul}>
         {navItems.map((item) => (
           <li key={item.name}>
-            <Link href={item.href} className={styles.link}>
+            <Link
+              href={item.href}
+              className={
+                styles.link + (isActive(item.href) ? " bg-primary-900" : "")
+              }
+            >
               <span>{item.icon}</span>
               <span>{item.name}</span>
             </Link>
@@ -45,7 +54,7 @@ function SideMenu() {
         {
           <li className="mt-auto ">
             <button href="/logout" className={styles.link + " w-full"}>
-              <ArrowRightOnRectangleIcon className={styles.icon} />
+              <ArrowRightStartOnRectangleIcon className={styles.icon} />
               Sign out
             </button>
           </li>
