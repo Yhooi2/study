@@ -1,9 +1,13 @@
+import { useState } from "react";
+import SearchForm from "./components/SearchForm";
+import UserProfile from "./components/UserProfile";
+
 function App() {
-  return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+  const [userName, setUserName] = useState("ArtYhoo")
+  return <main className="max-w-3xl mx-auto px-8 py-20">
+    <SearchForm userName={userName} setUserName={setUserName} />
+    <UserProfile userName={userName} />
+  </main>
 }
 
 export default App

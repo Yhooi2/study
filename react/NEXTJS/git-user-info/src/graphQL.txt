@@ -1,0 +1,58 @@
+query GetUser($login: String!, $from: DateTime!, $to: DateTime!) {
+  user(login: $login) {
+    name  # User's display name (may be null)
+contrib2023: contributionsCollection(from: "2023-01-01T00:00:00Z", to: "2023-12-31T23:59:59Z") {
+  totalCommitContributions
+}
+contrib2024: contributionsCollection(from: "2024-01-01T00:00:00Z", to: "2024-12-31T23:59:59Z") {
+  totalCommitContributions
+}
+contrib2025: contributionsCollection(from: "2025-01-01T00:00:00Z", to: "2025-08-21T16:45:00Z") {
+  totalCommitContributions
+}
+    createdAt  # Account creation date in ISO 8601
+    contributionsCollection(from: $from, to: $to) {
+      totalCommitContributions  # Total commits by user in the period
+      commitContributionsByRepository(maxRepositories: 100) {
+        contributions {
+          totalCount  # Commits in this repository
+        }
+        repository {
+          name  # Repository name
+        }
+      }
+    }
+    repositories(first: 100, affiliations: OWNER) {
+      totalCount  # Total number of repositories
+      pageInfo {
+        endCursor  # Cursor for next page
+        hasNextPage  # Indicates if more repositories exist
+      }
+      nodes {
+        name  # Repository name
+        url  # For cloning (if precise LOC is needed)
+        defaultBranchRef {
+          target {
+            ... on Commit {
+              history {
+                totalCount  # Commits in the default branch
+              }
+            }
+          }
+        }
+        primaryLanguage {
+          name  # Primary programming language (may be null)
+        }
+        languages(first: 5) {
+          totalSize  # Total code size in bytes
+          edges {
+            size  # Size per language in bytes
+            node {
+              name  # Language name
+            }
+          }
+        }
+      }
+    }
+  }
+}
