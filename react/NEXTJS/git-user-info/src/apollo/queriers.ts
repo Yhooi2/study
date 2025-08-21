@@ -1,17 +1,43 @@
-query GetUser($login: String!, $from: DateTime!, $to: DateTime!) {
-  user(login: $login) {
-    name  # User's display name (may be null)
-contrib2023: contributionsCollection(from: "2023-01-01T00:00:00Z", to: "2023-12-31T23:59:59Z") {
-  totalCommitContributions
-}
-contrib2024: contributionsCollection(from: "2024-01-01T00:00:00Z", to: "2024-12-31T23:59:59Z") {
-  totalCommitContributions
-}
-contrib2025: contributionsCollection(from: "2025-01-01T00:00:00Z", to: "2025-08-21T16:45:00Z") {
-  totalCommitContributions
-}
-    createdAt  # Account creation date in ISO 8601
-    contributionsCollection(from: $from, to: $to) {
+import { gql } from "@apollo/client";
+
+export const GET_USER_INFO= gql`query GetUser($login: String!, 
+    $from: DateTime!, 
+    $to: DateTime!,
+    $year1From: DateTime!,
+    $year1To: DateTime!,
+    $year2From: DateTime!,
+    $year2To: DateTime!,
+    $year3From: DateTime!,
+    $year3To: DateTime!
+  ) {
+    user(login: $login) {
+      id
+      login
+      name
+      avatarUrl
+      bio
+      url
+      location
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
+      }
+      gists {
+        totalCount
+      }
+      contrib2023: contributionsCollection(from: $year1From, to: $year1To) {
+        totalCommitContributions
+      }
+      contrib2024: contributionsCollection(from: $year2From, to: $year2To) {
+        totalCommitContributions
+      }
+      contrib2025: contributionsCollection(from: $year3From, to: $year3To) {
+        totalCommitContributions
+      }
+      createdAt
+      contributionsCollection(from: $from, to: $to) {
       totalCommitContributions  # Total commits by user in the period
       commitContributionsByRepository(maxRepositories: 100) {
         contributions {
@@ -29,7 +55,11 @@ contrib2025: contributionsCollection(from: "2025-01-01T00:00:00Z", to: "2025-08-
         hasNextPage  # Indicates if more repositories exist
       }
       nodes {
+        id
         name  # Repository name
+        description
+        forkCount
+        stargazerCount
         url  # For cloning (if precise LOC is needed)
         defaultBranchRef {
           target {
@@ -55,4 +85,4 @@ contrib2025: contributionsCollection(from: "2025-01-01T00:00:00Z", to: "2025-08-
       }
     }
   }
-}
+}`

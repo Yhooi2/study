@@ -23,7 +23,7 @@ function SearchForm({userName, setUserName}: props) {
 
     return <form onSubmit={hundlerOnSubmit} className="flex gap-2 items-center w-full lg:w-1/3 mb-8">
         <Label htmlFor="search" className="sr-only">Search</Label>
-        <Input type="text" value={text} placeholder="Search Githab User... " onChange={(e) => setText(e.target.value)} className="flex-grow bg-background" />
+        <Input type="text" id="search" value={text} placeholder="Search Githab User... " onChange={(e) => setText(e.target.value)} className="flex-grow bg-background" />
         <Button type="submit">Search</Button>
     </form>
 }
