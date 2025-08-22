@@ -1,17 +1,34 @@
-import { type GitHubUser } from "@/apollo/github-api.types"
+import { type GitHubUser, isYearlyContributions } from "@/apollo/github-api.types"
 
 type ContributionsChartProps = {
     user: GitHubUser
 }
 
 export function ContributionsChart({ user }: ContributionsChartProps) {
-    const contributions = [
-        { year: 2023, commits: user.contrib2023?.totalCommitContributions || 0 },
-        { year: 2024, commits: user.contrib2024?.totalCommitContributions || 0 },
-        { year: 2025, commits: user.contrib2025?.totalCommitContributions || 0 }
-    ].filter(item => item.commits > 0)
+    // Получаем год создания аккаунта
+    const createdAtDate = new Date(user.createdAt)
+    const accountCreatedYear = isNaN(createdAtDate.getTime()) ? new Date().getFullYear() : createdAtDate.getFullYear()
+    const currentYear = new Date().getFullYear()
+    
+    // Создаем массив всех годов от создания аккаунта до текущего
+    const contributions = []
+    for (let year = accountCreatedYear; year <= currentYear; year++) {
+      const contribKey = `contrib${year}` as keyof GitHubUser
+      const contribData = user[contribKey]
+      
+      const commits = isYearlyContributions(contribData)
+        ? contribData.totalCommitContributions
+        : 0
+        
+      contributions.push({ year, commits })
+    }
+    
+    // Сортируем по году в обратном порядке (от новых к старым)
+    contributions.sort((a, b) => b.year - a.year)
 
-    const maxCommits = Math.max(...contributions.map(c => c.commits))
+    const maxCommits = contributions.length
+      ? Math.max(...contributions.map(c => c.commits))
+      : 0
 
     return (
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
@@ -25,7 +42,7 @@ export function ContributionsChart({ user }: ContributionsChartProps) {
                                 {contribution.year}
                             </div>
                             <div className="flex-1 bg-gray-200 rounded-full h-6">
-                                <div 
+                                <div
                                     className="bg-gradient-to-r from-green-400 to-green-600 h-6 rounded-full transition-all duration-500 ease-out"
                                     style={{ width: `${percentage}%` }}
                                 />

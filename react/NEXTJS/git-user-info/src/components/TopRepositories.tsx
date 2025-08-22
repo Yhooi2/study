@@ -22,26 +22,17 @@ function formatLines(lines: number): string {
 
 export function TopRepositories({ user }: TopRepositoriesProps) {
     const repositories = user.repositories.nodes || []
-    const commitContributions = user.contributionsCollection?.commitContributionsByRepository || []
-    
-    // Create a map of repositories with commit counts
-    const repoCommitsMap = new Map()
-    commitContributions.forEach(contrib => {
-        if (contrib.repository) {
-            repoCommitsMap.set(contrib.repository.name, contrib.contributions.totalCount)
-        }
-    })
 
-    // Sort repositories by commit count
+    // Use commit history from repository data
     const topRepos = repositories
         .map(repo => ({
             ...repo,
-            commits: repoCommitsMap.get(repo.name) || 0,
+            commits: repo.defaultBranchRef?.target?.history?.totalCount || 0,
             linesOfCode: repo.languages ? bytesToLines(repo.languages.totalSize) : 0
         }))
+        .filter(repo => repo.commits > 0) // Only show repos with commits
         .sort((a, b) => b.commits - a.commits)
         .slice(0, 5)
-
     if (topRepos.length === 0) {
         return (
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">

@@ -80,6 +80,11 @@ type PageInfo = {
     nodes: Repository[];
   };
   
+  // Simple user type for createdAt query
+  type SimpleUser = {
+    createdAt: string;
+  };
+
   // GitHub user type
   type GitHubUser = {
     id: string;
@@ -92,9 +97,7 @@ type PageInfo = {
     followers: ConnectionCount;
     following: ConnectionCount;
     gists: ConnectionCount;
-    contrib2023: YearlyContributions;
-    contrib2024: YearlyContributions;
-    contrib2025: YearlyContributions;
+    [key: `contrib${number}`]: YearlyContributions; // Динамические свойства для годовых вкладов
     createdAt: string;
     contributionsCollection: ContributionsCollection;
     repositories: Repositories;
@@ -104,10 +107,22 @@ type PageInfo = {
   type GitHubGraphQLResponse = {
       user: GitHubUser;
   };
+
+  // Simple GraphQL response type for createdAt query
+  type SimpleUserGraphQLResponse = {
+    user: SimpleUser;
+  };
   
+  // Хелпер для проверки типа YearlyContributions
+  export function isYearlyContributions(obj: any): obj is YearlyContributions {
+    return obj && typeof obj === 'object' && 'totalCommitContributions' in obj
+  }
+
   export type {
     GitHubGraphQLResponse,
+    SimpleUserGraphQLResponse,
     GitHubUser,
+    SimpleUser,
     Repository,
     Languages,
     ProgrammingLanguage,
